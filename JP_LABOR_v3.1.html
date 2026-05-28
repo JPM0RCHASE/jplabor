@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JP LABOR | 기업 인사·노무 실무 DB</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* ════════════════════════════════════════════════
+   JP LABOR v3 — PlayStation Design System
+   ════════════════════════════════════════════════ */
+:root{
+  /* Brand & CTA */
+  --primary:#0070d1; --primary-pressed:#0064b7; --primary-active:#004d8d;
+  --commerce:#d53b00; --commerce-pressed:#aa2f00;
+  /* Surface */
+  --canvas-dark:#000000; --surface-dark-elevated:#121314; --surface-dark-card:#181818;
+  --canvas-light:#ffffff; --surface-soft:#f3f3f3; --surface-card:#f5f7fa;
+  /* Text */
+  --ink:#000000; --body-light:rgba(0,0,0,0.6); --mute-light:#6b6b6b;
+  --on-dark:#ffffff; --body-dark:rgba(255,255,255,0.7); --mute-dark:rgba(229,229,229,0.55);
+  /* Semantic */
+  --warning:#c81b3a; --link-light:#0064b7; --link-dark:#53b1ff;
+  --risk-low:var(--primary); --risk-mid:var(--commerce); --risk-high:var(--warning);
+  /* Lines */
+  --hairline-light:#f3f3f3; --hairline-dark:rgba(229,229,229,0.2);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:110%;}
+body{
+  font-family:'Pretendard','-apple-system','Noto Sans KR',sans-serif;
+  font-size:18px; line-height:1.5; color:var(--ink);
+  background:var(--canvas-light); -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;}
+ul{list-style:none;}
+
+/* ── Typography utilities ── */
+.t-display-xl{font-size:54px;font-weight:300;line-height:1.25;letter-spacing:-0.1px;}
+.t-display-lg{font-size:44px;font-weight:300;line-height:1.25;letter-spacing:0.1px;}
+.t-display-md{font-size:35px;font-weight:300;line-height:1.25;}
+.t-heading-xl{font-size:28px;font-weight:300;line-height:1.25;letter-spacing:0.1px;}
+.t-heading-lg{font-size:22px;font-weight:300;line-height:1.25;letter-spacing:0.1px;}
+.t-heading-md{font-size:18px;font-weight:600;line-height:1;}
+
+/* ════════════ TOP UTILITY BAR ════════════ */
+.topbar{
+  background:var(--canvas-dark);padding:8px 48px;display:flex;justify-content:flex-end;
+  gap:22px;font-size:12px;font-weight:500;
+}
+.topbar a{color:var(--mute-dark);transition:color .15s;}
+.topbar a:hover{color:var(--on-dark);}
+
+/* ════════════ PRIMARY NAV ════════════ */
+.primary-nav{
+  background:var(--canvas-dark);padding:0 48px;display:flex;align-items:center;
+  gap:28px;height:64px;position:sticky;top:0;z-index:100;
+  border-bottom:1px solid var(--hairline-dark);
+}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0;}
+.logo-mark{
+  background:var(--primary);color:#fff;font-size:13px;font-weight:700;
+  padding:6px 12px;border-radius:9999px;letter-spacing:1px;
+}
+.logo-text{color:var(--on-dark);font-size:15px;font-weight:600;letter-spacing:-0.3px;}
+.logo-text span{color:var(--body-dark);font-weight:300;}
+.nav-menu{display:flex;gap:4px;margin-left:8px;}
+.nav-menu a{
+  color:var(--body-dark);font-size:14px;font-weight:500;padding:8px 14px;
+  border-radius:9999px;transition:all .15s;
+}
+.nav-menu a:hover{color:var(--on-dark);background:rgba(255,255,255,.08);}
+.nav-menu a.active{color:var(--on-dark);background:rgba(255,255,255,.12);}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px;}
+.nav-search{
+  display:flex;align-items:center;background:rgba(255,255,255,.1);
+  border-radius:9999px;padding:0 6px 0 18px;height:42px;width:280px;
+}
+.nav-search input{
+  flex:1;background:none;border:none;outline:none;color:var(--on-dark);
+  font-family:inherit;font-size:13px;
+}
+.nav-search input::placeholder{color:var(--mute-dark);}
+.nav-search button{
+  background:var(--primary);border:none;color:#fff;border-radius:9999px;
+  width:32px;height:32px;cursor:pointer;font-size:14px;flex-shrink:0;
+}
+.btn-consult{
+  background:var(--commerce);color:#fff;border:none;padding:0 22px;height:42px;
+  border-radius:9999px;font-family:inherit;font-size:14px;font-weight:700;
+  letter-spacing:0.324px;cursor:pointer;white-space:nowrap;transition:background .15s;
+}
+.btn-consult:hover{background:var(--commerce-pressed);}
+
+/* ════════════ SUB NAV (카테고리 탭) ════════════ */
+.sub-nav{
+  background:var(--canvas-dark);padding:0 48px;display:flex;gap:2px;
+  overflow-x:auto;border-bottom:1px solid var(--hairline-dark);
+}
+.sub-nav::-webkit-scrollbar{height:0;}
+.sub-nav a{
+  color:var(--body-dark);font-size:14px;padding:14px 16px;white-space:nowrap;
+  border-bottom:2px solid transparent;transition:all .15s;
+}
+.sub-nav a:hover{color:var(--on-dark);}
+.sub-nav a.active{color:var(--on-dark);border-bottom-color:var(--primary);}
+
+/* ════════════ HERO (dark band) ════════════ */
+.hero{
+  background:var(--canvas-dark);padding:96px 48px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,112,209,.18),transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+.hero h1{
+  color:var(--on-dark);font-size:48px;font-weight:300;line-height:1.25;
+  letter-spacing:-0.1px;margin-bottom:18px;
+}
+.hero h1 b{font-weight:600;color:#53b1ff;}
+.hero .sub{color:var(--body-dark);font-size:18px;margin-bottom:40px;}
+.hero .sub b{color:var(--on-dark);font-weight:500;}
+.hero-search{
+  display:flex;align-items:center;background:var(--canvas-light);
+  border-radius:9999px;padding:6px 6px 6px 24px;height:60px;
+  max-width:600px;margin:0 auto 24px;box-shadow:0 4px 30px rgba(0,0,0,.4);
+}
+.hero-search input{
+  flex:1;border:none;outline:none;font-family:inherit;font-size:16px;color:var(--ink);
+}
+.hero-search button{
+  background:var(--primary);border:none;color:#fff;border-radius:9999px;
+  height:48px;padding:0 28px;font-family:inherit;font-size:16px;font-weight:700;
+  cursor:pointer;transition:background .15s;
+}
+.hero-search button:hover{background:var(--primary-pressed);}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:nowrap;max-width:100%;overflow-x:auto;padding:0 4px;}
+.hero-tags::-webkit-scrollbar{display:none;}
+.hero-tags span{
+  background:rgba(255,255,255,.08);border:1px solid var(--hairline-dark);
+  color:var(--body-dark);padding:7px 16px;border-radius:9999px;font-size:13px;
+  cursor:pointer;transition:all .15s;white-space:nowrap;flex-shrink:0;
+}
+.hero-tags span:hover{background:rgba(255,255,255,.16);color:var(--on-dark);}
+</style>
+</head>
+<body>
+<style>
+/* ════════════ BREADCRUMB ════════════ */
+.breadcrumb{
+  background:var(--canvas-light);padding:14px 48px;font-size:13px;
+  color:var(--mute-light);border-bottom:1px solid var(--hairline-light);
+}
+.breadcrumb b{color:var(--primary);font-weight:600;}
+
+/* ════════════ MAIN LAYOUT (30/70) ════════════ */
+.layout{
+  max-width:1280px;margin:0 auto;padding:48px 24px;
+  display:grid;grid-template-columns:280px 1fr;gap:32px;
+}
+
+/* ── Sidebar ── */
+.side-box{
+  background:var(--canvas-light);border:1px solid var(--hairline-light);
+  border-radius:8px;overflow:hidden;margin-bottom:20px;
+}
+.side-box h3{
+  font-size:14px;font-weight:600;padding:14px 18px;color:var(--ink);
+  border-bottom:1px solid var(--hairline-light);
+}
+.side-box li a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:11px 18px;font-size:14px;color:var(--body-light);
+  border-bottom:1px solid var(--hairline-light);transition:all .12s;
+}
+.side-box li:last-child a{border-bottom:none;}
+.side-box li a:hover{background:var(--surface-card);color:var(--primary);}
+.side-box li a.active{
+  background:var(--surface-card);color:var(--primary);font-weight:600;
+  box-shadow:inset 3px 0 0 var(--primary);
+}
+.side-box .count{font-size:12px;color:var(--mute-light);font-weight:500;}
+.side-box li a.active .count{color:var(--primary);}
+
+.side-cta{
+  background:var(--canvas-dark);border-radius:8px;padding:24px 20px;
+  text-align:center;margin-bottom:20px;
+}
+.side-cta p{color:var(--body-dark);font-size:13px;line-height:1.6;margin-bottom:16px;}
+.side-cta button{
+  background:var(--commerce);color:#fff;border:none;width:100%;height:46px;
+  border-radius:9999px;font-family:inherit;font-size:14px;font-weight:700;
+  cursor:pointer;transition:background .15s;
+}
+.side-cta button:hover{background:var(--commerce-pressed);}
+
+/* ════════════ MAIN COLUMN ════════════ */
+.main{min-width:0;}
+.section-label{
+  display:flex;align-items:center;gap:10px;margin-bottom:20px;
+}
+.section-label h2{font-size:28px;font-weight:300;letter-spacing:0.1px;color:var(--ink);}
+.section-label .pill{
+  background:var(--surface-card);color:var(--primary);font-size:12px;font-weight:600;
+  padding:4px 12px;border-radius:9999px;
+}
+.section-label .count{margin-left:auto;font-size:13px;color:var(--mute-light);}
+
+/* ── Filter bar ── */
+.filter-bar{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:24px;
+  padding:14px 16px;background:var(--surface-card);border-radius:8px;
+}
+.filter-bar input{
+  flex:1;min-width:200px;height:40px;padding:0 16px;border:1px solid #ddd;
+  border-radius:4px;font-family:inherit;font-size:14px;outline:none;background:#fff;
+}
+.filter-bar input:focus{border:2px solid var(--primary);}
+.filter-bar select{
+  height:40px;padding:0 12px;border:1px solid #ddd;border-radius:4px;
+  font-family:inherit;font-size:14px;color:var(--body-light);background:#fff;cursor:pointer;
+}
+.filter-bar button{
+  height:40px;padding:0 24px;background:var(--primary);color:#fff;border:none;
+  border-radius:9999px;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;
+}
+.filter-bar button:hover{background:var(--primary-pressed);}
+
+/* ════════════ Q&A PANEL ════════════ */
+.qa{
+  background:var(--canvas-light);border:1px solid var(--hairline-light);
+  border-radius:8px;margin-bottom:14px;overflow:hidden;transition:box-shadow .15s;
+}
+.qa-head{
+  padding:18px 20px;cursor:pointer;display:flex;align-items:center;gap:12px;
+  transition:background .12s;
+}
+.qa-head:hover{background:var(--surface-card);}
+.badge{
+  font-size:12px;font-weight:700;padding:4px 11px;border-radius:9999px;
+  white-space:nowrap;flex-shrink:0;
+}
+.badge.case{background:#ffeae3;color:var(--commerce);}
+.badge.qa-type{background:#e6f1fb;color:var(--primary);}
+.risk-tag{
+  font-size:11px;font-weight:700;padding:4px 10px;border-radius:9999px;
+  white-space:nowrap;flex-shrink:0;
+}
+.risk-tag.low{background:#e6f1fb;color:var(--primary);}
+.risk-tag.mid{background:#ffeae3;color:var(--commerce);}
+.risk-tag.high{background:#fbe7eb;color:var(--warning);}
+.qa-title{flex:1;font-size:15px;font-weight:500;line-height:1.5;color:var(--ink);}
+.qa-meta{font-size:12px;color:var(--mute-light);white-space:nowrap;}
+.qa-toggle{color:var(--mute-light);font-size:14px;transition:transform .2s;flex-shrink:0;}
+.qa.open .qa-toggle{transform:rotate(180deg);}
+
+.qa-body{display:none;padding:24px;border-top:1px solid var(--hairline-light);background:#fafcfe;}
+.qa.open .qa-body{display:block;}
+
+/* Q 박스 */
+.q-box{
+  background:var(--surface-card);border-left:3px solid var(--primary);
+  padding:16px 18px;border-radius:0 8px 8px 0;margin-bottom:22px;
+  font-size:15px;line-height:1.6;font-weight:500;color:var(--primary-active);
+}
+
+/* AI 키워드 박스 */
+.kw-box{
+  background:var(--surface-card);border:1px solid #d5e3f5;border-radius:8px;
+  padding:16px 18px;margin-bottom:20px;
+}
+.kw-box h5{font-size:12px;color:var(--mute-light);margin-bottom:10px;font-weight:600;}
+.kw-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.kw{
+  background:#fff;border:1px solid var(--primary);color:var(--primary);
+  font-size:12px;padding:5px 12px;border-radius:9999px;
+}
+.kw.red{border-color:var(--warning);color:var(--warning);}
+.kw.orange{border-color:var(--commerce);color:var(--commerce);}
+
+/* 답변 섹션 */
+.ans{margin-bottom:22px;}
+.ans h4{
+  font-size:15px;font-weight:600;color:var(--ink);margin-bottom:12px;
+  display:flex;align-items:center;gap:8px;padding-bottom:8px;
+  border-bottom:1px solid var(--hairline-light);
+}
+.ans h4 .num{
+  background:var(--primary);color:#fff;width:22px;height:22px;border-radius:9999px;
+  display:inline-flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;
+}
+.ans li{padding:6px 0 6px 16px;position:relative;font-size:14px;line-height:1.7;color:var(--body-light);}
+.ans li::before{content:'–';position:absolute;left:2px;color:#bbb;}
+.ans li strong{color:var(--warning);font-weight:600;}
+.ans li em{color:var(--primary);font-style:normal;font-weight:600;}
+.law-cite{
+  font-size:12px;color:var(--mute-light);background:var(--surface-soft);
+  padding:3px 9px;border-radius:4px;margin-left:4px;display:inline-block;
+}
+
+/* 리스크 미터 */
+.risk-meter{display:flex;align-items:center;gap:12px;margin:16px 0 22px;}
+.risk-meter .lbl{font-size:13px;font-weight:600;color:var(--body-light);white-space:nowrap;}
+.risk-bar{flex:1;height:8px;background:var(--surface-soft);border-radius:9999px;overflow:hidden;}
+.risk-fill{height:100%;border-radius:9999px;transition:width .5s;}
+.risk-fill.low{width:28%;background:var(--risk-low);}
+.risk-fill.mid{width:60%;background:var(--risk-mid);}
+.risk-fill.high{width:92%;background:var(--risk-high);}
+.risk-val{font-size:13px;font-weight:700;white-space:nowrap;}
+.risk-val.low{color:var(--risk-low);}
+.risk-val.mid{color:var(--risk-mid);}
+.risk-val.high{color:var(--risk-high);}
+
+/* JP 실무 판단 박스 (★ 차별화) */
+.jp-box{
+  background:#fffaf5;border:1px solid #ffd9c2;border-left:4px solid var(--commerce);
+  border-radius:0 8px 8px 0;padding:18px 20px;margin-bottom:18px;
+}
+.jp-box h5{
+  font-size:15px;font-weight:700;color:var(--commerce);margin-bottom:12px;
+  display:flex;align-items:center;gap:6px;
+}
+.jp-box li{padding:5px 0 5px 16px;position:relative;font-size:14px;line-height:1.7;color:var(--body-light);}
+.jp-box li::before{content:'–';position:absolute;left:2px;color:#e0a080;}
+.jp-box li strong{color:var(--commerce);font-weight:700;}
+.jp-box li em{color:var(--primary);font-style:normal;font-weight:600;}
+
+/* 인라인 CTA */
+.cta-inline{
+  background:var(--surface-card);border:1px solid #d5e3f5;border-radius:8px;
+  padding:14px 18px;font-size:13px;color:var(--body-light);display:flex;
+  align-items:center;gap:10px;line-height:1.6;
+}
+.cta-inline a{color:var(--commerce);font-weight:700;}
+</style>
+<style>
+/* ════════════ FULL-BLEED SECTIONS ════════════ */
+.band{padding:80px 24px;}
+.band-light{background:var(--canvas-light);}
+.band-soft{background:var(--surface-soft);}
+.band-dark{background:var(--canvas-dark);}
+.band-inner{max-width:1280px;margin:0 auto;}
+.band-dark .section-label h2{color:var(--on-dark);}
+
+/* ── 가이드북 / 카드 패널 ── */
+.panel{
+  background:var(--canvas-light);border:1px solid var(--hairline-light);
+  border-radius:8px;overflow:hidden;margin-bottom:20px;
+}
+.panel-top{background:var(--canvas-dark);color:var(--on-dark);padding:20px 24px;}
+.panel-top.green{background:#1b5e20;}
+.panel-top h3{font-size:22px;font-weight:300;margin-bottom:4px;}
+.panel-top p{font-size:13px;color:var(--body-dark);}
+.panel-body{padding:24px;}
+.panel-body h4{
+  font-size:15px;font-weight:600;color:var(--primary);margin:18px 0 10px;
+  padding-left:12px;border-left:3px solid var(--primary);
+}
+.panel-body h4:first-child{margin-top:0;}
+.panel-body p{font-size:14px;line-height:1.8;color:var(--body-light);margin-bottom:10px;}
+.panel-body p strong{color:var(--ink);font-weight:600;}
+.gtable{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px;}
+.gtable th{background:var(--surface-card);color:var(--ink);padding:10px 14px;text-align:left;font-weight:600;border-bottom:2px solid var(--primary);}
+.gtable td{padding:10px 14px;border-bottom:1px solid var(--hairline-light);color:var(--body-light);line-height:1.6;vertical-align:top;}
+
+/* 법률변경 카드 */
+.change-card{border:1px solid var(--hairline-light);border-radius:8px;overflow:hidden;margin-bottom:14px;}
+.change-head{
+  background:#e8f5e9;padding:12px 18px;font-size:14px;font-weight:600;color:#1b5e20;
+  display:flex;align-items:center;gap:8px;
+}
+.badge-new{background:var(--warning);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:9999px;}
+.change-body{padding:16px 18px;}
+.change-body dl{display:grid;grid-template-columns:90px 1fr;gap:8px 14px;font-size:14px;}
+.change-body dt{color:var(--mute-light);}
+.change-body dd{color:var(--ink);font-weight:500;line-height:1.5;}
+.change-body dd .hl{color:var(--warning);font-weight:600;}
+.info-box{background:var(--surface-card);border-radius:8px;padding:14px 18px;font-size:14px;line-height:1.7;color:var(--body-light);margin-top:12px;}
+.info-box.warn{background:#fbe7eb;color:var(--warning);}
+.info-box strong{font-weight:600;}
+
+/* ════════════ 계산기 ════════════ */
+.calc{background:var(--canvas-light);border:1px solid var(--hairline-light);border-radius:8px;overflow:hidden;}
+.calc-top{background:var(--canvas-dark);color:var(--on-dark);padding:20px 24px;display:flex;align-items:center;gap:12px;}
+.calc-top h3{font-size:22px;font-weight:300;}
+.calc-top .pill{background:rgba(255,255,255,.16);color:var(--on-dark);font-size:12px;padding:4px 12px;border-radius:9999px;}
+.calc-tabs{display:flex;border-bottom:1px solid var(--hairline-light);background:var(--surface-card);overflow-x:auto;}
+.calc-tabs button{
+  padding:14px 24px;border:none;background:none;font-family:inherit;font-size:14px;
+  color:var(--body-light);cursor:pointer;border-bottom:2px solid transparent;
+  margin-bottom:-1px;white-space:nowrap;
+}
+.calc-tabs button.active{color:var(--primary);font-weight:700;border-bottom-color:var(--primary);background:var(--canvas-light);}
+.calc-body{display:none;padding:24px;}
+.calc-body.active{display:block;}
+.calc-row{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+.calc-field{flex:1;min-width:150px;}
+.calc-field label{display:block;font-size:13px;color:var(--body-light);margin-bottom:6px;font-weight:600;}
+.calc-field input,.calc-field select{
+  width:100%;height:46px;padding:0 14px;border:1px solid #ddd;border-radius:4px;
+  font-family:inherit;font-size:14px;outline:none;
+}
+.calc-field input:focus,.calc-field select:focus{border:2px solid var(--primary);}
+.calc-btn{
+  background:var(--primary);color:#fff;border:none;height:46px;padding:0 30px;
+  border-radius:9999px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+}
+.calc-btn:hover{background:var(--primary-pressed);}
+.calc-result{background:var(--surface-card);border:1px solid #d5e3f5;border-radius:8px;padding:18px 22px;margin-top:18px;display:none;}
+.calc-result.show{display:block;}
+.calc-result .rmain{font-size:24px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.calc-result .rdetail{font-size:13px;color:var(--body-light);line-height:1.8;}
+.calc-note{font-size:12px;color:var(--mute-light);margin-top:12px;padding-top:10px;border-top:1px solid var(--hairline-light);line-height:1.6;}
+
+/* ════════════ 비교표 ════════════ */
+.diff{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:8px;overflow:hidden;}
+.diff th{background:var(--canvas-dark);color:var(--on-dark);padding:14px;text-align:center;font-weight:600;}
+.diff td{padding:12px 14px;border-bottom:1px solid var(--hairline-light);text-align:center;color:var(--body-light);}
+.diff td:first-child{text-align:left;font-weight:600;color:var(--ink);}
+.diff tr:nth-child(even) td{background:var(--surface-card);}
+.chk{color:var(--primary);font-weight:700;}
+.crs{color:#ccc;}
+.star{color:var(--commerce);font-weight:700;}
+
+/* ════════════ CTA BAND (blue) ════════════ */
+.cta-band{background:var(--primary);padding:64px 24px;text-align:center;}
+.cta-band h3{color:#fff;font-size:35px;font-weight:300;margin-bottom:14px;}
+.cta-band p{color:rgba(255,255,255,.85);font-size:16px;line-height:1.7;margin-bottom:32px;}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-btns a{padding:0 30px;height:52px;display:inline-flex;align-items:center;border-radius:9999px;font-size:15px;font-weight:700;}
+.cta-primary{background:var(--commerce);color:#fff;}
+.cta-primary:hover{background:var(--commerce-pressed);}
+.cta-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);}
+.cta-outline:hover{background:rgba(255,255,255,.12);}
+.cta-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px;}
+.cta-tags span{background:rgba(255,255,255,.14);color:#fff;font-size:12px;padding:5px 14px;border-radius:9999px;}
+
+/* ════════════ FOOTER ════════════ */
+footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 48px 32px;}
+.footer-grid{max-width:1280px;margin:0 auto;display:flex;gap:48px;flex-wrap:wrap;}
+.footer-brand{flex:1;min-width:220px;}
+.footer-brand .fb-name{color:#fff;font-size:18px;font-weight:600;margin-bottom:10px;}
+.footer-brand p{font-size:13px;line-height:1.7;}
+.footer-col h4{color:rgba(255,255,255,.9);font-size:13px;font-weight:600;margin-bottom:12px;}
+.footer-col a{display:block;font-size:13px;color:rgba(255,255,255,.6);margin-bottom:8px;transition:color .15s;}
+.footer-col a:hover{color:#fff;}
+.footer-bottom{max-width:1280px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);font-size:12px;}
+.footer-disc{background:rgba(255,255,255,.08);border-radius:8px;padding:14px 18px;margin-top:14px;font-size:12px;line-height:1.7;}
+
+/* ════════════ 반응형 ════════════ */
+@media(max-width:1024px){
+  .layout{grid-template-columns:1fr;}
+  .side-wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:0 20px;}
+  .nav-search{width:200px;}
+}
+@media(max-width:768px){
+  .topbar,.primary-nav,.sub-nav,.hero,.breadcrumb,footer{padding-left:20px;padding-right:20px;}
+  .band,.cta-band{padding:48px 20px;}
+  .nav-menu,.nav-search{display:none;}
+  .hero h1{font-size:32px;}
+  .hero-search{flex-direction:column;height:auto;border-radius:12px;padding:8px;}
+  .hero-search input{width:100%;padding:12px;text-align:center;}
+  .hero-search button{width:100%;}
+  .side-wrap{grid-template-columns:1fr;}
+  .section-label h2{font-size:24px;}
+  .qa-title{font-size:14px;}
+  .qa-meta{display:none;}
+  .footer-grid{gap:28px;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:28px;}
+  .band,.cta-band{padding:40px 16px;}
+  .cta-band h3{font-size:26px;}
+}
+</style>
+<!-- TOP UTILITY BAR -->
+<div class="topbar">
+  <a href="#">공인노무사 JP 소개</a>
+  <a href="#">상담 신청</a>
+  <a href="#">크몽 바로가기</a>
+  <a href="#">뉴스레터 구독</a>
+</div>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <a href="#" class="logo">
+    <span class="logo-mark">JP LABOR</span>
+    <span class="logo-text">기업 노무 실무 DB</span>
+  </a>
+  <div class="nav-menu">
+    <a href="#" class="active">홈</a>
+    <a href="#">사례 DB</a>
+    <a href="#">노사관계 ER</a>
+    <a href="#">계산기</a>
+    <a href="#">JP 칼럼</a>
+    <a href="#">서식</a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-search">
+      <input type="text" placeholder="사례·키워드 검색">
+      <button>🔍</button>
+    </div>
+    <button class="btn-consult">JP 상담 신청</button>
+  </div>
+</nav>
+
+<!-- SUB NAV (카테고리) -->
+<div class="sub-nav">
+  <a href="#" class="active">근로시간</a>
+  <a href="#">임금·퇴직금</a>
+  <a href="#">모성보호</a>
+  <a href="#">징계·해고</a>
+  <a href="#">산업재해</a>
+  <a href="#">노사관계</a>
+  <a href="#">5인 미만</a>
+  <a href="#">외국인</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <h1>회사가 노동법 앞에서 흔들릴 때,<br><b>답을 찾는 곳</b></h1>
+    <p class="sub">법조문이 아닌 <b>실무 판단</b>을 드립니다 — 기업·인사팀이 자주 묻는 노동법 사례</p>
+    <div class="hero-search">
+      <input type="text" placeholder="사례 키워드로 검색하세요 (예: 권고사직, 노조 교섭, 임신기 단축)">
+      <button>검색</button>
+    </div>
+    <div class="hero-tags">
+      <span>임신 중 해고</span>
+      <span>5인 미만 해고</span>
+      <span>권고사직 절차</span>
+      <span>육아휴직 복직 거부</span>
+      <span>포괄임금 설계</span>
+    </div>
+  </div>
+</section>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">홈 › <b>징계·해고</b> › 사례 26건</div>
+<!-- MAIN LAYOUT -->
+<div class="layout">
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="side-wrap">
+    <div class="side-box">
+      <h3>📂 카테고리</h3>
+      <ul>
+        <li><a href="#" class="active">근로시간 <span class="count">18</span></a></li>
+        <li><a href="#">임금·퇴직금 <span class="count">24</span></a></li>
+        <li><a href="#">모성보호 <span class="count">12</span></a></li>
+        <li><a href="#">징계·해고 <span class="count">26</span></a></li>
+        <li><a href="#">산업재해 <span class="count">9</span></a></li>
+        <li><a href="#">노사관계 <span class="count">15</span></a></li>
+        <li><a href="#">5인 미만 <span class="count">7</span></a></li>
+        <li><a href="#">외국인 <span class="count">6</span></a></li>
+      </ul>
+    </div>
+
+    <div class="side-box">
+      <h3>🔥 인기 사례</h3>
+      <ul>
+        <li><a href="#">권고사직 문구 설계 리스크</a></li>
+        <li><a href="#">5인 미만 해고 절차</a></li>
+        <li><a href="#">음주운전 징계해고 가능성</a></li>
+        <li><a href="#">수습기간 중 해고 적법성</a></li>
+        <li><a href="#">정리해고 4요건 실무</a></li>
+      </ul>
+    </div>
+
+    <div class="side-cta">
+      <p>사례로 해결 안 되는<br>복잡한 개별 사안은<br>JP 노무사에게<br>직접 물어보세요</p>
+      <button>1:1 유료 상담 신청</button>
+    </div>
+
+    <div class="side-box">
+      <h3>📌 최근 업데이트</h3>
+      <ul>
+        <li><a href="#">노란봉투법 개정 핵심 정리</a></li>
+        <li><a href="#">2026 최저임금 적용 가이드</a></li>
+        <li><a href="#">중대재해처벌법 판례 업데이트</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+    <div class="section-label">
+      <h2>징계·해고 사례 DB</h2>
+      <span class="pill">실무 판단</span>
+      <span class="count">총 26건</span>
+    </div>
+
+    <!-- 필터 -->
+    <div class="filter-bar">
+      <input type="text" placeholder="키워드 검색...">
+      <select>
+        <option>전체 소분류</option>
+        <option>수습기간 해고</option>
+        <option>저성과자 해고</option>
+        <option>징계 절차</option>
+        <option>권고사직</option>
+        <option>정리해고</option>
+      </select>
+      <select>
+        <option>난이도 전체</option>
+        <option>★ 기본</option>
+        <option>★★ 중급</option>
+        <option>★★★ 고급</option>
+      </select>
+      <select>
+        <option>리스크 전체</option>
+        <option>높음</option>
+        <option>중간</option>
+        <option>낮음</option>
+      </select>
+      <button>검색</button>
+    </div>
+
+    <!-- ══ 사례 1: 수습기간 해고 ══ -->
+    <div class="qa open">
+      <div class="qa-head" onclick="toggleQA(this)">
+        <span class="badge case">사례</span>
+        <span class="risk-tag high">⚠ 리스크 높음</span>
+        <span class="qa-title">수습기간 중 "업무 부적격" 사유로 해고 가능한가? — 일반 해고보다 완화되지만 자유롭지는 않다</span>
+        <span class="qa-meta">수습해고 | 2026.05</span>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-body">
+        <div class="q-box">Q. 채용 후 3개월 수습기간 중인 직원이 기대만큼 성과를 못 내고 있습니다. 수습기간이라 자유롭게 해고할 수 있다고 들었는데 맞나요?</div>
+
+          <div class="kw-box">
+            <h5>🤖 AI 핵심 키워드</h5>
+            <div class="kw-tags">
+              <span class="kw red">"자유 해고" 오해</span>
+              <span class="kw">수습평가 객관성 필요</span>
+              <span class="kw">서면통지 의무</span>
+              <span class="kw red">30일 해고예고 적용</span>
+              <span class="kw orange">평가기록·근거 필수</span>
+              <span class="kw">사회통념상 합리성</span>
+            </div>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">1</span> 핵심 답변</h4>
+            <ul>
+              <li>수습기간 중 해고는 <em>일반 해고보다 완화된 기준</em>이 적용되지만, <strong>자유롭게 해고할 수 있는 것은 아닙니다.</strong></li>
+              <li>대법원은 "수습 근로자의 본채용 거부도 객관적이고 합리적인 이유가 있어야 한다"고 일관되게 판시.</li>
+              <li><strong>서면 통지 의무(근기법 제27조)와 30일 전 해고예고(제26조)</strong>는 그대로 적용됩니다.</li>
+              <li>위반 시 부당해고 구제신청 + 손해배상 청구 대상이 됩니다.</li>
+            </ul>
+          </div>
+
+          <div class="risk-meter">
+            <span class="lbl">회사 법적 리스크</span>
+            <div class="risk-bar"><div class="risk-fill high"></div></div>
+            <span class="risk-val high">높음</span>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">2</span> 관련 법조문</h4>
+            <ul>
+              <li><strong>근로기준법 제23조</strong> — 정당한 이유 없는 해고 금지 <span class="law-cite">수습 포함</span></li>
+              <li><strong>근로기준법 제26조</strong> — 30일 전 해고예고 (3개월 미만 근무 시 예외, 단 수습은 별도 판단)</li>
+              <li><strong>근로기준법 제27조</strong> — 해고의 서면통지 의무</li>
+            </ul>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">3</span> 판례 · 행정해석</h4>
+            <ul>
+              <li>대법원 2015두48136: 수습근로자 본채용 거부도 객관적·합리적 이유 필요</li>
+              <li>대법원 2008두16070: "단순히 기대에 못 미친다"는 사유만으로는 본채용 거부 불가 — 평가의 공정성·객관성 필요</li>
+              <li>중노위 사례: 평가기준 사전 고지 없이 진행한 수습 평가는 절차 위반</li>
+            </ul>
+          </div>
+
+          <div class="jp-box">
+            <h5>⚡ JP 실무 판단</h5>
+            <ul>
+              <li>인사팀이 가장 자주 실수하는 부분이 <strong>"수습이니까 마음대로 해도 된다"</strong>는 오해입니다. 부당해고 구제신청 인용률이 일반 해고보다 살짝 낮을 뿐, 인용되면 똑같이 원직복직·임금 소급지급입니다.</li>
+              <li>대응 순서: <em>① 채용 시 평가기준·면담 일정 서면 고지 → ② 수습기간 중 최소 2~3회 평가면담 기록 → ③ 본채용 거부 시 평가 결과·구체 사유 명시한 서면 통지</em></li>
+              <li>특히 <strong>해고예고수당(30일분 통상임금)</strong>은 수습이라도 지급해야 하는 경우가 많습니다. "수습이라 안 줘도 된다"는 잘못된 정보로 분쟁이 잦습니다.</li>
+              <li>채용공고·근로계약서에 <strong>"수습기간 만료 후 본채용 평가 결과에 따라 채용 거부될 수 있음"</strong>을 명시했는지가 결정적 증거가 됩니다.</li>
+            </ul>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">4</span> 추천 대응 (체크리스트)</h4>
+            <ul>
+              <li>☑ 근로계약서에 수습기간·평가기준·본채용 거부 가능성 명시</li>
+              <li>☑ 수습 시작 시 평가항목 서면 안내 (피드백 면담 일정 포함)</li>
+              <li>☑ 최소 2회 이상 중간 평가면담 기록 (이메일·문서)</li>
+              <li>☑ 본채용 거부 시 30일 전 서면 통지 또는 30일분 해고예고수당</li>
+              <li>☑ 서면 통지에 구체적 평가 결과·사유 명시 (단순 "업무 부적격" 불가)</li>
+            </ul>
+          </div>
+
+          <div class="cta-inline">
+            💡 <span>수습기간 만료 1주 전 통지, 평가 절차 미이행, 근로계약서 문구 미비 — 각 상황마다 결론이 달라집니다. → <a href="#">JP 노무사에게 직접 확인하기</a></span>
+          </div>
+      </div>
+    </div>
+
+    <!-- ══ 사례 2: 저성과자 해고 ══ -->
+    <div class="qa">
+      <div class="qa-head" onclick="toggleQA(this)">
+        <span class="badge case">사례</span>
+        <span class="risk-tag high">⚠ 리스크 매우 높음</span>
+        <span class="qa-title">저성과자 해고 — PIP 운영했는데도 부당해고 판정 받는 이유</span>
+        <span class="qa-meta">저성과 해고 | 2026.05</span>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-body">
+        <div class="q-box">Q. 성과가 지속적으로 낮은 직원을 6개월 PIP(성과개선프로그램) 운영 후 해고했는데, 노동위원회에서 부당해고로 판정했습니다. 왜 인정 안 됐나요?</div>
+
+          <div class="kw-box">
+            <h5>🤖 AI 핵심 키워드</h5>
+            <div class="kw-tags">
+              <span class="kw red">PIP만으로 부족</span>
+              <span class="kw">개선 가능성 검토</span>
+              <span class="kw">배치전환 우선</span>
+              <span class="kw orange">평가의 공정성</span>
+              <span class="kw red">상대평가 위험</span>
+              <span class="kw">사회통념상 부득이</span>
+            </div>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">1</span> 핵심 답변</h4>
+            <ul>
+              <li>저성과자 해고는 <strong>판례상 가장 어려운 해고 유형</strong>입니다. PIP 운영만으로는 부족.</li>
+              <li>대법원 기준: <em>① 평가의 공정성·객관성 ② 개선 기회 충분 부여 ③ 배치전환 등 해고 회피 노력 ④ 사회통념상 더 이상 고용관계 유지 불가능</em></li>
+              <li>특히 <strong>상대평가에서 하위권</strong>이라는 이유만으로는 해고 사유 인정 어려움 — "절대적 성과 미달"이 입증되어야 함.</li>
+            </ul>
+          </div>
+
+          <div class="risk-meter">
+            <span class="lbl">회사 법적 리스크</span>
+            <div class="risk-bar"><div class="risk-fill high"></div></div>
+            <span class="risk-val high">매우 높음</span>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">2</span> 관련 법조문 · 판례</h4>
+            <ul>
+              <li><strong>근로기준법 제23조</strong> — 정당한 이유 없는 해고 금지</li>
+              <li>대법원 2018두52204: 저성과 해고 정당성 판단 4요건 제시</li>
+              <li>대법원 2019두50632: 상대평가 하위 10%라는 이유만으로 해고는 위법</li>
+              <li>서울고법 2020누50145: PIP 6개월 운영했어도 평가지표 자체가 불공정하면 부당해고</li>
+            </ul>
+          </div>
+
+          <div class="jp-box">
+            <h5>⚡ JP 실무 판단</h5>
+            <ul>
+              <li><strong>PIP는 면죄부가 아닙니다.</strong> 노동위원회에서 가장 자주 깨지는 패턴이 "PIP 했으니 됐다"는 안일한 접근.</li>
+              <li>실무 핵심 4가지: <em>① 평가지표가 직무와 직결되는가 ② 동일 직무 평균과 비교했을 때 명백히 미달인가 ③ 본인이 통제 가능한 요인인가 ④ 다른 부서·직무 배치전환이 검토되었는가</em></li>
+              <li>특히 <strong>"개선 가능성 없음"</strong>을 입증하는 것이 가장 어렵습니다. 외부 교육·코칭 제공, 다른 업무 배치 시도 등 회사 측 노력의 기록이 결정적.</li>
+              <li>권고사직 합의가 가능하다면 그쪽이 훨씬 안전합니다. 해고 통지 전에 협의 단계를 거치는 것을 강력히 권합니다.</li>
+            </ul>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">3</span> 추천 대응 (체크리스트)</h4>
+            <ul>
+              <li>☑ 평가지표가 직무기술서와 연결되는지 검토</li>
+              <li>☑ 최소 1년 이상의 평가 데이터 축적 (3개월 PIP만으로는 부족)</li>
+              <li>☑ PIP 기간 중 외부 교육·코칭 제공 기록</li>
+              <li>☑ 배치전환 가능성 검토 회의록</li>
+              <li>☑ 권고사직 협의 시도 기록 (가능한 경우)</li>
+              <li>☑ 최종 해고 통지서에 위 ①~④ 요건 충족 사유 명시</li>
+            </ul>
+          </div>
+
+          <div class="cta-inline">
+            💡 <span>저성과자 해고는 사전 검토 단계부터 노무사 동행이 거의 필수입니다. → <a href="#">JP 노무사에게 사전 검토 요청</a></span>
+          </div>
+      </div>
+    </div>
+
+    <!-- ══ 사례 3: 권고사직 ══ -->
+    <div class="qa">
+      <div class="qa-head" onclick="toggleQA(this)">
+        <span class="badge case">사례</span>
+        <span class="risk-tag mid">⚡ 리스크 중간</span>
+        <span class="qa-title">권고사직 — "사직서 쓰라"는 압박이 강요로 인정되는 기준</span>
+        <span class="qa-meta">권고사직 | 2026.04</span>
+        <span class="qa-toggle">▼</span>
+      </div>
+      <div class="qa-body">
+        <div class="q-box">Q. 문제 직원에게 권고사직을 진행하려고 합니다. 어떤 문구·절차로 진행해야 "사직 강요"로 안 보이나요?</div>
+
+          <div class="kw-box">
+            <h5>🤖 AI 핵심 키워드</h5>
+            <div class="kw-tags">
+              <span class="kw">진의 vs 비진의</span>
+              <span class="kw orange">불이익 시사 금지</span>
+              <span class="kw">충분한 숙고 시간</span>
+              <span class="kw red">"해고"라는 말 금지</span>
+              <span class="kw">서면 합의서</span>
+              <span class="kw">위로금 협의</span>
+            </div>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">1</span> 핵심 답변</h4>
+            <ul>
+              <li>권고사직 자체는 적법합니다. 다만 <strong>"진의"에 의한 사직</strong>이어야 효력이 있습니다.</li>
+              <li>다음 표현은 <em>강요·강박으로 무효</em>가 될 가능성 높음: "안 쓰면 해고", "안 쓰면 손해배상", "오늘까지 결정"</li>
+              <li>판례는 <strong>① 협의 기간 ② 불이익 시사 ③ 대안 제시 여부</strong>로 진의성을 판단.</li>
+            </ul>
+          </div>
+
+          <div class="risk-meter">
+            <span class="lbl">회사 법적 리스크</span>
+            <div class="risk-bar"><div class="risk-fill mid"></div></div>
+            <span class="risk-val mid">중간</span>
+          </div>
+
+          <div class="ans">
+            <h4><span class="num">2</span> 판례</h4>
+            <ul>
+              <li>대법원 2017두38560: 사직 시사 후 30분 내 결정 강요한 권고사직은 강박에 의한 무효</li>
+              <li>중노위 2019부해123: "안 쓰면 해고하겠다"는 발언 = 사직 합의 무효</li>
+              <li>대법원 2010두1248: 위로금 + 충분한 숙고기간(48시간 이상) 있는 권고사직은 유효</li>
+            </ul>
+          </div>
+
+          <div class="jp-box">
+            <h5>⚡ JP 실무 판단</h5>
+            <ul>
+              <li>권고사직 진행 시 <strong>절대 금지 표현</strong>: "안 쓰면 해고", "법적으로 어쩔 수 없다", "오늘까지", "사직서 안 쓰면 인사조치"</li>
+              <li>안전한 표현: <em>"회사가 권고하는 것이고 결정은 본인이 한다", "충분히 생각해보고 알려달라", "거부해도 즉각적 불이익은 없다"</em></li>
+              <li>실무 순서: ① 1차 면담(권고 의사 전달, 위로금 조건 제시) → ② 최소 48시간 숙고 → ③ 2차 면담(결정 확인) → ④ 합의서 서면 작성</li>
+              <li><strong>합의서에 필수 문구</strong>: "본인의 자유로운 의사로", "충분한 숙고 후", "위로금 OO원 수령으로 일체 청구권 포기"</li>
+              <li>녹취 가능성 높은 시대입니다. 말 한마디가 결정적 증거 — 면담 전 멘트 점검 필수.</li>
+            </ul>
+          </div>
+
+          <div class="cta-inline">
+            💡 <span>권고사직 합의서 문구는 분쟁의 70%를 결정합니다. → <a href="#">JP 노무사에게 합의서 검토 요청</a></span>
+          </div>
+      </div>
+    </div>
+
+    <!-- 더보기 버튼 -->
+    <div style="text-align:center;margin:32px 0;">
+      <button onclick="alert('나머지 23건은 v3.1에서 추가됩니다.')" style="background:transparent;border:1px solid #ddd;padding:12px 36px;border-radius:9999px;font-family:inherit;font-size:14px;font-weight:600;color:var(--body-light);cursor:pointer;">
+        나머지 23건 더보기 ↓
+      </button>
+    </div>
+  </main>
+</div>
+<!-- ════════════ ER 가이드북 (시안1 콘텐츠) ════════════ -->
+<section class="band band-soft">
+  <div class="band-inner">
+    <div class="section-label">
+      <h2>ER 가이드북 핵심</h2>
+      <span class="pill">실무 가이드</span>
+    </div>
+
+    <div class="panel">
+      <div class="panel-top">
+        <h3>근로시간의 법적 정의</h3>
+        <p>근로기준법·단체협약상 근로시간 규정 및 실무 해석</p>
+      </div>
+      <div class="panel-body">
+        <h4>가. 근로시간에 관한 규정</h4>
+        <p><strong>① 근로기준법 제2조 제8호 "소정(所定)근로시간"</strong><br>법정 근로시간의 범위에서 근로자와 사용자 사이에 정한 근로시간을 말한다.</p>
+        <p><strong>② 표준 단체협약 제38조 (소정노동시간)</strong><br>소정노동시간은 1일 8시간, 1주 40시간으로 한다.</p>
+
+        <h4>나. 근로시간의 정의</h4>
+        <p>근로시간이란 단지 사업장에 체류하는 시간이 아니라, 사용자의 지휘 감독을 받으면서 근로계약에 따른 근로를 제공한 실근로시간으로, 회사의 통제하에 업무에 종사하거나 대기하고 있는 일체의 시간을 의미합니다.<span class="law-cite">대법원 2018도16228</span></p>
+
+        <h4>근로시간 성립 요건 비교표</h4>
+        <table class="gtable">
+          <thead><tr><th>근로시간 성립 조건</th><th>근로시간이 인정되지 않는 경우</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>① 회사(사용자)가 먼저 제안<br>② 구성원(근로자)의 동의<br>위 두 절차가 모두 필요</td>
+              <td>근로자가 일방적으로 시간외 근무를 선언<br>사용자의 지시 없는 자발적 근무</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 2025 법률 변경 ════════════ -->
+<section class="band band-light">
+  <div class="band-inner">
+    <div class="section-label">
+      <h2>2025년 바뀐 법률</h2>
+      <span class="pill">최신 개정</span>
+    </div>
+
+    <div class="panel">
+      <div class="panel-top">
+        <h3>육아휴직 기간·급여 확대</h3>
+        <p>2025년 주요 개정 — 부모 동시·순차 사용 시 1년 6개월로 연장</p>
+      </div>
+      <div class="panel-body">
+        <div class="change-card">
+          <div class="change-head">
+            🍼 육아휴직 확대
+            <span class="badge-new">2025 NEW</span>
+          </div>
+          <div class="change-body">
+            <p style="font-size:14px;color:var(--body-light);margin-bottom:12px;"><strong>기본요건:</strong> 만 8세 이하 또는 초등 2학년 이하 자녀, 계속 근로 6개월 이상</p>
+            <dl>
+              <dt>기간</dt>
+              <dd>1인 사용 시 1년 이내 → 부모 동시·순차 3개월 이상, 한부모·중증장애아동 <span class="hl">1년 6개월로 연장</span></dd>
+              <dt>급여 (1인)</dt>
+              <dd class="hl">1~3월 250만원 / 4~6월 200만원 / 7월~ 160만원</dd>
+              <dt>지급방식</dt>
+              <dd>3회 분할 (복귀 후 25% 지급 항목 삭제)</dd>
+              <dt>시행일</dt>
+              <dd>급여 2025.1.1 / 기간 2025.2.23</dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong style="color:var(--primary);">❓ 2025.2.23 이전 육아휴직 사용자도 연장 가능?</strong><br>
+          <strong style="color:var(--warning);">→ 가능합니다.</strong> 기본요건 충족 + ① 부모 모두 3개월 이상 사용 또는 ② 한부모·중증장애아 부모인 경우 6개월 연장 가능.
+        </div>
+
+        <div class="info-box warn">
+          <strong>⚠️ 육아휴직 종료 후 복직 쟁점:</strong> 휴직 전과 같은 업무 또는 같은 수준의 임금 직무에 복직시켜야 합니다 (남녀고용평등법 제19조 4항). 단순 임금 수준 비교만으로 부족하며, 실질적으로 불리한 직무를 부여했는지 판단합니다.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 계산기 ════════════ -->
+<section class="band band-soft">
+  <div class="band-inner">
+    <div class="section-label">
+      <h2>노동법 자동 계산기</h2>
+      <span class="pill">무료 제공</span>
+    </div>
+
+    <div class="calc">
+      <div class="calc-top">
+        <h3>핵심 노무 계산기</h3>
+        <span class="pill">실무 즉시 계산</span>
+      </div>
+      <div class="calc-tabs">
+        <button class="active" onclick="switchCalc(this,'severance')">퇴직금</button>
+        <button onclick="switchCalc(this,'weekly')">주휴수당</button>
+        <button onclick="switchCalc(this,'annual')">연차휴가</button>
+        <button onclick="switchCalc(this,'ot')">연장근로수당</button>
+      </div>
+
+      <div class="calc-body active" id="severance">
+        <div class="calc-row">
+          <div class="calc-field"><label>입사일</label><input type="date" id="s-hire"></div>
+          <div class="calc-field"><label>퇴직일</label><input type="date" id="s-quit"></div>
+          <div class="calc-field"><label>3개월 평균임금 (월 세전, 원)</label><input type="number" id="s-salary" placeholder="3500000"></div>
+        </div>
+        <button class="calc-btn" onclick="calcSeverance()">퇴직금 계산하기</button>
+        <div class="calc-result" id="s-result">
+          <div class="rmain" id="s-amount"></div>
+          <div class="rdetail" id="s-detail"></div>
+        </div>
+        <p class="calc-note">※ 퇴직금 = 평균임금 × 30일 × 근속연수. 1년 미만 미발생. 세금(퇴직소득세) 별도. DB 퇴직연금 별도 산정.</p>
+      </div>
+
+      <div class="calc-body" id="weekly">
+        <div class="calc-row">
+          <div class="calc-field"><label>1주 소정근로시간</label><input type="number" id="w-hours" placeholder="40" max="40" min="1"></div>
+          <div class="calc-field"><label>시급 (원)</label><input type="number" id="w-hourly" placeholder="10030"></div>
+        </div>
+        <button class="calc-btn" onclick="calcWeekly()">주휴수당 계산</button>
+        <div class="calc-result" id="w-result">
+          <div class="rmain" id="w-amount"></div>
+          <div class="rdetail" id="w-detail"></div>
+        </div>
+        <p class="calc-note">※ 주휴수당 = 시급 × 8시간. 주 15시간 미만 미발생.</p>
+      </div>
+
+      <div class="calc-body" id="annual">
+        <div class="calc-row">
+          <div class="calc-field"><label>입사일</label><input type="date" id="a-hire"></div>
+          <div class="calc-field"><label>기준일</label><input type="date" id="a-base"></div>
+        </div>
+        <button class="calc-btn" onclick="calcAnnual()">연차 계산</button>
+        <div class="calc-result" id="a-result">
+          <div class="rmain" id="a-amount"></div>
+          <div class="rdetail" id="a-detail"></div>
+        </div>
+        <p class="calc-note">※ 1년 미만: 매월 개근 시 1일. 1년 이상: 15일 + 2년마다 1일 가산 (최대 25일).</p>
+      </div>
+
+      <div class="calc-body" id="ot">
+        <div class="calc-row">
+          <div class="calc-field"><label>통상시급 (원)</label><input type="number" id="ot-hourly" placeholder="15000"></div>
+          <div class="calc-field"><label>연장근로 시간</label><input type="number" id="ot-hours" placeholder="10"></div>
+          <div class="calc-field"><label>유형</label>
+            <select id="ot-type">
+              <option value="1.5">연장근로 (50% 가산)</option>
+              <option value="1.5">야간근로 (50%)</option>
+              <option value="2.0">연장+야간 중복 (100%)</option>
+              <option value="1.5">휴일근로 8시간 이내 (50%)</option>
+              <option value="2.0">휴일근로 8시간 초과 (100%)</option>
+            </select>
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcOT()">수당 계산</button>
+        <div class="calc-result" id="ot-result">
+          <div class="rmain" id="ot-amount"></div>
+          <div class="rdetail" id="ot-detail"></div>
+        </div>
+        <p class="calc-note">※ 5인 미만 사업장은 가산수당 미적용. 포괄임금제 적용 여부 별도 확인.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ CTA BAND (PlayStation Blue) ════════════ -->
+<section class="cta-band">
+  <h3>더 복잡한 사안, JP 노무사와 직접 상담하세요</h3>
+  <p>Q&A로 해결되지 않는 개별 사안 — 단체교섭 전략, 징계·해고 절차,<br>노동위원회 대응은 8년 ER 전문 노무사에게 직접 물어보세요.</p>
+  <div class="cta-btns">
+    <a href="#" class="cta-primary">📞 유료 상담 신청 (1:1)</a>
+    <a href="#" class="cta-outline">📧 이메일 문의</a>
+    <a href="#" class="cta-outline">📋 크몽에서 상담하기</a>
+  </div>
+  <div class="cta-tags">
+    <span>단체교섭</span><span>부당해고</span><span>노동위원회</span>
+    <span>취업규칙 작성</span><span>임금체계 개편</span><span>중대재해 대응</span>
+  </div>
+</section>
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="fb-name">JP LABOR</div>
+      <p>기업 노무 실무 DB<br>공인노무사 JP | 8년 ER·노사관계 전문<br>기업·인사팀을 위한 노동법 실무 플랫폼</p>
+    </div>
+    <div class="footer-col">
+      <h4>사례 DB</h4>
+      <a href="#">근로시간</a><a href="#">임금·퇴직금</a><a href="#">모성보호</a><a href="#">징계·해고</a>
+    </div>
+    <div class="footer-col">
+      <h4>서비스</h4>
+      <a href="#">1:1 유료 상담</a><a href="#">기업 자문 계약</a><a href="#">JP 칼럼</a><a href="#">뉴스레터</a>
+    </div>
+    <div class="footer-col">
+      <h4>바로가기</h4>
+      <a href="#">크몽 프로필</a><a href="#">카카오 채널</a><a href="#">이메일 문의</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 JP LABOR. All rights reserved.</div>
+    <div class="footer-disc">
+      ⚠️ 이 사이트의 모든 정보는 일반적 법적 원칙 설명을 위한 것으로, 개별 사안에 대한 법률 조언이 아닙니다. 구체적 사실관계에 따라 결론이 달라질 수 있으므로, 중요한 의사결정 전에는 반드시 공인노무사와 상담하시기 바랍니다.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Q&A 토글
+function toggleQA(head){head.parentElement.classList.toggle('open');}
+// 계산기 탭
+function switchCalc(btn,id){
+  const calc=btn.closest('.calc');
+  calc.querySelectorAll('.calc-tabs button').forEach(b=>b.classList.remove('active'));
+  calc.querySelectorAll('.calc-body').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+const fmt=n=>Math.round(n).toLocaleString('ko-KR')+'원';
+
+// 퇴직금
+function calcSeverance(){
+  const hire=new Date(document.getElementById('s-hire').value);
+  const quit=new Date(document.getElementById('s-quit').value);
+  const salary=parseFloat(document.getElementById('s-salary').value);
+  if(!hire.getTime()||!quit.getTime()||!salary){alert('모든 항목을 입력해주세요.');return;}
+  const days=(quit-hire)/(1000*60*60*24);
+  const years=days/365;
+  const r=document.getElementById('s-result');
+  if(years<1){
+    r.classList.add('show');
+    document.getElementById('s-amount').textContent='퇴직금 지급 대상 아님';
+    document.getElementById('s-detail').textContent='근속 1년 미만 ('+Math.floor(days)+'일) — 지급 의무 없음';
+    return;
+  }
+  const daily=(salary*3)/90;
+  const sev=daily*30*years;
+  r.classList.add('show');
+  document.getElementById('s-amount').textContent='예상 퇴직금 '+fmt(sev);
+  document.getElementById('s-detail').innerHTML='근속 '+Math.floor(years)+'년 '+Math.floor((years%1)*12)+'개월<br>1일 평균임금: '+fmt(daily)+'<br>산식: '+fmt(daily)+' × 30일 × '+years.toFixed(2)+'년';
+}
+// 주휴
+function calcWeekly(){
+  const h=parseFloat(document.getElementById('w-hours').value);
+  const hr=parseFloat(document.getElementById('w-hourly').value);
+  if(!h||!hr){alert('모든 항목을 입력해주세요.');return;}
+  const r=document.getElementById('w-result');
+  if(h<15){
+    r.classList.add('show');
+    document.getElementById('w-amount').textContent='주휴수당 미발생';
+    document.getElementById('w-detail').textContent='주 15시간 미만';
+    return;
+  }
+  const pay=hr*8;
+  r.classList.add('show');
+  document.getElementById('w-amount').textContent='주휴수당 '+fmt(pay)+' / 주';
+  document.getElementById('w-detail').innerHTML='산식: 시급 '+fmt(hr)+' × 8시간<br>월 환산: 약 '+fmt(pay*4.345);
+}
+// 연차
+function calcAnnual(){
+  const h=new Date(document.getElementById('a-hire').value);
+  const b=new Date(document.getElementById('a-base').value);
+  if(!h.getTime()||!b.getTime()){alert('날짜를 입력해주세요.');return;}
+  const months=(b.getFullYear()-h.getFullYear())*12+(b.getMonth()-h.getMonth());
+  const years=months/12;
+  let days,detail;
+  if(years<1){
+    days=Math.min(Math.floor(months),11);
+    detail='입사 1년 미만: 매월 개근 시 1일 → '+days+'일 (최대 11일)';
+  }else{
+    const extra=Math.floor((years-1)/2);
+    days=Math.min(15+extra,25);
+    detail='근속 '+Math.floor(years)+'년차: 기본 15일 + 가산 '+extra+'일 = '+days+'일';
+  }
+  const r=document.getElementById('a-result');
+  r.classList.add('show');
+  document.getElementById('a-amount').textContent='발생 연차 '+days+'일';
+  document.getElementById('a-detail').innerHTML=detail;
+}
+// 연장근로
+function calcOT(){
+  const hr=parseFloat(document.getElementById('ot-hourly').value);
+  const h=parseFloat(document.getElementById('ot-hours').value);
+  const rate=parseFloat(document.getElementById('ot-type').value);
+  if(!hr||!h){alert('모든 항목을 입력해주세요.');return;}
+  const pay=hr*h*rate;
+  const r=document.getElementById('ot-result');
+  r.classList.add('show');
+  document.getElementById('ot-amount').textContent='가산수당 '+fmt(pay);
+  document.getElementById('ot-detail').innerHTML='산식: '+fmt(hr)+' × '+h+'시간 × '+rate+'배';
+}
+// 오늘 날짜 기본값
+const today=new Date().toISOString().split('T')[0];
+['a-base','s-quit'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=today;});
+</script>
+</body>
+</html>
