@@ -105,6 +105,7 @@ ul{list-style:none;}
 }
 .sub-nav a:hover{color:var(--on-dark);}
 .sub-nav a.active{color:var(--on-dark);border-bottom-color:var(--primary);}
+.sub-nav-divider{color:var(--hairline-dark);padding:14px 8px;font-size:16px;align-self:center;}
 
 /* ── 서브 드롭다운 패널 ── */
 .sub-panel-wrap{
@@ -668,7 +669,16 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
 
 <!-- SUB NAV -->
 <div class="sub-nav" id="sub-nav">
-  <a onclick="toggleSubPanel('calc')">🧮 노동법 자동 계산기</a>
+  <a href="#" onclick="showHome();return false;">근로시간</a>
+  <a href="#" onclick="showHome();return false;">임금·퇴직금</a>
+  <a href="#">모성보호</a>
+  <a href="#" onclick="showHome();return false;">징계·해고</a>
+  <a href="#">산업재해</a>
+  <a href="#" onclick="showHome();return false;">노사관계</a>
+  <a href="#">5인 미만</a>
+  <a href="#">외국인</a>
+  <span class="sub-nav-divider">|</span>
+  <a onclick="toggleSubPanel('calc')">🧮 노동법 계산기</a>
   <a onclick="toggleSubPanel('law')">📋 2025년 바뀐 법률</a>
   <a onclick="toggleSubPanel('er')">📘 ER 가이드북</a>
 </div>
