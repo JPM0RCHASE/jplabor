@@ -96,14 +96,83 @@ ul{list-style:none;}
 .sub-nav{
   background:var(--canvas-dark);padding:0 48px;display:flex;gap:2px;
   overflow-x:auto;border-bottom:1px solid var(--hairline-dark);
+  position:relative;z-index:200;
 }
 .sub-nav::-webkit-scrollbar{height:0;}
 .sub-nav a{
   color:var(--body-dark);font-size:14px;padding:14px 16px;white-space:nowrap;
-  border-bottom:2px solid transparent;transition:all .15s;
+  border-bottom:2px solid transparent;transition:all .15s;cursor:pointer;
 }
 .sub-nav a:hover{color:var(--on-dark);}
 .sub-nav a.active{color:var(--on-dark);border-bottom-color:var(--primary);}
+
+/* ── 서브 드롭다운 패널 ── */
+.sub-panel-wrap{
+  background:var(--canvas-dark);border-bottom:1px solid var(--hairline-dark);
+  overflow:hidden;max-height:0;transition:max-height .3s ease, padding .3s ease;
+}
+.sub-panel-wrap.open{max-height:600px;}
+.sub-panel{
+  max-width:1280px;margin:0 auto;padding:0 48px;
+}
+.sub-panel-wrap.open .sub-panel{padding:28px 48px;}
+
+/* 계산기 패널 */
+.sub-calc-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.sub-calc-tab{
+  background:rgba(255,255,255,.08);border:1px solid var(--hairline-dark);
+  color:rgba(255,255,255,.75);padding:7px 18px;border-radius:9999px;
+  font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;
+}
+.sub-calc-tab.active,.sub-calc-tab:hover{background:var(--primary);color:#fff;border-color:var(--primary);}
+.sub-calc-body{display:none;}
+.sub-calc-body.active{display:block;}
+.sub-calc-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.sub-calc-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:140px;}
+.sub-calc-field label{font-size:12px;color:rgba(255,255,255,.6);}
+.sub-calc-field input,.sub-calc-field select{
+  padding:9px 12px;border-radius:8px;border:1px solid var(--hairline-dark);
+  background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:14px;
+}
+.sub-calc-field input::placeholder{color:rgba(255,255,255,.35);}
+.sub-calc-btn{
+  background:var(--primary);color:#fff;border:none;padding:10px 24px;
+  border-radius:9999px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;
+  transition:background .15s;margin-bottom:12px;
+}
+.sub-calc-btn:hover{background:var(--primary-pressed);}
+.sub-calc-result{
+  background:rgba(0,112,209,.15);border:1px solid rgba(0,112,209,.3);
+  border-radius:8px;padding:14px 18px;display:none;
+}
+.sub-calc-result.show{display:block;}
+.sub-calc-result .rmain{font-size:22px;font-weight:700;color:#53b1ff;margin-bottom:4px;}
+.sub-calc-result .rdetail{font-size:13px;color:rgba(255,255,255,.65);}
+.sub-calc-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:8px;}
+
+/* 법률개정·가이드 카드 패널 */
+.sub-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+.sub-card{
+  background:rgba(255,255,255,.06);border:1px solid var(--hairline-dark);
+  border-radius:10px;padding:16px 18px;transition:all .18s;cursor:pointer;
+}
+.sub-card:hover{background:rgba(0,112,209,.18);border-color:rgba(0,112,209,.5);}
+.sub-card .sc-badge{
+  font-size:10px;font-weight:700;padding:3px 8px;border-radius:9999px;
+  margin-bottom:10px;display:inline-block;
+}
+.sc-new{background:rgba(200,27,58,.25);color:#ff6b6b;}
+.sc-imp{background:rgba(0,112,209,.3);color:#53b1ff;}
+.sc-tip{background:rgba(255,180,0,.2);color:#ffc947;}
+.sub-card .sc-title{font-size:14px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:6px;}
+.sub-card .sc-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;}
+
+@media(max-width:768px){
+  .sub-nav{padding:0 20px;}
+  .sub-panel-wrap.open .sub-panel{padding:20px;}
+  .sub-calc-row{flex-direction:column;}
+  .sub-card-grid{grid-template-columns:1fr;}
+}
 
 /* ════════════ HERO (dark band) ════════════ */
 .hero{
@@ -597,16 +666,151 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
   </div>
 </nav>
 
-<!-- SUB NAV (카테고리) -->
-<div class="sub-nav">
-  <a href="#" class="active">근로시간</a>
-  <a href="#">임금·퇴직금</a>
-  <a href="#">모성보호</a>
-  <a href="#">징계·해고</a>
-  <a href="#">산업재해</a>
-  <a href="#">노사관계</a>
-  <a href="#">5인 미만</a>
-  <a href="#">외국인</a>
+<!-- SUB NAV -->
+<div class="sub-nav" id="sub-nav">
+  <a onclick="toggleSubPanel('calc')">🧮 노동법 자동 계산기</a>
+  <a onclick="toggleSubPanel('law')">📋 2025년 바뀐 법률</a>
+  <a onclick="toggleSubPanel('er')">📘 ER 가이드북</a>
+</div>
+
+<!-- ══ 드롭다운 패널 ══ -->
+
+<!-- 계산기 패널 -->
+<div class="sub-panel-wrap" id="panel-calc">
+  <div class="sub-panel">
+    <div class="sub-calc-tabs">
+      <button class="sub-calc-tab active" onclick="switchSubCalc(this,'sc-severance')">퇴직금</button>
+      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-weekly')">주휴수당</button>
+      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-annual')">연차휴가</button>
+      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-ot')">연장근로수당</button>
+    </div>
+
+    <div class="sub-calc-body active" id="sc-severance">
+      <div class="sub-calc-row">
+        <div class="sub-calc-field"><label>입사일</label><input type="date" id="sc-s-hire"></div>
+        <div class="sub-calc-field"><label>퇴직일</label><input type="date" id="sc-s-quit"></div>
+        <div class="sub-calc-field"><label>3개월 평균임금 (월 세전, 원)</label><input type="number" id="sc-s-salary" placeholder="3500000"></div>
+      </div>
+      <button class="sub-calc-btn" onclick="scCalcSeverance()">퇴직금 계산</button>
+      <div class="sub-calc-result" id="sc-s-result"><div class="rmain" id="sc-s-amount"></div><div class="rdetail" id="sc-s-detail"></div></div>
+      <p class="sub-calc-note">※ 퇴직금 = 평균임금 × 30일 × 근속연수. 1년 미만 미발생.</p>
+    </div>
+
+    <div class="sub-calc-body" id="sc-weekly">
+      <div class="sub-calc-row">
+        <div class="sub-calc-field"><label>1주 소정근로시간</label><input type="number" id="sc-w-hours" placeholder="40"></div>
+        <div class="sub-calc-field"><label>시급 (원)</label><input type="number" id="sc-w-hourly" placeholder="10030"></div>
+      </div>
+      <button class="sub-calc-btn" onclick="scCalcWeekly()">주휴수당 계산</button>
+      <div class="sub-calc-result" id="sc-w-result"><div class="rmain" id="sc-w-amount"></div><div class="rdetail" id="sc-w-detail"></div></div>
+      <p class="sub-calc-note">※ 주휴수당 = 시급 × 8시간. 주 15시간 미만 미발생.</p>
+    </div>
+
+    <div class="sub-calc-body" id="sc-annual">
+      <div class="sub-calc-row">
+        <div class="sub-calc-field"><label>입사일</label><input type="date" id="sc-a-hire"></div>
+        <div class="sub-calc-field"><label>기준일</label><input type="date" id="sc-a-base"></div>
+      </div>
+      <button class="sub-calc-btn" onclick="scCalcAnnual()">연차 계산</button>
+      <div class="sub-calc-result" id="sc-a-result"><div class="rmain" id="sc-a-amount"></div><div class="rdetail" id="sc-a-detail"></div></div>
+      <p class="sub-calc-note">※ 1년 미만: 매월 개근 시 1일. 1년 이상: 15일 + 2년마다 1일 가산 (최대 25일).</p>
+    </div>
+
+    <div class="sub-calc-body" id="sc-ot">
+      <div class="sub-calc-row">
+        <div class="sub-calc-field"><label>통상시급 (원)</label><input type="number" id="sc-ot-hourly" placeholder="15000"></div>
+        <div class="sub-calc-field"><label>연장근로 시간</label><input type="number" id="sc-ot-hours" placeholder="10"></div>
+        <div class="sub-calc-field"><label>유형</label>
+          <select id="sc-ot-type">
+            <option value="1.5">연장근로 (50% 가산)</option>
+            <option value="1.5">야간근로 (50%)</option>
+            <option value="2.0">연장+야간 중복 (100%)</option>
+            <option value="1.5">휴일근로 8시간 이내 (50%)</option>
+            <option value="2.0">휴일근로 8시간 초과 (100%)</option>
+          </select>
+        </div>
+      </div>
+      <button class="sub-calc-btn" onclick="scCalcOT()">수당 계산</button>
+      <div class="sub-calc-result" id="sc-ot-result"><div class="rmain" id="sc-ot-amount"></div><div class="rdetail" id="sc-ot-detail"></div></div>
+      <p class="sub-calc-note">※ 5인 미만 사업장은 가산수당 미적용.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 2025 법률 개정 패널 -->
+<div class="sub-panel-wrap" id="panel-law">
+  <div class="sub-panel">
+    <div class="sub-card-grid">
+      <div class="sub-card">
+        <span class="sc-badge sc-new">NEW</span>
+        <div class="sc-title">노란봉투법 (노동쟁의 범위 확대)</div>
+        <div class="sc-desc">하청·특수고용 근로자 쟁의행위 보호 확대. 원청 사용자 책임 범위 변경.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-new">NEW</span>
+        <div class="sc-title">육아휴직 급여 상한 인상</div>
+        <div class="sc-desc">2025년부터 육아휴직 급여 상한 월 250만 원으로 인상. 부모 동시 사용 요건 완화.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-imp">중요</span>
+        <div class="sc-title">2025 최저임금 10,030원</div>
+        <div class="sc-desc">시간급 10,030원 확정. 월 환산 2,096,270원 (209시간 기준). 수습 감액 요건 주의.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-imp">중요</span>
+        <div class="sc-title">중대재해처벌법 50인 미만 확대</div>
+        <div class="sc-desc">2024년 1월부터 50인 미만 사업장 적용. 안전보건관리체계 구축 의무화.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-new">NEW</span>
+        <div class="sc-title">가족돌봄휴직 대상 확대</div>
+        <div class="sc-desc">조부모·손자녀까지 돌봄 대상 확대. 연간 90일, 1회 최소 30일 사용.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-imp">중요</span>
+        <div class="sc-title">징벌적 손해배상 (임금체불)</div>
+        <div class="sc-desc">고의·반복 임금체불 시 최대 3배 징벌적 손해배상. 2025년 시행.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ER 가이드북 패널 -->
+<div class="sub-panel-wrap" id="panel-er">
+  <div class="sub-panel">
+    <div class="sub-card-grid">
+      <div class="sub-card">
+        <span class="sc-badge sc-tip">핵심</span>
+        <div class="sc-title">권고사직 설계 실무</div>
+        <div class="sc-desc">합의해지와 권고사직의 법적 차이, 문구 설계 시 리스크 포인트 정리.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-tip">핵심</span>
+        <div class="sc-title">징계위원회 절차 체크리스트</div>
+        <div class="sc-desc">사전통지→소명기회→결정→통보 단계별 필수 요건. 누락 시 절차 위반.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-tip">핵심</span>
+        <div class="sc-title">포괄임금제 설계 리스크</div>
+        <div class="sc-desc">유효 요건·무효 판단 기준. 연장근로 실태 점검 체크포인트.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-imp">중요</span>
+        <div class="sc-title">노조 설립 대응 초기 가이드</div>
+        <div class="sc-desc">노조 설립 신고 접수 후 48시간 내 해야 할 것. 교섭 요구 대응 순서.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-imp">중요</span>
+        <div class="sc-title">정리해고 4요건 실무 판단</div>
+        <div class="sc-desc">긴박한 경영상 필요 / 해고 회피 노력 / 합리적 선발 / 협의 요건 체크.</div>
+      </div>
+      <div class="sub-card">
+        <span class="sc-badge sc-tip">핵심</span>
+        <div class="sc-title">수습기간 중 해고 판단 기준</div>
+        <div class="sc-desc">시용계약 해지의 정당성 요건. 본채용 거부 시 서면통지 필요 여부.</div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -9858,6 +10062,101 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
 </footer>
 
 <script>
+// 서브 네비 드롭다운 토글
+const SUB_PANELS = ['calc','law','er'];
+function toggleSubPanel(id) {
+  const nav = document.getElementById('sub-nav');
+  const links = nav.querySelectorAll('a');
+  const targetPanel = document.getElementById('panel-' + id);
+  const isOpen = targetPanel.classList.contains('open');
+  // 모두 닫기
+  SUB_PANELS.forEach(p => {
+    document.getElementById('panel-' + p).classList.remove('open');
+  });
+  links.forEach(a => a.classList.remove('active'));
+  // 클릭한 게 닫혀있었으면 열기
+  if (!isOpen) {
+    targetPanel.classList.add('open');
+    const idx = SUB_PANELS.indexOf(id);
+    if (links[idx]) links[idx].classList.add('active');
+  }
+}
+
+// 서브 계산기 탭 전환
+function switchSubCalc(btn, id) {
+  const wrap = btn.closest('.sub-panel');
+  wrap.querySelectorAll('.sub-calc-tab').forEach(b => b.classList.remove('active'));
+  wrap.querySelectorAll('.sub-calc-body').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+const scFmt = n => Math.round(n).toLocaleString('ko-KR') + '원';
+
+function scCalcSeverance() {
+  const hire = new Date(document.getElementById('sc-s-hire').value);
+  const quit = new Date(document.getElementById('sc-s-quit').value);
+  const salary = parseFloat(document.getElementById('sc-s-salary').value);
+  const r = document.getElementById('sc-s-result');
+  if (!hire.getTime() || !quit.getTime() || !salary) { alert('모든 항목을 입력해주세요.'); return; }
+  const days = (quit - hire) / (1000 * 60 * 60 * 24);
+  const years = days / 365;
+  r.classList.add('show');
+  if (years < 1) {
+    document.getElementById('sc-s-amount').textContent = '퇴직금 지급 대상 아님';
+    document.getElementById('sc-s-detail').textContent = '1년 미만 근속 시 퇴직금 미발생';
+  } else {
+    const avg = salary / 30;
+    const total = avg * 30 * years;
+    document.getElementById('sc-s-amount').textContent = scFmt(total);
+    document.getElementById('sc-s-detail').textContent = `근속 ${Math.floor(years)}년 ${Math.floor((years % 1) * 12)}개월 / 평균임금 ${scFmt(avg)}/일`;
+  }
+}
+function scCalcWeekly() {
+  const h = parseFloat(document.getElementById('sc-w-hours').value);
+  const w = parseFloat(document.getElementById('sc-w-hourly').value);
+  const r = document.getElementById('sc-w-result');
+  if (!h || !w) { alert('모든 항목을 입력해주세요.'); return; }
+  r.classList.add('show');
+  if (h < 15) {
+    document.getElementById('sc-w-amount').textContent = '주휴수당 미발생';
+    document.getElementById('sc-w-detail').textContent = '주 15시간 미만 근로자는 주휴수당 없음';
+  } else {
+    const total = w * 8;
+    document.getElementById('sc-w-amount').textContent = scFmt(total);
+    document.getElementById('sc-w-detail').textContent = `시급 ${scFmt(w)} × 8시간`;
+  }
+}
+function scCalcAnnual() {
+  const hire = new Date(document.getElementById('sc-a-hire').value);
+  const base = new Date(document.getElementById('sc-a-base').value);
+  const r = document.getElementById('sc-a-result');
+  if (!hire.getTime() || !base.getTime()) { alert('날짜를 입력해주세요.'); return; }
+  const months = (base - hire) / (1000 * 60 * 60 * 24 * 30.44);
+  const years = months / 12;
+  r.classList.add('show');
+  let days, desc;
+  if (months < 12) {
+    days = Math.floor(months);
+    desc = `입사 ${Math.floor(months)}개월 — 매월 개근 시 1일씩`;
+  } else {
+    days = Math.min(15 + Math.floor((years - 1) / 2), 25);
+    desc = `근속 ${Math.floor(years)}년 — 기본 15일 + 가산`;
+  }
+  document.getElementById('sc-a-amount').textContent = days + '일';
+  document.getElementById('sc-a-detail').textContent = desc;
+}
+function scCalcOT() {
+  const hourly = parseFloat(document.getElementById('sc-ot-hourly').value);
+  const hours = parseFloat(document.getElementById('sc-ot-hours').value);
+  const rate = parseFloat(document.getElementById('sc-ot-type').value);
+  const r = document.getElementById('sc-ot-result');
+  if (!hourly || !hours) { alert('모든 항목을 입력해주세요.'); return; }
+  r.classList.add('show');
+  const total = hourly * hours * rate;
+  document.getElementById('sc-ot-amount').textContent = scFmt(total);
+  document.getElementById('sc-ot-detail').textContent = `시급 ${scFmt(hourly)} × ${hours}시간 × ${rate}배`;
+}
+
 // Q&A 토글
 function toggleQA(head){head.parentElement.classList.toggle('open');}
 
