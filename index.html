@@ -650,6 +650,49 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
   .band,.cta-band{padding:40px 16px;}
   .cta-band h3{font-size:26px;}
 }
+/* ══ JP 칼럼 (JP의 생각) ══ */
+.column-view{max-width:1000px;margin:0 auto;padding:56px 24px 80px;}
+.column-hd{text-align:center;margin-bottom:8px;}
+.column-hd h2{font-size:34px;font-weight:300;color:var(--ink);letter-spacing:-.5px;}
+.column-hd h2 b{color:var(--primary);font-weight:600;}
+.column-hd p{color:var(--body-light);font-size:15px;margin-top:10px;}
+.column-list{margin-top:40px;display:flex;flex-direction:column;gap:16px;}
+.col-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:box-shadow .2s,border-color .2s;}
+.col-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.06);}
+.col-head{padding:24px 26px;cursor:pointer;display:flex;flex-direction:column;gap:10px;}
+.col-cat{display:inline-block;align-self:flex-start;background:rgba(0,112,209,.1);color:var(--primary);font-size:12px;font-weight:700;padding:4px 11px;border-radius:9999px;}
+.col-title{font-size:21px;font-weight:600;color:var(--ink);line-height:1.4;}
+.col-summary{font-size:14px;color:var(--body-light);line-height:1.6;}
+.col-more{font-size:13px;color:var(--primary);font-weight:600;}
+.col-body{display:none;padding:8px 26px 32px;border-top:1px solid #e5e7eb;}
+.col-card.open .col-body{display:block;}
+.col-card.open .col-more{display:none;}
+.col-body h3{font-size:18px;font-weight:600;color:var(--ink);margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--primary);}
+.col-body h4{font-size:15.5px;font-weight:600;color:var(--ink);margin:20px 0 8px;}
+.col-body h5{font-size:14.5px;font-weight:600;color:var(--commerce);margin:16px 0 6px;}
+.col-body p{font-size:14.5px;color:var(--body-light);line-height:1.8;margin:8px 0;}
+.col-body ul{margin:8px 0 8px 4px;padding-left:18px;}
+.col-body li{font-size:14.5px;color:var(--body-light);line-height:1.8;margin:4px 0;}
+.col-body strong{color:var(--ink);font-weight:700;}
+.col-quote{background:#f7f9fc;border-left:4px solid var(--primary);border-radius:0 8px 8px 0;padding:14px 18px;margin:14px 0;font-size:14px;color:var(--body-light);line-height:1.7;}
+.col-quote.warn{border-left-color:var(--commerce);background:#fff7f3;}
+.col-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px;}
+.col-table th,.col-table td{border:1px solid #e5e7eb;padding:10px 12px;text-align:left;vertical-align:top;}
+.col-table th{background:#f4f6f9;font-weight:700;color:var(--ink);}
+.col-hr{border:none;border-top:1px solid #e5e7eb;margin:24px 0;}
+.col-tags{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px;}
+.col-tags span{font-size:12px;color:var(--body-light);background:#f4f6f9;padding:5px 11px;border-radius:9999px;}
+.col-cta{margin-top:28px;text-align:center;}
+.col-cta a{display:inline-block;background:var(--commerce);color:#fff;font-size:14px;font-weight:700;padding:13px 28px;border-radius:9999px;text-decoration:none;}
+.sub-nav a.soon{opacity:.45;cursor:default;}
+.sub-nav a.soon:hover{color:inherit;}
+@media(max-width:768px){
+  .column-view{padding:36px 16px 60px;}
+  .column-hd h2{font-size:26px;}
+  .col-title{font-size:18px;}
+  .col-table{font-size:12px;}
+  .col-table th,.col-table td{padding:7px 8px;}
+}
 </style>
 <!-- TOP UTILITY BAR -->
 <div class="topbar">
@@ -666,11 +709,11 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
     <span class="logo-text">기업 노무 실무 DB</span>
   </a>
   <div class="nav-menu">
-    <a href="#" class="active">홈</a>
-    <a href="#">사례 DB</a>
+    <a href="#" class="active" onclick="showHome();return false;">홈</a>
+    <a href="#" onclick="showHome();return false;">사례 DB</a>
     <a href="#">노사관계 ER</a>
     <a href="#">계산기</a>
-    <a href="#">JP 칼럼</a>
+    <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
     <a href="#">서식</a>
   </div>
   <div class="nav-right">
@@ -684,14 +727,15 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
 
 <!-- SUB NAV -->
 <div class="sub-nav" id="sub-nav">
-  <a href="#" onclick="showHome();return false;">근로시간</a>
-  <a href="#" onclick="showHome();return false;">임금·퇴직금</a>
-  <a href="#">모성보호</a>
-  <a href="#" onclick="showHome();return false;">징계·해고</a>
-  <a href="#">산업재해</a>
-  <a href="#" onclick="showHome();return false;">노사관계</a>
-  <a href="#">5인 미만</a>
-  <a href="#">외국인</a>
+  <a href="#" onclick="openCategory('근로계약');return false;">근로계약·취업규칙</a>
+  <a href="#" onclick="openCategory('근로시간');return false;">근로시간·휴일·휴가</a>
+  <a href="#" onclick="openCategory('임금');return false;">임금·퇴직금</a>
+  <a href="#" onclick="openCategory('징계');return false;">징계·해고·인사</a>
+  <a href="#" onclick="openCategory('노사');return false;">노동조합·노사관계</a>
+  <a href="#" class="soon">모성보호</a>
+  <a href="#" class="soon">산업재해</a>
+  <a href="#" class="soon">5인 미만</a>
+  <a href="#" class="soon">외국인</a>
   <span class="sub-nav-divider">|</span>
   <a onclick="toggleSubPanel('calc')">🧮 노동법 계산기</a>
   <a onclick="toggleSubPanel('law')">📋 2025년 바뀐 법률</a>
@@ -8739,6 +8783,279 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
   </div>
   </main>
 </div>
+
+<!-- ════════════ JP 칼럼 (JP의 생각) ════════════ -->
+<section class="column-view" id="column-view" style="display:none;">
+  <div class="column-hd">
+    <h2><b>JP의 생각</b></h2>
+    <p>법조문 너머의 실무 판단 — 공인노무사 JP가 직접 쓰는 노동법 칼럼</p>
+  </div>
+  <div class="column-list">
+
+    <!-- 칼럼 1 -->
+    <article class="col-card">
+      <div class="col-head" onclick="toggleColumn(this)">
+        <span class="col-cat">노동조합·노사관계</span>
+        <div class="col-title">인사·노무 담당자가 노동조합에 가입했다면? — 노조법상 '소극적 요건' 완벽 정리</div>
+        <div class="col-summary">인사·노무 등 사용자 이익대표자가 노조에 가입했다고 곧바로 노조 자격을 부정할 수는 없습니다. 자주성이 실제로 침해될 우려가 큰 경우에 한해 가입 저지 조치를 검토할 수 있습니다.</div>
+        <span class="col-more">전문 보기 →</span>
+      </div>
+      <div class="col-body">
+        <div class="col-quote"><strong>핵심 한 줄</strong><br>인사·노무 등 사용자 이익대표자가 노조에 가입했다고 해서 곧바로 노조 자격을 부정할 수는 없습니다. 다만 노동조합의 자주성이 실제로 침해될 우려가 큰 경우에 한해 가입 저지 조치를 검토할 수 있습니다.</div>
+        <h3>1. 노조법상 '노동조합으로 보지 않는' 요건이란?</h3>
+        <p>노동조합은 <strong>근로자가 주체가 되어 자주적으로 단결</strong>하여 근로조건의 유지·개선과 근로자의 경제적·사회적 지위 향상을 도모하는 단체입니다. 그러나 다음에 해당하면 <strong>노동조합으로 보지 않습니다</strong>(노조법 제2조 제4호).</p>
+        <div class="col-quote">사용자 또는 항상 그의 이익을 대표하여 행동하는 자의 참가를 허용하는 경우 (노조법 제2조 제4호 가목)</div>
+        <p>이를 흔히 <strong>'소극적 요건'</strong>이라고 부릅니다.</p>
+        <h3>2. 누가 '사용자 또는 이익대표자'에 해당하는가?</h3>
+        <p>노조법 제2조 제2호에 따라 '사용자'는 ① 사업주, ② 사업의 경영담당자, ③ 그 사업의 근로자에 관한 사항에 대하여 사업주를 위하여 행동하는 자를 말합니다.</p>
+        <h4>가. 사업의 경영담당자</h4>
+        <p>사업경영 일반에 관하여 책임을 지는 자로서, 사업주로부터 포괄적인 위임을 받고 대외적으로 사업을 대표하거나 대리하는 자. <strong>예시</strong>: 대표이사, 부사장, 전무, 상무 등 임원급 직책자.</p>
+        <h4>나. 사용자를 위하여 행위하는 자 (권한 + 직무상 책임)</h4>
+        <p>근로자의 인사·급여·후생·노무관리 등 근로조건 결정 또는 업무상 명령·지휘·감독에 관하여 사업주로부터 일정한 권한과 책임을 부여받은 자. <strong>예시</strong>: 인사권을 가진 부장, 과장.</p>
+        <h4>다. 항상 사용자의 이익을 대표하여 행동하는 자 (이익대표자)</h4>
+        <p>근로자의 인사·급여·징계·감사·노무관리 등 근로관계 결정에 직접 참여하거나, 사용자의 근로관계 계획·방침에 관한 <strong>기밀사항을 취급할 권한</strong>이 있는 자. 즉, 조합원으로서의 의무와 직무상 의무가 <strong>직접 저촉되는 위치</strong>에 있는 자. <strong>예시</strong>: 인사팀원, 급여팀원, 노무담당 직원, 대표이사 운전기사, 보안요원 등.</p>
+        <h3>3. 이익대표자가 노조에 가입했다면? — 실무 대응 방안</h3>
+        <div class="col-quote"><strong>최근 판례 경향</strong><br>이익대표자가 노조에 가입했다는 사실만으로 노동조합 자체를 부정할 수는 없으며, 자주성이 침해되지 않는다면 단체교섭 등 헌법상 권리는 그대로 보장됩니다.</div>
+        <p>따라서 <strong>무조건 탈퇴를 요구할 경우 부당노동행위에 해당할 수 있으므로</strong> 신중하게 접근해야 합니다.</p>
+        <h4>가. 노조 활동 금지 가처분 신청</h4>
+        <p>법원에 가처분을 신청할 수 있고, 조합원 자격 없는 자의 노조 가입을 이유로 인용된 사례도 있습니다. 다만 최근 하급심은 <strong>"이익대표자가 노조에 가입했더라도 해당 노조가 노조법상 보호에서 제외될 뿐"</strong>이라며 기각한 사례도 있어 인용 가능성을 단정하기 어렵습니다.</p>
+        <h4>나. 단체교섭 단계에서의 대응</h4>
+        <ul>
+          <li>해당 인원을 <strong>단체교섭에서 배제해 달라고 요청</strong>하는 방법</li>
+          <li>노무 관련 기밀을 취급하지 않는 직위로 <strong>전보 발령</strong>하는 방법</li>
+        </ul>
+        <div class="col-quote warn">⚠️ 단, 이러한 조치가 노조 운영에 대한 지배·개입 의도 없이 <strong>노사 교섭력의 균형을 도모하기 위한 것</strong>이어야 하며, 그렇지 않으면 단체교섭 거부·해태의 부당노동행위가 성립할 수 있습니다.</div>
+        <h4>다. 단체협약 개정으로 조합원 범위 명확화</h4>
+        <p>향후 단협 개정 시 <strong>조합원 가입범위와 단체협약 적용 범위를 명확히 규정</strong>하면, 해당 직원은 노조 활동을 하더라도 단협 혜택을 받지 못하므로 <strong>장기적으로 가입 유인이 줄어듭니다</strong>.</p>
+        <h3>4. 결론 및 검토 의견</h3>
+        <ul>
+          <li>최근 하급심 경향상, <strong>노조의 자주성이 실제로 침해되지 않는다면 가입 자체를 막기는 어렵습니다.</strong></li>
+          <li>따라서 이익대표자에게는 <strong>① 조합원으로서의 권리와 직원으로서의 의무가 충돌한다는 점, ② 직무상 비밀유지 의무가 있다는 점</strong>을 강조하여, 노조 활동·파업 불참을 설득하는 방향이 현실적입니다.</li>
+        </ul>
+        <div class="col-quote"><strong>참고 판례</strong><br>노조법 제2조 제4호 가목의 주된 취지는 사용자의 부당한 지배·개입을 배제하여 노동조합의 자주성을 확보하기 위한 것이고, 회사 기밀을 다루는 근로자를 노조에서 배제하여 노사 교섭력의 균형을 꾀하는 것은 부차적 목적에 불과합니다. — 청주지방법원 2013. 6. 7.자 2013카합20 결정</div>
+        <div class="col-tags"><span>#노동조합</span><span>#노조법</span><span>#소극적요건</span><span>#이익대표자</span><span>#공인노무사JP</span></div>
+        <div class="col-cta"><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">JP 노무사에게 상담문의</a></div>
+      </div>
+    </article>
+
+    <!-- 칼럼 2 -->
+    <article class="col-card">
+      <div class="col-head" onclick="toggleColumn(this)">
+        <span class="col-cat">노동조합·노사관계</span>
+        <div class="col-title">노동조합의 자료 요청, 회사는 반드시 응해야 할까? — 경영상 비밀과 자료제공 의무</div>
+        <div class="col-summary">취업규칙은 의무적으로 공개해야 하지만, 기타 경영 관련 자료는 법적 제공 의무가 없습니다. 다만 단체협약·노사협의회 규정에 따라 협조해야 할 경우가 있으므로 사안별 판단이 필요합니다.</div>
+        <span class="col-more">전문 보기 →</span>
+      </div>
+      <div class="col-body">
+        <div class="col-quote"><strong>핵심 한 줄</strong><br>취업규칙은 의무적으로 공개해야 하지만, 기타 경영 관련 자료는 <strong>법적 제공 의무가 없습니다</strong>. 다만 단체협약·노사협의회 규정에 따라 협조해야 할 경우가 있으므로 사안별 판단이 필요합니다.</div>
+        <h3>1. 서설: 자료 요청을 둘러싼 노사 갈등</h3>
+        <p>노동조합은 종종 재정 상황·임금 내역·정부 지원금 사용내역 등 <strong>경영 관련 자료</strong>를 회사에 요청합니다. 사용자는 ① 제공 시 협상력 균형이 무너질 우려와 ② 거부 시 노사관계 악화 부담 사이에서 고민하게 됩니다.</p>
+        <h3>2. 자료별 제공 의무 분석</h3>
+        <h4>가. 취업규칙(보수규정·인사규정 등) → 제공 의무 있음</h4>
+        <p>취업규칙은 명칭과 무관하게 <strong>다수 근로자에게 공통 적용되는 사업장 내부 규칙</strong>입니다(대법원 1992. 6. 23. 선고 91다19210 판결). 근로기준법은 <strong>게시·비치 의무</strong>를 부과하며 위반 시 과태료가 부과됩니다.</p>
+        <div class="col-quote"><strong>근로기준법 제14조</strong> ① 사용자는 이 법과 대통령령의 주요 내용 및 취업규칙을 근로자가 자유롭게 열람할 수 있는 장소에 항상 게시하거나 갖추어 두어야 한다.<br><strong>제93조</strong> 상시 10명 이상 사업주는 취업규칙을 작성하여 고용노동부장관에게 신고하여야 한다.<br><strong>제116조 ②</strong> 제14조 위반 시 500만 원 이하의 과태료.</div>
+        <p>👉 취업규칙에 해당하는 자료는 노조 요청 이전에도 공개되어 있어야 하며, 거부 시 근로기준법 위반입니다.</p>
+        <h4>나. 기타 기업 운영 관련 자료</h4>
+        <p><strong>1) 원칙: 법적 의무 없음</strong> — 노동관계 법령은 노조의 자료제공 요청에 응할 의무를 규정하고 있지 않습니다. 단체협약에 별도 정함이 없다면 제공 의무는 없습니다.</p>
+        <p><strong>2) 단체협약에 자료제공 조항이 있는 경우</strong></p>
+        <div class="col-quote"><strong>단협 예시</strong><br>· 회사는 조합의 요청이 있을 시 조합업무 관련 자료의 열람·제공에 협조할 수 있다.<br>· 노사 쌍방은 단체교섭 시 필요한 자료 요청이 있을 경우 적극 협조하여야 한다.</div>
+        <p>이러한 조항이 있다면 <strong>조합업무 및 단체교섭 관련 자료</strong>는 협조하는 것이 타당합니다. 다만 '협조 의무'를 정한 것일 뿐 '제공 의무'를 정한 것이 아니므로, 합리적 사유가 있다면 거부도 가능합니다.</p>
+        <div class="col-quote warn">⚠️ 단체교섭 기간 중 합리적 이유 없이 자료 제공을 거부하면 <strong>단체교섭 거부·해태의 부당노동행위</strong>가 성립할 수 있습니다.</div>
+        <p><strong>3) 경영상·영업상 비밀에 해당한다면?</strong> — 정부 지원금 사용내역 등은 경영상 비밀에 해당해 제공 의무가 없을 가능성이 큽니다. 다만 기준은 엄격히 적용해야 하며, 근로조건·노조 업무 관련 자료는 가급적 제공이 바람직합니다.</p>
+        <p><strong>4) 거부 시 형사처벌 가능 여부 → 사실상 불가능</strong></p>
+        <div class="col-quote"><strong>노조법 제92조 제2호</strong>는 단체협약 중 ① 임금·복리후생비·퇴직금 ② 근로·휴게시간·휴일·휴가 ③ 징계·해고 사유 및 중요 절차 ④ 안전보건·재해부조 ⑤ 시설·편의제공·근무시간 중 회의참석 ⑥ 쟁의행위에 관한 사항 위반 시에만 1천만 원 이하 벌금에 처합니다.</div>
+        <p>문서열람·자료제공은 위 6개 항목에 해당하지 않으므로, 노조가 진정을 넣더라도 사업주 형사처벌은 사실상 불가능합니다.</p>
+        <h4>다. 노사협의회가 있는 경우는 다르다</h4>
+        <p><strong>상시 30인 이상 사업장</strong>은 노사협의회 정기회의에서 경영 전반 사항을 의무적으로 보고·설명해야 하며, 보고하지 않으면 근로자위원이 자료 제출을 요구할 수 있습니다. 위반 시 <strong>500만 원 이하 벌금</strong>(근로자참여 및 협력증진에 관한 법률 제22조).</p>
+        <h3>3. 결론</h3>
+        <table class="col-table">
+          <thead><tr><th>자료 유형</th><th>제공 의무</th><th>비고</th></tr></thead>
+          <tbody>
+            <tr><td>취업규칙(보수·인사규정 등)</td><td><strong>있음</strong></td><td>미게시 시 근기법 위반(과태료)</td></tr>
+            <tr><td>기타 경영 자료 (단협 규정 없음)</td><td>없음</td><td>협조는 자유</td></tr>
+            <tr><td>기타 경영 자료 (단협 규정 있음)</td><td>협조 의무</td><td>합리적 사유 있으면 거부 가능</td></tr>
+            <tr><td>경영상 비밀 자료</td><td>없음</td><td>단, 엄격 해석 필요</td></tr>
+            <tr><td>노사협의회 보고사항 (30인↑)</td><td>있음</td><td>위반 시 500만 원 벌금</td></tr>
+          </tbody>
+        </table>
+        <div class="col-tags"><span>#노동조합</span><span>#자료제공의무</span><span>#단체교섭</span><span>#노사협의회</span><span>#경영상비밀</span><span>#공인노무사JP</span></div>
+        <div class="col-cta"><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">JP 노무사에게 상담문의</a></div>
+      </div>
+    </article>
+
+    <!-- 칼럼 3 -->
+    <article class="col-card">
+      <div class="col-head" onclick="toggleColumn(this)">
+        <span class="col-cat">노동조합·노사관계</span>
+        <div class="col-title">단체협약서, 비조합원에게도 공개해야 할까? — 상황별 공개 의무 판단 기준</div>
+        <div class="col-summary">단체협약 공개 여부는 노조의 과반수 여부와 단협의 적용 범위에 따라 달라집니다. 과반수 노조가 체결한 단협은 반드시 공개해야 하지만, 비과반수 노조의 경우 법적 공개 의무가 없습니다.</div>
+        <span class="col-more">전문 보기 →</span>
+      </div>
+      <div class="col-body">
+        <div class="col-quote"><strong>핵심 한 줄</strong><br>단체협약 공개 여부는 <strong>노조의 과반수 여부와 단협의 적용 범위</strong>에 따라 달라집니다. 과반수 노조가 체결한 단협은 반드시 공개해야 하지만, 비과반수 노조의 경우 법적 공개 의무가 없습니다.</div>
+        <h3>1. 서설: 단체협약 공개를 둘러싼 노사 입장 차이</h3>
+        <ul>
+          <li><strong>사용자 측</strong>: 단협이 근로조건의 핵심을 담고 있으므로 전체 근로자에게 공개해야 한다는 입장</li>
+          <li><strong>노조 측</strong>: 공개 시 ① 조합 가입 동기 약화 ② 프리라이더(무임승차) 문제로 공개에 소극적</li>
+        </ul>
+        <div class="col-quote">💡 단협 체결 직후 동일 내용으로 취업규칙을 변경하는 기업이라면 이 문제는 사실상 발생하지 않습니다. 이하 검토는 단협과 취업규칙이 분리된 사업장을 전제로 합니다.</div>
+        <h3>2. 상황별 공개 의무 검토</h3>
+        <h4>가. 과반수 노동조합이 체결한 경우 → 반드시 공개</h4>
+        <div class="col-quote"><strong>노동조합법 제35조 (일반적 구속력)</strong><br>하나의 사업 또는 사업장에 상시 사용되는 동종의 근로자 반수 이상이 하나의 단체협약의 적용을 받게 된 때에는, 당해 사업장에 사용되는 다른 동종의 근로자에 대하여도 당해 단체협약이 적용된다.</div>
+        <p>단협이 <strong>비조합원에게도 그대로 적용</strong>되므로, 비조합원의 근로조건에 대한 알 권리를 보장해야 합니다. 따라서 <strong>공개가 필수</strong>입니다.</p>
+        <h4>나. 과반수 노동조합이 아닌 경우 → 공개 의무 없음</h4>
+        <p>단협의 효력은 <strong>조합원에게만</strong> 미칩니다. 비조합원의 근로조건은 개별 근로계약과 취업규칙에 의해 결정되므로, 법적 공개 의무는 없습니다.</p>
+        <h4>다. 단체협약이 사실상 유일한 근로조건 규범인 경우 → 공개 필요</h4>
+        <p>취업규칙이 개정되지 않아 현실의 근로조건과 불일치하고, 실제로는 단협만이 적용되는 근로조건 규범인 경우, 근로자가 자신의 근로조건을 알기 위해 단협 내용을 알아야 하므로 <strong>근기법 제14조 입법 취지에 따라 공개가 필요</strong>합니다. 단, 전문 공개가 아니라 <strong>근로조건에 관한 부분만 발췌 공개</strong>가 적절합니다.</p>
+        <h3>3. 결론 및 실무 권고</h3>
+        <table class="col-table">
+          <thead><tr><th>상황</th><th>공개 의무</th><th>근거</th></tr></thead>
+          <tbody>
+            <tr><td>과반수 노조 단협</td><td><strong>필수</strong></td><td>노조법 제35조 (일반적 구속력)</td></tr>
+            <tr><td>비과반수 노조 단협</td><td>없음</td><td>조합원에게만 효력</td></tr>
+            <tr><td>단협이 유일한 근로조건 규범</td><td>근로조건 부분 공개 필요</td><td>근기법 제14조</td></tr>
+          </tbody>
+        </table>
+        <ul>
+          <li><strong>전문 공개보다는 발췌 공개</strong>가 바람직합니다(노조 운영·조합 활동 등 비조합원과 무관한 조항 다수).</li>
+          <li><strong>공개 전 노조와 사전 협의</strong>를 거치면 반발을 최소화할 수 있습니다.</li>
+          <li>공개 시점·방법·범위를 <strong>공식 문서로 기록</strong>해 두면 추후 분쟁 시 입증 자료가 됩니다.</li>
+        </ul>
+        <div class="col-tags"><span>#단체협약</span><span>#일반적구속력</span><span>#비조합원</span><span>#근로기준법</span><span>#프리라이더</span><span>#공인노무사JP</span></div>
+        <div class="col-cta"><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">JP 노무사에게 상담문의</a></div>
+      </div>
+    </article>
+
+    <!-- 칼럼 4 -->
+    <article class="col-card">
+      <div class="col-head" onclick="toggleColumn(this)">
+        <span class="col-cat">노무관리</span>
+        <div class="col-title">근로감독, 어떻게 준비해야 할까? — 종류부터 시정지시 대응까지 실무 가이드</div>
+        <div class="col-summary">근로감독에는 정기·수시·특별·재감독 등 여러 종류가 있으며, 평소 근로계약서·임금대장·취업규칙·연차 사용내역 등 핵심 서류를 체계적으로 관리해 두는 것이 최선의 대비책입니다.</div>
+        <span class="col-more">전문 보기 →</span>
+      </div>
+      <div class="col-body">
+        <div class="col-quote"><strong>핵심 한 줄</strong><br>근로감독에는 <strong>정기·수시·특별·재감독</strong> 등 여러 종류가 있으며, 평소 <strong>근로계약서·임금대장·취업규칙·연차 사용내역</strong> 등 핵심 서류를 체계적으로 관리해 두는 것이 최선의 대비책입니다.</div>
+        <h3>1. 근로감독이란?</h3>
+        <p>근로감독관이 근로조건의 기준을 확보하기 위하여 사업장·기숙사 등에 임검하여 노동관계법령 위반 여부를 점검하고, 위반사항을 시정하거나 행정처분·사법처리하는 절차를 말합니다.</p>
+        <h3>2. 근로감독의 종류 5가지</h3>
+        <h4>1) 노무관리지도 (예방지도)</h4>
+        <p><strong>대상</strong>: 50인 미만 소규모 사업장 / <strong>성격</strong>: 근로감독 이전 단계의 예방적 점검 / <strong>특징</strong>: 과태료 부과 없음. 단, 개선 의지가 없으면 정식 근로감독으로 전환됩니다.</p>
+        <h4>2) 정기감독</h4>
+        <p>매년 초 수립되는 근로감독 종합계획에 따라 실시. "○년 ○분기 근로감독 대상" 공문을 받았다면 정기감독에 해당합니다.</p>
+        <h4>3) 수시(기획)감독</h4>
+        <ul>
+          <li>동향·제보·언론보도 등으로 법령 위반 가능성이 있다고 판단되는 사업장</li>
+          <li>근로감독 청원이 접수되어 감독이 필요한 사업장</li>
+          <li>신고사건 처리 중 다수 근로자에 대한 위반 가능성이 확인된 사업장</li>
+          <li>본부에서 수시감독 계획을 시달한 업종·사업장</li>
+        </ul>
+        <h4>4) 특별감독</h4>
+        <ul>
+          <li>노동관계법·단협·취업규칙·근로계약 위반으로 노사분규가 발생했거나 우려가 큰 사업장</li>
+          <li>불법파견, 기간제·단시간·파견근로자 차별로 사회적 물의를 일으킨 사업장</li>
+          <li>임금 등 상습 체불로 다수 민원이 발생한 사업장</li>
+          <li>폭언·폭행·성희롱·괴롭힘 등 부당한 대우로 물의를 일으킨 사업장</li>
+        </ul>
+        <div class="col-quote warn">⚠️ <strong>특별감독의 부담</strong><br>① 언론 브리핑·설명회 개최 → 평판 리스크 큼<br>② 즉시 범죄 인지 및 과태료 부과<br>③ 과거 3년치 위반사항 전면 조사 (일반 감독은 1년치)</div>
+        <h4>5) 재감독 (신설)</h4>
+        <p>근로감독 이후에도 상습적으로 법 위반이 발생하는 사업장 대상.</p>
+        <div class="col-quote">💡 <strong>참고: 근로조건 자율개선 제도</strong><br>사업장이 스스로 법정 근로조건 준수 여부를 점검·개선하는 제도. 고용노동부가 한국공인노무사회와 협업하여 공인노무사를 파견합니다. 근로감독이 아닌 지원성 제도이므로 부담 없이 점검을 받으면 됩니다.</div>
+        <h3>3. 근로감독 준비 서류 체크리스트</h3>
+        <p>⏱ 점검일 이전 <strong>1~3년 치</strong> 서류 요청이 일반적입니다.</p>
+        <ul>
+          <li>사업자등록증, 법인등기부등본, 조직도</li>
+          <li>근로자명부, 임금대장, <strong>근로계약서</strong>(필수 기재사항 및 교부 여부 확인)</li>
+          <li><strong>취업규칙</strong> 및 취업규칙 신고(변경) 동의서(집단적 동의 절차 내역 포함)</li>
+          <li><strong>직장 내 성희롱 예방 교육</strong> 증빙(3년치, 참가자 명단, 교육자료)</li>
+          <li>산전후 휴가·보건휴가·육아휴직 사용내역</li>
+          <li><strong>연차 사용내역</strong>, 퇴직금 지급 관련 서류</li>
+          <li><strong>노사협의회</strong> 관련 서류(30인 이상): 협의회 규정, 회의록, 고충처리위원 명단, 고충처리대장</li>
+        </ul>
+        <h3>4. 시정지시를 받았다면? — 대응 절차</h3>
+        <ul>
+          <li><strong>서면통보 수령</strong>: 일정한 시정기한과 함께 서면 전달</li>
+          <li><strong>기한 내 시정 완료</strong> → 내사 종결 ✅</li>
+          <li><strong>기한 내 미시정</strong> → 범죄 인지, 수사 착수 ❌</li>
+        </ul>
+        <h3>5. 실무 권고</h3>
+        <ul>
+          <li><strong>평소 관리</strong>: 근로계약서·임금대장·연차·취업규칙은 분기 1회 자체 점검 권장.</li>
+          <li><strong>30인 이상</strong>: 노사협의회 회의록·고충처리대장 누락이 가장 빈번한 지적사항.</li>
+          <li><strong>특별감독 위험군</strong>(체불·괴롭힘·노사분규): 전문가 자문을 통한 사전 진단이 비용 대비 효과적.</li>
+        </ul>
+        <div class="col-tags"><span>#근로감독</span><span>#정기감독</span><span>#특별감독</span><span>#노무관리</span><span>#시정지시</span><span>#공인노무사JP</span></div>
+        <div class="col-cta"><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">JP 노무사에게 상담문의</a></div>
+      </div>
+    </article>
+
+    <!-- 칼럼 5 -->
+    <article class="col-card">
+      <div class="col-head" onclick="toggleColumn(this)">
+        <span class="col-cat">5인 미만 사업장</span>
+        <div class="col-title">5인 미만 사업장에 적용되지 않는 근로기준법 총정리 — 꼭 알아야 할 10가지</div>
+        <div class="col-summary">5인 미만 사업장은 해고 제한·연차휴가·연장근로 한도·가산수당 등 핵심 조항 상당수가 적용되지 않습니다. 다만 해고예고·산전후 휴가 중 해고 금지·직장 내 괴롭힘 금지 규정 자체는 그대로 적용됩니다.</div>
+        <span class="col-more">전문 보기 →</span>
+      </div>
+      <div class="col-body">
+        <div class="col-quote"><strong>핵심 한 줄</strong><br>5인 미만 사업장은 <strong>해고 제한·연차휴가·연장근로 한도·가산수당</strong> 등 근기법 핵심 조항 상당수가 적용되지 않습니다. 다만 <strong>해고예고·산전후 휴가 중 해고 금지·직장 내 괴롭힘 금지 규정 자체</strong>는 그대로 적용됩니다.</div>
+        <p>근로기준법 제11조 제2항은 <strong>상시 4명 이하 근로자를 사용하는 사업장</strong>에 대해 일부 조항만 적용한다고 규정합니다. 실무에서 가장 자주 문의되는 10가지 적용 배제 항목을 정리합니다.</p>
+        <h4>1. 제16조 (계약기간) ❌</h4>
+        <p>기간제법상 2년 사용 제한이 적용되지 않아, <strong>2년을 초과해도 무기계약직으로 전환되지 않습니다.</strong></p>
+        <h4>2. 제23조 (해고 등의 제한) ❌</h4>
+        <p><strong>'정당한 이유' 없이도 해고가 가능</strong>하며, 징계도 비교적 자유롭습니다.</p>
+        <h4>3. 제24조 (경영상 이유 해고 제한) ❌</h4>
+        <p>정리해고 요건 미적용. ⚠️ 단, <strong>업무상 부상·질병 요양기간 중 해고 금지</strong> 및 <strong>산전·산후 휴가기간 중 해고 금지</strong>는 그대로 적용됩니다.</p>
+        <h4>4. 제26조 (해고의 예고) → 적용됨 ✅</h4>
+        <p>해고 시 <strong>30일 전 예고</strong> 또는 <strong>30일분 이상 통상임금</strong> 지급. 미지급 예외: ① 계속근로 3개월 미만 ② 천재·사변 등으로 사업 계속 불가 ③ 근로자가 고의로 막대한 지장·손해 초래.</p>
+        <h4>5. 제27조·제28조 (서면통지·부당해고 구제신청) ❌</h4>
+        <p>5인 미만 근로자는 <strong>노동위원회에 부당해고 구제신청을 할 수 없습니다.</strong></p>
+        <h4>6. 제46조 (휴업수당) ❌</h4>
+        <p>경영난으로 휴업해도 <strong>휴업수당 지급 의무 없음</strong>.</p>
+        <h4>7. 제50조·제53조 (법정 근로시간·연장근로 한도) ❌</h4>
+        <p><strong>주 52시간제 적용 안 됨</strong>. 단, 근로자 본인의 동의는 필요합니다.</p>
+        <h4>8. 제56조 (가산수당) ❌</h4>
+        <p>연장·야간·휴일 <strong>가산수당(1.5배) 지급 의무 없음</strong>. 실근로시간 임금만 지급하면 됩니다.</p>
+        <h4>9. 제60조 (연차 유급휴가) ❌</h4>
+        <p><strong>연차 부여 의무 없음</strong>, 연차 미사용 수당 지급 의무 없음.</p>
+        <h4>10. 제76조의2 (직장 내 괴롭힘 금지) → 금지 규정만 ✅</h4>
+        <p>괴롭힘 행위 자체는 금지되지만, 사업주 <strong>조사·조치 의무 위반에 대한 처벌(과태료) 규정은 미적용</strong>.</p>
+        <h3>한눈에 보는 요약표</h3>
+        <table class="col-table">
+          <thead><tr><th>조항</th><th>내용</th><th>5인 미만 적용</th></tr></thead>
+          <tbody>
+            <tr><td>제16조</td><td>계약기간 (2년 초과 무기전환)</td><td>❌</td></tr>
+            <tr><td>제23조</td><td>정당한 이유 없는 해고 제한</td><td>❌</td></tr>
+            <tr><td>제24조</td><td>경영상 해고 요건</td><td>❌</td></tr>
+            <tr><td><strong>제26조</strong></td><td><strong>해고예고</strong></td><td><strong>✅</strong></td></tr>
+            <tr><td>제27·28조</td><td>서면통지 / 부당해고 구제신청</td><td>❌</td></tr>
+            <tr><td>제46조</td><td>휴업수당 (평균임금 70%)</td><td>❌</td></tr>
+            <tr><td>제50·53조</td><td>주 52시간제</td><td>❌</td></tr>
+            <tr><td>제56조</td><td>연장·야간·휴일 가산수당</td><td>❌</td></tr>
+            <tr><td>제60조</td><td>연차 유급휴가</td><td>❌</td></tr>
+            <tr><td>제76조의2</td><td>직장 내 괴롭힘 금지(금지 규정만)</td><td>✅(처벌 ❌)</td></tr>
+          </tbody>
+        </table>
+        <h3>꼭 기억할 포인트</h3>
+        <h5>사업주 입장</h5>
+        <ul>
+          <li>5인 미만이라도 <strong>해고예고(30일 또는 30일분 임금)는 반드시</strong> 준수.</li>
+          <li>산재 요양·산전후 휴가 기간 해고 금지는 그대로 적용.</li>
+          <li><strong>근로계약서 작성·교부, 임금명세서 교부, 최저임금, 퇴직금</strong>(1년 이상)은 5인 미만에도 동일 적용.</li>
+        </ul>
+        <h5>근로자 입장</h5>
+        <ul>
+          <li>5인 미만에서는 <strong>부당해고 구제신청이 불가</strong>하므로 입사 전 사업장 규모 확인.</li>
+          <li>연차·가산수당은 법적 청구권이 없으나, 근로계약·취업규칙에 정함이 있다면 그에 따라 청구 가능.</li>
+        </ul>
+        <div class="col-tags"><span>#5인미만사업장</span><span>#근로기준법</span><span>#해고예고</span><span>#연차휴가</span><span>#주52시간</span><span>#공인노무사JP</span></div>
+        <div class="col-cta"><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">JP 노무사에게 상담문의</a></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
 <!-- ════════════ ER 가이드북 (시안1 콘텐츠) ════════════ -->
 <section class="band band-soft">
   <div class="band-inner">
@@ -8935,7 +9252,7 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
     </div>
     <div class="footer-col">
       <h4>서비스</h4>
-      <a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">상담문의</a><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">기업 자문 문의</a><a href="#">JP 칼럼</a><a href="#">뉴스레터</a>
+      <a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">상담문의</a><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">기업 자문 문의</a><a href="#" onclick="showColumns();return false;">JP 칼럼</a><a href="#">뉴스레터</a>
     </div>
     <div class="footer-col">
       <h4>바로가기</h4>
@@ -9082,7 +9399,26 @@ function metaInCategory(metaText, cat) {
 
 // ─── 뷰 전환 ───
 // 홈(카드 그리드) 보기
+// 홈 콘텐츠 ↔ JP 칼럼 뷰 전환
+function homeSections() {
+  return ['.hero', '.breadcrumb', '.layout', '.band', '.cta-band']
+    .flatMap(sel => Array.from(document.querySelectorAll(sel)));
+}
+function showColumns() {
+  homeSections().forEach(el => el.style.display = 'none');
+  const cv = document.getElementById('column-view');
+  if (cv) cv.style.display = 'block';
+  document.querySelectorAll('.primary-nav .nav-menu a').forEach(a => a.classList.remove('active'));
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function exitColumns() {
+  const cv = document.getElementById('column-view');
+  if (cv) cv.style.display = 'none';
+  homeSections().forEach(el => el.style.display = '');
+}
+
 function showHome() {
+  exitColumns();
   document.getElementById('cat-grid').style.display = 'grid';
   document.getElementById('cat-back').style.display = 'none';
   document.querySelector('.filter-bar').style.display = 'none';
@@ -9098,6 +9434,7 @@ function showHome() {
 function openCategory(cat) {
   const map = CAT_MAP[cat];
   if (!map) return;
+  exitColumns();
   document.getElementById('cat-grid').style.display = 'none';
   document.getElementById('cat-back').style.display = 'flex';
   document.querySelector('.filter-bar').style.display = '';
@@ -9117,6 +9454,12 @@ function openCategory(cat) {
     const target = first || document.querySelector('.main');
     if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
   }, 50);
+}
+
+// JP 칼럼 아코디언 토글
+function toggleColumn(head) {
+  const card = head.closest('.col-card');
+  if (card) card.classList.toggle('open');
 }
 
 // 카테고리 아코디언 토글 (사이드바)
