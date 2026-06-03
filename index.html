@@ -9110,6 +9110,13 @@ function openCategory(cat) {
   document.getElementById('db-title').textContent = map.title;
   renderSubHeaders();
   updateCount();
+  setTimeout(() => {
+    const all = document.querySelectorAll('.qa');
+    let first = null;
+    for (const q of all) { if (q.style.display !== 'none') { first = q; break; } }
+    const target = first || document.querySelector('.main');
+    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
 }
 
 // 카테고리 아코디언 토글 (사이드바)
@@ -9143,6 +9150,13 @@ function filterBySub(sub) {
   document.getElementById('db-title').textContent = sub;
   renderSubHeaders();
   updateCount();
+  setTimeout(() => {
+    const all = document.querySelectorAll('.qa');
+    let first = null;
+    for (const q of all) { if (q.style.display !== 'none') { first = q; break; } }
+    const target = first || document.querySelector('.main');
+    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 50);
 }
 
 // 서브카테고리 그룹 헤더 삽입
