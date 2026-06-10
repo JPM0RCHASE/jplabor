@@ -183,6 +183,33 @@ ul{list-style:none;}
 .erx-card h4{font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.2px;}
 .erx-card p{font-size:13.5px;color:var(--body-light);line-height:1.7;margin-top:8px;}
 
+/* ER 블로그 카드 */
+.erx-section-title{font-size:14px;font-weight:700;color:var(--mute-light);letter-spacing:1.5px;text-transform:uppercase;margin:0 0 14px;}
+.erx-blog-section{margin-bottom:36px;}
+.erx-blog-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;cursor:pointer;}
+.erx-blog-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.06);}
+.erx-blog-hd{padding:24px 26px;position:relative;}
+.erx-blog-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.erx-blog-date{font-size:12px;color:var(--mute-light);}
+.erx-blog-title{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-0.4px;margin:0 0 8px;}
+.erx-blog-desc{font-size:14px;color:var(--body-light);line-height:1.7;margin:0;}
+.erx-blog-toggle{position:absolute;right:26px;top:28px;color:var(--mute-light);font-size:13px;transition:transform .2s;}
+.erx-blog-card.open .erx-blog-toggle{transform:rotate(180deg);}
+.erx-blog-body{padding:8px 26px 32px;border-top:1px solid #e5e7eb;}
+/* blog inner styles */
+.blog-author-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0 20px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;}
+.blog-author-name{font-size:14px;font-weight:700;color:var(--ink);}
+.blog-author-tag{font-size:12px;color:var(--mute-light);margin-left:8px;}
+.blog-read-time{font-size:12px;color:var(--mute-light);}
+.blog-steps{display:flex;flex-direction:column;gap:12px;margin:16px 0;}
+.blog-step{display:flex;gap:16px;background:#fafafa;border-radius:10px;padding:16px 18px;align-items:flex-start;}
+.blog-step-num{font-size:11px;font-weight:800;color:var(--primary-active);letter-spacing:1px;white-space:nowrap;padding-top:2px;}
+.blog-step p{margin:4px 0 0;font-size:14px;color:var(--body-light);line-height:1.7;}
+.blog-cta-box{background:#fafefb;border:1px solid rgba(30,215,96,.25);border-radius:12px;padding:22px 24px;margin-top:28px;}
+.blog-cta-box p{font-size:14px;color:var(--body-light);line-height:1.8;margin:0 0 14px;}
+.blog-cta-btn{display:inline-block;background:var(--primary);color:#fff;font-size:13.5px;font-weight:700;padding:10px 20px;border-radius:9999px;text-decoration:none;transition:background .15s;}
+.blog-cta-btn:hover{background:var(--primary-pressed);}
+
 @media(max-width:768px){
   .lawx-grid,.lawx-points,.erx-grid{grid-template-columns:1fr;}
   .alt-hd h2{font-size:24px;}
@@ -13406,6 +13433,113 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
       <p class="alt-sub">인사팀이 자주 마주하는 ER 실무 쟁점을 핵심만 정리했습니다.</p>
     </div>
 
+    <!-- 블로그 아티클 섹션 -->
+    <div class="erx-blog-section">
+      <h3 class="erx-section-title">ER 인사이트</h3>
+      <div class="erx-blog-card col-card" id="er-blog-01">
+        <div class="erx-blog-hd" onclick="toggleErBlog('er-blog-01')">
+          <div class="erx-blog-meta">
+            <span class="erx-badge imp">심층분석</span>
+            <span class="erx-blog-date">2026.06</span>
+          </div>
+          <h4 class="erx-blog-title">노동조합 관리 체계 수립</h4>
+          <p class="erx-blog-desc">노사관계 전문가가 본 노조 관리의 본질 — 제도 설계부터 일상 소통까지 체계적 접근법.</p>
+          <span class="erx-blog-toggle">▼</span>
+        </div>
+        <div class="col-body erx-blog-body">
+          <div class="blog-author-bar">
+            <div class="blog-author-info">
+              <span class="blog-author-name">ER 실무 인사이트</span>
+              <span class="blog-author-tag">노사관계 전문 분석</span>
+            </div>
+            <span class="blog-read-time">약 10분 읽기</span>
+          </div>
+
+          <h3>들어가며 — 노동조합은 왜 생기는가</h3>
+          <p>노동조합은 근로자들이 개별적으로 해결할 수 없는 문제를 집단적으로 해결하려는 시도에서 출발한다. 임금이 낮거나, 의사소통이 막혀 있거나, 처우에 대한 신뢰가 무너졌을 때 — 조합은 그 공백을 채운다. 따라서 노조 관리의 출발점은 <strong>"어떻게 억제할까"가 아니라 "왜 생겼는가"</strong>에 대한 솔직한 진단이다.</p>
+
+          <h3>1. 노사관계의 두 축: 제도와 신뢰</h3>
+          <h4>① 법적 제도 프레임 구축</h4>
+          <p>탄탄한 노사관계는 법이 요구하는 최소 구조를 우선 갖추는 데서 시작한다.</p>
+          <ul>
+            <li><strong>단체협약 관리</strong> — 유효기간(2년) 내 조항 점검, 임금·근로시간 조항 업데이트 주기 설정</li>
+            <li><strong>노사협의회 운영</strong> — 분기 1회 이상 정기 회의, 협의 결과 서면 기록·보관 의무화</li>
+            <li><strong>고충처리 채널</strong> — 근로자참여법상 고충처리위원 지정, 접수→처리→통보 사이클 명문화</li>
+            <li><strong>쟁의 예방 절차</strong> — 조정 신청 전 사전 교섭 단계 설계, 업무복귀명령 발동 요건 사전 검토</li>
+          </ul>
+
+          <h4>② 일상적 신뢰 자본 축적</h4>
+          <p>제도가 뼈대라면 신뢰는 살이다. 법 위에 쌓인 신뢰가 없을 때, 제도는 분쟁의 무기가 된다.</p>
+          <ul>
+            <li>경영 정보의 선제적 공유 — 실적·구조조정 계획 등을 조합에 먼저 알리는 관행 형성</li>
+            <li>중간관리자 역할 교육 — 현장 리더가 조합원과 어떻게 소통하느냐가 분쟁 여부를 결정</li>
+            <li>소규모 이슈의 신속 해결 — 대형 쟁의는 대부분 방치된 소규모 불만에서 비롯된다</li>
+          </ul>
+
+          <h3>2. 노동조합 관리 체계 4단계 모델</h3>
+          <div class="blog-steps">
+            <div class="blog-step">
+              <span class="blog-step-num">STEP 1</span>
+              <div>
+                <strong>현황 진단</strong>
+                <p>조합원 규모·직군 분포, 최근 3년 쟁의 이력, 단체협약 만료일, 고충 접수 건수 파악</p>
+              </div>
+            </div>
+            <div class="blog-step">
+              <span class="blog-step-num">STEP 2</span>
+              <div>
+                <strong>창구 단일화·교섭 구조 설계</strong>
+                <p>복수노조 환경이면 교섭 창구 단일화 절차 점검. 교섭 대표 노조 결정 후 전략적 의제 우선순위 설정</p>
+              </div>
+            </div>
+            <div class="blog-step">
+              <span class="blog-step-num">STEP 3</span>
+              <div>
+                <strong>협약 체결·이행 관리</strong>
+                <p>협약 조항별 이행 담당자 지정, 분기 이행 점검표 작성, 위반 시 처리 프로세스 선제 설계</p>
+              </div>
+            </div>
+            <div class="blog-step">
+              <span class="blog-step-num">STEP 4</span>
+              <div>
+                <strong>쟁의 발생 시 대응 매뉴얼 가동</strong>
+                <p>쟁의 예고 접수 → 법무·HR 비상대응팀 구성 → 필수유지업무 지정 → 대체근로 가능 범위 확인 → 조정 신청 여부 결정</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>3. 복수노조 환경의 실무 포인트</h3>
+          <p>2011년 복수노조 전면 허용 이후, <strong>사업장 내 2개 이상의 노조가 경쟁하는 구조</strong>가 흔해졌다. 이 환경에서 사용자가 특히 주의해야 할 점은 다음과 같다.</p>
+          <ul>
+            <li><strong>공정 대우 의무</strong> — 특정 노조에 편의를 제공하거나 차별하면 부당노동행위로 직결된다</li>
+            <li><strong>창구 단일화 절차 엄수</strong> — 절차를 생략하거나 임의로 특정 노조와 먼저 교섭하면 교섭 전체가 무효화될 수 있다</li>
+            <li><strong>조합원 현황 실시간 파악</strong> — 과반수 노조 여부는 교섭 지위와 직결되므로, 조합원 변동을 주기적으로 확인해야 한다</li>
+          </ul>
+
+          <h3>4. 쟁의 발생 전 48시간 — 핵심 체크리스트</h3>
+          <ul>
+            <li>□ 쟁의 예고 수령 즉시 노동위원회 조정 신청 여부 결정</li>
+            <li>□ 필수유지업무 해당 여부 및 유지 수준 내부 확인</li>
+            <li>□ 대체근로 투입 가능 인력(파견·도급 제한 포함) 파악</li>
+            <li>□ 조합원 직군·수 기준 업무 공백 범위 시뮬레이션</li>
+            <li>□ 언론·SNS 대응 시나리오 마련 (필요 시)</li>
+            <li>□ 현장 관리자 행동 지침 전달 — 불법 행위 도발 방지</li>
+          </ul>
+
+          <h3>5. 장기 관점 — 노조를 경쟁자가 아닌 파트너로</h3>
+          <p>단기적으로 노조를 억누르는 전략이 성공하는 것처럼 보일 수 있다. 하지만 구성원의 불만은 사라지지 않고 누적된다. 성숙한 ER 전략은 <strong>노조를 통해 현장의 신호를 빠르게 읽는 채널로 활용</strong>하는 것이다.</p>
+          <p>일본·독일의 장수 기업 사례가 공통으로 보여 주는 것은, 노조가 강할수록 경영진이 더 나은 의사결정을 한다는 점이다. 견제와 균형이 기업을 단단하게 만든다.</p>
+
+          <div class="blog-cta-box">
+            <p><strong>귀사의 노사관계 현황이 궁금하신가요?</strong><br>단체협약 검토, 쟁의 대응 전략, 노사협의회 운영 개선 등 JP 노무사가 맞춤 컨설팅을 제공합니다.</p>
+            <a href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=ER%20%EB%85%B8%EC%82%AC%EA%B4%80%EA%B3%84%20%EC%BB%A8%EC%84%A4%ED%8C%85%20%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="blog-cta-btn">JP 노무사에게 문의하기 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 기존 가이드 카드 -->
+    <h3 class="erx-section-title" style="margin-top:36px;">실무 가이드 카드</h3>
     <div class="erx-grid">
       <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>권고사직 설계 실무</h4><p>합의해지와 권고사직의 법적 차이, 문구 설계 시 리스크 포인트 정리.</p></div>
       <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>징계위원회 절차 체크리스트</h4><p>사전통지 → 소명기회 → 결정 → 통보 단계별 필수 요건. 누락 시 절차 위반.</p></div>
@@ -13635,6 +13769,17 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 
 // Q&A 토글
 function toggleQA(head){head.parentElement.classList.toggle('open');}
+function toggleErBlog(id){
+  const card = document.getElementById(id);
+  if(!card) return;
+  const body = card.querySelector('.col-body,.erx-blog-body');
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    if(body) body.style.display='block';
+  } else {
+    if(body) body.style.display='none';
+  }
+}
 
 // 카테고리 → 서브키워드 매핑 (qa-meta 매칭용)
 const CAT_MAP = {
