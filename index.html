@@ -839,6 +839,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     <a href="#" onclick="showErView();return false;">ER 가이드북</a>
     <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
     <a href="#" onclick="showCardnewsView();return false;">카드뉴스</a>
+    <a href="#" onclick="showNewsletterView();return false;">뉴스레터</a>
   </div>
   <div class="nav-right">
     <div class="nav-search">
@@ -13632,6 +13633,23 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   </div>
 </section>
 
+<!-- ════════════ 뉴스레터 게시판 ════════════ -->
+<section class="alt-view" id="newsletter-view" style="display:none;">
+  <div class="alt-inner">
+    <div class="alt-hd">
+      <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+      <div class="alt-title-row">
+        <span class="alt-yr" style="background:#f59e0b;">WEEKLY</span>
+        <h2>JP 뉴스레터</h2>
+      </div>
+      <p class="alt-sub">매주 인사·노무 핵심 이슈를 정리한 JP Labor Letter입니다. 텔레그램 채널에서도 받아보세요.</p>
+    </div>
+    <div class="cn-grid" id="nl-grid">
+      <!-- JS로 자동 생성 -->
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ 카드뉴스 게시판 ════════════ -->
 <section class="alt-view" id="cardnews-view" style="display:none;">
   <div class="alt-inner">
@@ -13765,7 +13783,7 @@ function homeSections() {
 }
 // 메인 영역 대체 뷰 (칼럼 / 법령 / ER) 전부 숨김
 function hideAltViews() {
-  ['column-view','law-view','er-view','cardnews-view'].forEach(id => {
+  ['column-view','law-view','er-view','cardnews-view','newsletter-view'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
@@ -13782,6 +13800,46 @@ function showAltView(id) {
 function showColumns(){ showAltView('column-view'); }
 function showLawView(){ showAltView('law-view'); }
 function showErView(){ showAltView('er-view'); }
+function showNewsletterView(){
+  showAltView('newsletter-view');
+  renderNewsletter();
+}
+function renderNewsletter(){
+  const grid = document.getElementById('nl-grid');
+  if(!grid || grid.dataset.loaded) return;
+  // 최근 52주(1년) 뉴스레터 목록 생성
+  const cards = [];
+  const today = new Date();
+  for(let i=0;i<52;i++){
+    const d = new Date(today);
+    d.setDate(today.getDate() - (i*7));
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    const dateStr = `${y}${m}${day}`;
+    const dateLabel = `${y}.${m}.${day}`;
+    const weekNum = Math.ceil((i+1));
+    cards.push({dateStr, dateLabel, weekNum});
+  }
+  let html = '';
+  cards.forEach(({dateStr, dateLabel, weekNum})=>{
+    const url = `/newsletter/${dateStr}/index.html`;
+    const img = `/newsletter/${dateStr}/newsletter_${dateStr}.png`;
+    html += `
+      <a class="cn-card" href="${url}" target="_blank" rel="noopener"
+         onerror="this.style.display='none'">
+        <img class="cn-thumb" src="${img}"
+             onerror="this.parentElement.style.display='none'" alt="${dateLabel} 뉴스레터">
+        <div class="cn-info">
+          <div class="cn-date" style="color:#f59e0b;">${dateLabel}</div>
+          <div class="cn-title">JP Labor Letter</div>
+        </div>
+      </a>`;
+  });
+  if(!html) html = '<div class="cn-empty"><div style="font-size:48px;">📭</div><p>아직 업로드된 뉴스레터가 없습니다.</p></div>';
+  grid.innerHTML = html;
+  grid.dataset.loaded = '1';
+}
 function showCardnewsView(){
   showAltView('cardnews-view');
   renderCardnews();
