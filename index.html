@@ -446,6 +446,25 @@ ul{list-style:none;}
 .side-box .count{font-size:12px;color:var(--mute-light);font-weight:500;}
 .side-box li a.active .count{color:var(--primary);}
 
+/* ── 인기 콘텐츠 (출처 뱃지 + 순위) ── */
+#popular-list li a{
+  display:flex;align-items:flex-start;gap:8px;padding:11px 16px;
+  font-size:13.5px;color:var(--body-light);line-height:1.45;
+  border-bottom:1px solid var(--hairline-light);transition:all .12s;cursor:pointer;
+}
+#popular-list li:last-child a{border-bottom:none;}
+#popular-list li a:hover{background:var(--surface-card);color:var(--ink);}
+.pop-badge{
+  flex-shrink:0;font-size:10px;font-weight:800;letter-spacing:0.2px;
+  padding:2px 7px;border-radius:5px;margin-top:1px;line-height:1.5;
+}
+.pop-badge.col{background:rgba(30,215,96,.12);color:var(--primary-active,#158f3e);}
+.pop-badge.case{background:#fdecee;color:var(--commerce);}
+.pop-badge.guide{background:#eef2ff;color:#4f56d6;}
+.pop-badge.er{background:#fff3e0;color:#c2710c;}
+.pop-title{flex:1;}
+#popular-list li a:hover .pop-title{color:var(--primary);}
+
 /* ── Accordion 카테고리 ── */
 .cat-group{}
 .cat-group-header{
@@ -1210,13 +1229,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 
     <div class="side-box side-popular">
       <h3>🔥 인기 사례</h3>
-      <ul>
-        <li><a href="#">권고사직 문구 설계 리스크</a></li>
-        <li><a href="#">5인 미만 해고 절차</a></li>
-        <li><a href="#">음주운전 징계해고 가능성</a></li>
-        <li><a href="#">수습기간 중 해고 적법성</a></li>
-        <li><a href="#">정리해고 4요건 실무</a></li>
-      </ul>
+      <ul id="popular-list"></ul>
     </div>
 
     <div class="side-cta">
@@ -13284,7 +13297,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   <div class="column-list">
 
     <!-- 칼럼 1 -->
-    <article class="col-card">
+    <article class="col-card" id="col-1">
       <div class="col-head" onclick="toggleColumn(this)">
         <span class="col-cat">노동조합·노사관계</span>
         <div class="col-title">인사·노무 담당자가 노동조합에 가입했다면? — 노조법상 '소극적 요건' 완벽 정리</div>
@@ -13330,7 +13343,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     </article>
 
     <!-- 칼럼 2 -->
-    <article class="col-card">
+    <article class="col-card" id="col-2">
       <div class="col-head" onclick="toggleColumn(this)">
         <span class="col-cat">노동조합·노사관계</span>
         <div class="col-title">노동조합의 자료 요청, 회사는 반드시 응해야 할까? — 경영상 비밀과 자료제공 의무</div>
@@ -13375,7 +13388,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     </article>
 
     <!-- 칼럼 3 -->
-    <article class="col-card">
+    <article class="col-card" id="col-3">
       <div class="col-head" onclick="toggleColumn(this)">
         <span class="col-cat">노동조합·노사관계</span>
         <div class="col-title">단체협약서, 비조합원에게도 공개해야 할까? — 상황별 공개 의무 판단 기준</div>
@@ -13418,7 +13431,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     </article>
 
     <!-- 칼럼 4 -->
-    <article class="col-card">
+    <article class="col-card" id="col-4">
       <div class="col-head" onclick="toggleColumn(this)">
         <span class="col-cat">노무관리</span>
         <div class="col-title">근로감독, 어떻게 준비해야 할까? — 종류부터 시정지시 대응까지 실무 가이드</div>
@@ -13481,7 +13494,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     </article>
 
     <!-- 칼럼 5 -->
-    <article class="col-card">
+    <article class="col-card" id="col-5">
       <div class="col-head" onclick="toggleColumn(this)">
         <span class="col-cat">5인 미만 사업장</span>
         <div class="col-title">5인 미만 사업장에 적용되지 않는 근로기준법 총정리 — 꼭 알아야 할 10가지</div>
@@ -14703,6 +14716,55 @@ function openCategory(cat) {
 function toggleColumn(head) {
   const card = head.closest('.col-card');
   if (card) card.classList.toggle('open');
+}
+
+/* ════════════ 인기 콘텐츠 (전 섹션 통합) ════════════ */
+// 출처(view)별 진입 + 해당 카드 펼침
+function openPopular(view, id) {
+  const viewFn = { column: showColumns, guide: showGuideView, er: showErView }[view];
+  if (viewFn) viewFn();
+  setTimeout(() => {
+    const card = document.getElementById(id);
+    if (card) {
+      card.classList.add('open');
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 70);
+}
+// 사례 DB 카테고리 진입
+function openPopularCat(cat) { openCategory(cat); }
+
+// 인기 콘텐츠 목록 — priority 높은 순 상위 5개 노출.
+// 새 콘텐츠 추가 시 이 배열에 항목만 추가하면 자동 반영됩니다.
+const POPULAR_ITEMS = [
+  { p: 10, badge: '칼럼', cls: 'col',   title: '인사담당자가 노조에 가입했다면?',        fn: () => openPopular('column', 'col-1') },
+  { p: 9,  badge: '칼럼', cls: 'col',   title: '5인 미만 사업장 미적용 근로기준법 10가지', fn: () => openPopular('column', 'col-5') },
+  { p: 8,  badge: '가이드', cls: 'guide', title: '통상임금 완벽 정리',                    fn: () => openPopular('guide', 'guide-ordwage') },
+  { p: 7,  badge: '칼럼', cls: 'col',   title: '근로감독 준비 실무 가이드',              fn: () => openPopular('column', 'col-4') },
+  { p: 6,  badge: '사례', cls: 'case',  title: '권고사직·해고 절차 리스크',              fn: () => openPopularCat('징계') },
+  { p: 5,  badge: '칼럼', cls: 'col',   title: '노조 자료 요청, 회사 대응법',            fn: () => openPopular('column', 'col-2') },
+  { p: 4,  badge: '가이드', cls: 'guide', title: '연차유급휴가 실무',                     fn: () => openPopular('guide', 'guide-annual') },
+];
+
+function renderPopular() {
+  const ul = document.getElementById('popular-list');
+  if (!ul) return;
+  const top = [...POPULAR_ITEMS].sort((a, b) => b.p - a.p).slice(0, 5);
+  ul.innerHTML = '';
+  top.forEach((item, i) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#';
+    a.innerHTML = `<span class="pop-badge ${item.cls}">${item.badge}</span><span class="pop-title">${item.title}</span>`;
+    a.onclick = (e) => { e.preventDefault(); item.fn(); };
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderPopular);
+} else {
+  renderPopular();
 }
 
 // 카테고리 아코디언 토글 (사이드바)
