@@ -794,7 +794,22 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 <div class="topbar">
   <a href="#">공인노무사 JP 소개</a>
   <a href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener">상담문의</a>
-  <a href="#">뉴스레터 구독</a>
+  <a href="#" onclick="openTelegramPopup();return false;">카드뉴스 구독</a>
+  <a href="#" onclick="openTelegramPopup();return false;">뉴스레터 구독</a>
+</div>
+
+<!-- 텔레그램 구독 팝업 -->
+<div id="tg-popup-overlay" onclick="closeTelegramPopup()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;"></div>
+<div id="tg-popup" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;border-radius:16px;padding:36px 32px;max-width:420px;width:90%;z-index:9001;box-shadow:0 20px 60px rgba(0,0,0,.18);text-align:center;">
+  <button onclick="closeTelegramPopup()" style="position:absolute;top:14px;right:18px;background:none;border:none;font-size:20px;cursor:pointer;color:#999;">✕</button>
+  <div style="font-size:40px;margin-bottom:12px;">📣</div>
+  <h3 style="font-size:18px;font-weight:700;color:#111;margin:0 0 10px;">JP 노동법 뉴스 채널 구독</h3>
+  <p style="font-size:14px;color:#555;line-height:1.7;margin:0 0 20px;">아래 링크를 열고 <strong>VIEW IN TELEGRAM</strong> 버튼을 눌러주세요!<br><strong>참여하기</strong> 버튼이 나옵니다.</p>
+  <div style="background:#f5f7fa;border-radius:10px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:10px;">
+    <a href="https://t.me/jplabornews" target="_blank" rel="noopener" id="tg-link" style="font-size:15px;font-weight:600;color:#229ed9;text-decoration:none;flex:1;word-break:break-all;">t.me/jplabornews</a>
+    <button onclick="copyTelegramLink()" id="tg-copy-btn" style="background:#229ed9;color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s;">복사</button>
+  </div>
+  <a href="https://t.me/jplabornews" target="_blank" rel="noopener" style="display:inline-block;background:#229ed9;color:#fff;font-size:14px;font-weight:700;padding:12px 28px;border-radius:9999px;text-decoration:none;">텔레그램에서 열기 →</a>
 </div>
 
 <!-- PRIMARY NAV -->
@@ -13635,6 +13650,22 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 
 // Q&A 토글
 function toggleQA(head){head.parentElement.classList.toggle('open');}
+function openTelegramPopup(){
+  document.getElementById('tg-popup-overlay').style.display='block';
+  document.getElementById('tg-popup').style.display='block';
+}
+function closeTelegramPopup(){
+  document.getElementById('tg-popup-overlay').style.display='none';
+  document.getElementById('tg-popup').style.display='none';
+}
+function copyTelegramLink(){
+  navigator.clipboard.writeText('https://t.me/jplabornews').then(function(){
+    var btn=document.getElementById('tg-copy-btn');
+    btn.textContent='복사됨 ✓';
+    btn.style.background='#1abc52';
+    setTimeout(function(){btn.textContent='복사';btn.style.background='#229ed9';},2000);
+  });
+}
 function toggleErBlog(id){
   const card = document.getElementById(id);
   if(!card) return;
