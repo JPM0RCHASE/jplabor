@@ -183,6 +183,105 @@ ul{list-style:none;}
 .erx-card h4{font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.2px;}
 .erx-card p{font-size:13.5px;color:var(--body-light);line-height:1.7;margin-top:8px;}
 
+/* ══ JP 소개 페이지 ══ */
+.about-hero{
+  position:relative;padding:72px 0 60px;text-align:center;
+  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(30,215,96,.08),transparent 70%);
+}
+.about-hero::before{
+  content:"";position:absolute;left:50%;top:48px;transform:translateX(-50%);
+  width:6px;height:6px;border-radius:50%;background:var(--primary);
+  box-shadow:0 0 24px var(--primary),0 0 60px rgba(30,215,96,.5);
+}
+.about-eyebrow{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:2px;
+  color:var(--primary);text-transform:uppercase;margin-bottom:24px;
+  padding:6px 14px;border:1px solid rgba(30,215,96,.3);border-radius:9999px;
+  background:rgba(30,215,96,.06);
+}
+.about-hero h1{font-size:clamp(30px,5vw,48px);font-weight:700;line-height:1.15;letter-spacing:-0.8px;margin-bottom:24px;color:#fff;}
+.about-hero h1 .acc{color:var(--primary);}
+.about-lead{font-size:15px;color:#b3b3b3;line-height:1.85;max-width:620px;margin:0 auto 10px;}
+.about-lead b{color:#fff;font-weight:700;}
+.about-stat{
+  display:inline-flex;align-items:center;gap:16px;margin-top:36px;
+  padding:13px 26px;background:var(--surface-dark-card);border-radius:9999px;
+  box-shadow:0 8px 8px rgba(0,0,0,.3);
+}
+.about-stat .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 12px var(--primary);}
+.about-stat span{font-size:14px;color:#fff;font-weight:600;}
+.about-block{padding:56px 0;}
+.about-sec-head{margin-bottom:32px;display:flex;align-items:baseline;gap:12px;}
+.about-num{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:2px;text-transform:uppercase;}
+.about-sec-head h2{font-size:clamp(20px,3vw,26px);font-weight:700;letter-spacing:-0.4px;color:#fff;}
+.about-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.about-card{
+  background:var(--surface-dark-elevated);border-radius:8px;padding:22px;
+  transition:background .2s,transform .2s;
+}
+.about-card:hover{background:var(--surface-dark-card);transform:translateY(-2px);box-shadow:0 8px 8px rgba(0,0,0,.3);}
+.about-card .sit{font-size:15px;font-weight:700;color:#fff;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;line-height:1.45;}
+.about-card .sit .pulse{width:8px;height:8px;border-radius:50%;background:var(--primary);margin-top:6px;flex-shrink:0;box-shadow:0 0 10px rgba(30,215,96,.6);}
+.about-card .sol{font-size:14px;color:#b3b3b3;line-height:1.7;padding-left:18px;}
+.about-diffs{display:grid;gap:12px;}
+.about-diff{
+  background:var(--surface-dark-elevated);border-radius:8px;padding:24px 26px;
+  display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;
+  transition:background .2s;
+}
+.about-diff:hover{background:var(--surface-dark-card);}
+.about-diff .n{
+  width:44px;height:44px;border-radius:50%;background:var(--primary);color:#000;
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;flex-shrink:0;
+}
+.about-diff h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:-0.2px;}
+.about-diff p{font-size:14px;color:#b3b3b3;line-height:1.75;}
+.about-svc{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.about-svc-item{
+  display:flex;align-items:center;gap:12px;background:var(--surface-dark-elevated);
+  border-radius:8px;padding:16px 20px;transition:background .2s;
+}
+.about-svc-item:hover{background:var(--surface-dark-card);}
+.about-svc-item .chk{
+  width:22px;height:22px;border-radius:50%;background:var(--primary);color:#000;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;
+}
+.about-svc-item .label{font-size:14px;color:#fff;}
+.about-cta{
+  margin-top:48px;background:linear-gradient(135deg,var(--surface-dark-elevated) 0%,var(--surface-dark-card) 100%);
+  border-radius:14px;padding:56px 40px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.5);
+  position:relative;overflow:hidden;
+}
+.about-cta::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:100px;height:3px;background:var(--primary);border-radius:0 0 9999px 9999px;
+}
+.about-cta h2{font-size:clamp(20px,2.8vw,26px);font-weight:700;margin-bottom:16px;letter-spacing:-0.4px;color:#fff;}
+.about-cta p{font-size:15px;color:#b3b3b3;line-height:1.8;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
+.about-cta p b{color:#fff;font-weight:700;}
+.about-mail-btn{
+  display:inline-flex;align-items:center;gap:8px;background:var(--primary);color:#000;
+  text-decoration:none;padding:15px 36px;border-radius:9999px;
+  font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  transition:transform .15s,background .15s,box-shadow .15s;
+  box-shadow:0 4px 20px rgba(30,215,96,.25);
+}
+.about-mail-btn:hover{background:#1fdf64;transform:scale(1.04);box-shadow:0 6px 28px rgba(30,215,96,.4);}
+.about-mail-sub{margin-top:20px;font-size:13px;color:#b3b3b3;}
+.about-mail-sub .live{
+  display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--primary);
+  margin-right:6px;vertical-align:middle;animation:about-pulse 2s infinite;
+}
+@keyframes about-pulse{
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(30,215,96,.6);}
+  50%{opacity:.6;box-shadow:0 0 0 6px rgba(30,215,96,0);}
+}
+@media(max-width:680px){
+  .about-cards,.about-svc{grid-template-columns:1fr;}
+  .about-diff{grid-template-columns:1fr;gap:12px;}
+  .about-cta{padding:40px 24px;}
+}
+
 /* ══ 카드뉴스 게시판 ══ */
 .cn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
 .cn-card{background:var(--surface-dark-card);border:1px solid var(--hairline-dark);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s;text-decoration:none;display:block;}
@@ -807,7 +906,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 </style>
 <!-- TOP UTILITY BAR -->
 <div class="topbar">
-  <a href="#">공인노무사 JP 소개</a>
+  <a href="#" onclick="showAboutView();return false;">공인노무사 JP 소개</a>
   <a href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener">상담문의</a>
   <a href="#" onclick="openTelegramPopup();return false;">카드뉴스 구독</a>
   <a href="#" onclick="openTelegramPopup();return false;">뉴스레터 구독</a>
@@ -13749,6 +13848,64 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   </div>
 </section>
 
+<!-- ════════════ JP 소개 ════════════ -->
+<section class="alt-view" id="about-view" style="display:none;">
+  <div style="max-width:900px;margin:0 auto;padding:40px 24px 80px;">
+    <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+
+    <div class="about-hero">
+      <span class="about-eyebrow">공인노무사 JP</span>
+      <h1>노무 문제,<br><span class="acc">터지기 전에 잡아드립니다.</span></h1>
+      <p class="about-lead">법무법인, 대기업, 대학병원. <b>세 현장에서 7년 이상 직접 뛴 ER 전문가</b>입니다.<br>교과서에 있는 답이 아니라, 실제 분쟁을 막아낸 경험으로 말씀드립니다.</p>
+      <p class="about-lead">민주노총 공공운수노조 같은 강성노조와 직접 교섭했고, 국회·서울시·고용노동부와 소통하며 규제 변화를 현장에서 바로 적용해왔습니다.</p>
+      <div class="about-stat">
+        <span class="dot"></span>
+        <span>제 목표는 단 하나, 문제가 생기기 전에 차단하는 것입니다</span>
+      </div>
+    </div>
+
+    <div class="about-block">
+      <div class="about-sec-head"><span class="about-num">01</span><h2>이런 상황이라면, 메일 주세요</h2></div>
+      <div class="about-cards">
+        <div class="about-card"><div class="sit"><span class="pulse"></span>노조가 생겼거나 생길 것 같다</div><div class="sol">단체교섭 전략 수립과 부당노동행위 예방 설계를 도와드립니다.</div></div>
+        <div class="about-card"><div class="sit"><span class="pulse"></span>파업·쟁의 리스크가 걱정된다</div><div class="sol">손해배상 제한 입법까지 반영한 선제적 리스크 관리를 설계합니다.</div></div>
+        <div class="about-card"><div class="sit"><span class="pulse"></span>노동위원회·고용부 진정이 들어왔다</div><div class="sol">구제신청 대응, 답변서 작성, 심문 준비까지 함께합니다.</div></div>
+        <div class="about-card"><div class="sit"><span class="pulse"></span>임금체계·내부 규정을 정비해야 한다</div><div class="sol">포괄임금제, 임금피크제, 정규직 전환 리스크를 꼼꼼히 검토합니다.</div></div>
+        <div class="about-card"><div class="sit"><span class="pulse"></span>직장 내 괴롭힘 사건이 발생했다</div><div class="sol">조사 설계부터 재발방지 체계 구축까지 전 과정을 지원합니다.</div></div>
+        <div class="about-card"><div class="sit"><span class="pulse"></span>노사협의회·복수노조 운영이 어렵다</div><div class="sol">공정대표의무 대응과 협의회 실무 운영을 도와드립니다.</div></div>
+      </div>
+    </div>
+
+    <div class="about-block">
+      <div class="about-sec-head"><span class="about-num">02</span><h2>다른 컨설턴트와 무엇이 다른가</h2></div>
+      <div class="about-diffs">
+        <div class="about-diff"><div class="n">1</div><div><h3>법무법인 · 기업 · 병원, 세 현장을 모두 뛰었습니다</h3><p>이론이 아니라 강성노조를 상대로 직접 교섭한 경험입니다. 책상이 아닌 협상 테이블에서 쌓은 감각으로 판단합니다.</p></div></div>
+        <div class="about-diff"><div class="n">2</div><div><h3>국회 · 서울시 · 고용노동부와 직접 소통했습니다</h3><p>규제 변화를 누구보다 빠르게 파악하고, 유관기관 대응 논리를 현실적으로 설계합니다.</p></div></div>
+        <div class="about-diff"><div class="n">3</div><div><h3>분쟁을 막는 것이 목표입니다</h3><p>ER 가이드북, 사례집, 예방 교육까지. 사후 수습보다 사전 차단에 집중합니다.</p></div></div>
+      </div>
+    </div>
+
+    <div class="about-block">
+      <div class="about-sec-head"><span class="about-num">03</span><h2>주요 서비스</h2></div>
+      <div class="about-svc">
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">단체교섭 전략 수립 및 협상 지원</span></div>
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">노동위원회 구제신청 대응</span></div>
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">취업규칙·임금규정·인사규정 정비</span></div>
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">직장 내 괴롭힘 사건 처리 및 예방</span></div>
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">노사협의회 운영 컨설팅</span></div>
+        <div class="about-svc-item"><span class="chk">✓</span><span class="label">맞춤형 HR·ER 가이드북 및 사례집 제작</span></div>
+      </div>
+    </div>
+
+    <div class="about-cta">
+      <h2>어디서부터 시작해야 할지<br>모르겠어도 괜찮습니다</h2>
+      <p>간단한 문의든, 검토가 필요한 첨부파일이든 편하게 보내주세요.<br><b>현황 파악부터 함께 정리해드립니다.</b></p>
+      <a class="about-mail-btn" href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener">✉ 메일로 문의하기</a>
+      <div class="about-mail-sub"><span class="live"></span>adxlabor@gmail.com · 현재 메일 문의를 받고 있습니다</div>
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ FOOTER ════════════ -->
 <footer>
   <div class="footer-grid">
@@ -13856,7 +14013,7 @@ function homeSections() {
 }
 // 메인 영역 대체 뷰 (칼럼 / 법령 / ER) 전부 숨김
 function hideAltViews() {
-  ['column-view','law-view','er-view','guide-view','cardnews-view','newsletter-view'].forEach(id => {
+  ['column-view','law-view','er-view','guide-view','cardnews-view','newsletter-view','about-view'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
@@ -13874,6 +14031,7 @@ function showColumns(){ showAltView('column-view'); }
 function showLawView(){ showAltView('law-view'); }
 function showErView(){ showAltView('er-view'); }
 function showGuideView(){ showAltView('guide-view'); }
+function showAboutView(){ showAltView('about-view'); }
 function showNewsletterView(){
   showAltView('newsletter-view');
   renderNewsletter();
