@@ -837,6 +837,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     <a href="#" class="active" onclick="showHome();return false;">홈</a>
     <a href="#" onclick="showHome();return false;">사례 DB</a>
     <a href="#" onclick="showErView();return false;">노사관계 ER</a>
+    <a href="#" onclick="showGuideView();return false;">인사노무 가이드북</a>
     <a href="#" onclick="showLawView();return false;">2026년 법령개정</a>
     <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
     <a href="#" onclick="showCardnewsView();return false;">카드뉴스</a>
@@ -865,7 +866,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   <a href="#" class="soon">외국인</a>
   <span class="sub-nav-divider">|</span>
   <a onclick="showLawView()">📋 2026년 법령 개정</a>
-  <a onclick="showErView()">📘 ER 가이드북</a>
+  <a onclick="showGuideView()">📘 인사노무 가이드북</a>
 </div>
 
 
@@ -13569,38 +13570,56 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
         </div>
       </div>
 
-      <!-- 근로시간 (게시판 2번째 글) -->
-      <div class="erx-blog-card col-card" id="er-guide-workhour" style="margin-top:16px;">
-      <div class="erx-blog-hd" onclick="toggleErBlog('er-guide-workhour')">
-        <div class="erx-blog-meta">
-          <span class="erx-badge tip">법령 해설</span>
-        </div>
-        <h4 class="erx-blog-title">근로시간의 법적 정의와 성립 요건</h4>
-        <p class="erx-blog-desc">근로기준법·단체협약상 근로시간 규정 및 실무 해석 — 대법원 판례 기준 정리.</p>
-        <span class="erx-blog-toggle">▼</span>
-      </div>
-      <div class="col-body erx-blog-body">
-        <h3>가. 근로시간에 관한 규정</h3>
-        <p><strong>① 근로기준법 제2조 제8호 "소정(所定)근로시간"</strong><br>법정 근로시간의 범위에서 근로자와 사용자 사이에 정한 근로시간을 말한다.</p>
-        <p><strong>② 표준 단체협약 제38조 (소정노동시간)</strong><br>소정노동시간은 1일 8시간, 1주 40시간으로 한다.</p>
-
-        <h3>나. 근로시간의 정의</h3>
-        <p>근로시간이란 단지 사업장에 체류하는 시간이 아니라, 사용자의 지휘 감독을 받으면서 근로계약에 따른 근로를 제공한 실근로시간으로, 회사의 통제하에 업무에 종사하거나 대기하고 있는 일체의 시간을 의미합니다.<span class="law-cite">대법원 2018도16228</span></p>
-
-        <h3>근로시간 성립 요건 비교표</h3>
-        <table class="gtable">
-          <thead><tr><th>근로시간 성립 조건</th><th>근로시간이 인정되지 않는 경우</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>① 회사(사용자)가 먼저 제안<br>② 구성원(근로자)의 동의<br>위 두 절차가 모두 필요</td>
-              <td>근로자가 일방적으로 시간외 근무를 선언<br>사용자의 지시 없는 자발적 근무</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      </div>
     </div>
 
+    <p class="alt-note">※ 집단적 노사관계 심층 분석 — 개별 사안 문의는 JP 노무사에게 연락해 주세요.</p>
+  </div>
+</section>
+
+<!-- ════════════ 인사노무 가이드북 ════════════ -->
+<section class="alt-view" id="guide-view" style="display:none;">
+  <div class="alt-inner">
+    <div class="alt-hd">
+      <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+      <div class="alt-title-row">
+        <span class="alt-yr" style="background:#6366f1;">GUIDE</span>
+        <h2>인사노무 가이드북</h2>
+      </div>
+      <p class="alt-sub">근로기준법·노동법 핵심 쟁점을 실무 중심으로 정리한 가이드입니다.</p>
+    </div>
+    <div class="erx-blog-section">
+      <h3 class="erx-section-title">가이드 아티클</h3>
+      <div class="erx-blog-card col-card" id="guide-workhour">
+        <div class="erx-blog-hd" onclick="toggleErBlog('guide-workhour')">
+          <div class="erx-blog-meta">
+            <span class="erx-badge tip">법령 해설</span>
+            <span class="erx-blog-date">2026.06</span>
+          </div>
+          <h4 class="erx-blog-title">근로시간의 법적 정의와 성립 요건<span class="erx-blog-badge">NEW</span></h4>
+          <p class="erx-blog-desc">근로기준법·단체협약상 근로시간 규정 및 실무 해석 — 대법원 판례 기준 정리.</p>
+          <span class="erx-blog-toggle">▼</span>
+        </div>
+        <div class="col-body erx-blog-body">
+          <h3>가. 근로시간에 관한 규정</h3>
+          <p><strong>① 근로기준법 제2조 제8호 "소정(所定)근로시간"</strong><br>법정 근로시간의 범위에서 근로자와 사용자 사이에 정한 근로시간을 말한다.</p>
+          <p><strong>② 표준 단체협약 제38조 (소정노동시간)</strong><br>소정노동시간은 1일 8시간, 1주 40시간으로 한다.</p>
+
+          <h3>나. 근로시간의 정의</h3>
+          <p>근로시간이란 단지 사업장에 체류하는 시간이 아니라, 사용자의 지휘 감독을 받으면서 근로계약에 따른 근로를 제공한 실근로시간으로, 회사의 통제하에 업무에 종사하거나 대기하고 있는 일체의 시간을 의미합니다.<span class="law-cite">대법원 2018도16228</span></p>
+
+          <h3>근로시간 성립 요건 비교표</h3>
+          <table class="gtable">
+            <thead><tr><th>근로시간 성립 조건</th><th>근로시간이 인정되지 않는 경우</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>① 회사(사용자)가 먼저 제안<br>② 구성원(근로자)의 동의<br>위 두 절차가 모두 필요</td>
+                <td>근로자가 일방적으로 시간외 근무를 선언<br>사용자의 지시 없는 자발적 근무</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
     <p class="alt-note">※ 각 항목의 상세 실무 판단이 필요하신 경우 JP 노무사에게 문의해 주세요.</p>
   </div>
 </section>
@@ -13766,7 +13785,7 @@ function homeSections() {
 }
 // 메인 영역 대체 뷰 (칼럼 / 법령 / ER) 전부 숨김
 function hideAltViews() {
-  ['column-view','law-view','er-view','cardnews-view','newsletter-view'].forEach(id => {
+  ['column-view','law-view','er-view','guide-view','cardnews-view','newsletter-view'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
@@ -13783,6 +13802,7 @@ function showAltView(id) {
 function showColumns(){ showAltView('column-view'); }
 function showLawView(){ showAltView('law-view'); }
 function showErView(){ showAltView('er-view'); }
+function showGuideView(){ showAltView('guide-view'); }
 function showNewsletterView(){
   showAltView('newsletter-view');
   renderNewsletter();
