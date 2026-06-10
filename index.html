@@ -952,6 +952,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 </style>
 <!-- TOP UTILITY BAR -->
 <div class="topbar">
+  <a href="#" onclick="showHome();return false;" style="color:#e0e0e0;font-weight:700;">홈</a>
   <a href="#" onclick="showAboutView();return false;">공인노무사 JP 소개</a>
   <a href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener">상담문의</a>
   <a href="#" onclick="openTelegramPopup();return false;">카드뉴스 구독</a>
@@ -990,8 +991,9 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   </div>
   <div class="nav-right">
     <div class="nav-search">
-      <input type="text" placeholder="사례·키워드 검색">
-      <button>🔍</button>
+      <input type="text" id="nav-search-input" placeholder="사례·키워드 검색"
+        onkeydown="if(event.key==='Enter')navSearch()">
+      <button onclick="navSearch()">🔍</button>
     </div>
     <a href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener" class="btn-consult">JP 노무사에게 상담문의</a>
   </div>
@@ -14780,6 +14782,18 @@ function heroTagSearch(kw) {
   // 사례 DB 섹션으로 스크롤
   const layout = document.querySelector('.layout');
   if (layout) layout.scrollIntoView({behavior:'smooth'});
+}
+
+// 헤더 검색창 → 히어로 검색과 동일하게 동작
+function navSearch() {
+  const navInput = document.getElementById('nav-search-input');
+  const heroInput = document.getElementById('hero-input');
+  if (navInput && heroInput) heroInput.value = navInput.value;
+  // 사례DB 홈 상태로 전환 후 검색 실행
+  exitColumns();
+  homeSections().forEach(el => el.style.display = '');
+  setNavActive(1);
+  searchCases();
 }
 
 // 키워드 검색 (히어로 + 필터바 공용)
