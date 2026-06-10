@@ -208,7 +208,9 @@ ul{list-style:none;}
 .erx-blog-desc{font-size:14px;color:var(--body-light);line-height:1.7;margin:0;}
 .erx-blog-toggle{position:absolute;right:26px;top:28px;color:var(--mute-light);font-size:13px;transition:transform .2s;}
 .erx-blog-card.open .erx-blog-toggle{transform:rotate(180deg);}
-.erx-blog-body{padding:8px 26px 32px;border-top:1px solid #e5e7eb;}
+.erx-blog-body{display:none;padding:8px 26px 32px;border-top:1px solid #e5e7eb;}
+.erx-blog-card.open .erx-blog-body{display:block;}
+.erx-blog-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;padding:2px 8px;border-radius:9999px;background:var(--primary);color:#fff;margin-left:8px;vertical-align:middle;}
 /* blog inner styles */
 .blog-author-bar{display:flex;align-items:center;justify-content:space-between;padding:14px 0 20px;border-bottom:1px solid #f0f0f0;margin-bottom:4px;}
 .blog-author-name{font-size:14px;font-weight:700;color:var(--ink);}
@@ -836,7 +838,6 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     <a href="#" onclick="showHome();return false;">사례 DB</a>
     <a href="#" onclick="showErView();return false;">노사관계 ER</a>
     <a href="#" onclick="showLawView();return false;">2026년 법령개정</a>
-    <a href="#" onclick="showErView();return false;">ER 가이드북</a>
     <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
     <a href="#" onclick="showCardnewsView();return false;">카드뉴스</a>
     <a href="#" onclick="showNewsletterView();return false;">뉴스레터</a>
@@ -13473,7 +13474,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
             <span class="erx-badge imp">심층분석</span>
             <span class="erx-blog-date">2026.06</span>
           </div>
-          <h4 class="erx-blog-title">노동조합 관리 체계 수립</h4>
+          <h4 class="erx-blog-title">노동조합 관리 체계 수립<span class="erx-blog-badge">NEW</span></h4>
           <p class="erx-blog-desc">노사관계 전문가가 본 노조 관리의 본질 — 제도 설계부터 일상 소통까지 체계적 접근법.</p>
           <span class="erx-blog-toggle">▼</span>
         </div>
@@ -13591,7 +13592,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
         <p class="erx-blog-desc">근로기준법·단체협약상 근로시간 규정 및 실무 해석 — 대법원 판례 기준 정리.</p>
         <span class="erx-blog-toggle">▼</span>
       </div>
-      <div class="col-body erx-blog-body" style="display:none;">
+      <div class="col-body erx-blog-body">
         <h3>가. 근로시간에 관한 규정</h3>
         <p><strong>① 근로기준법 제2조 제8호 "소정(所定)근로시간"</strong><br>법정 근로시간의 범위에서 근로자와 사용자 사이에 정한 근로시간을 말한다.</p>
         <p><strong>② 표준 단체협약 제38조 (소정노동시간)</strong><br>소정노동시간은 1일 8시간, 1주 40시간으로 한다.</p>
@@ -13718,13 +13719,7 @@ function copyTelegramLink(){
 function toggleErBlog(id){
   const card = document.getElementById(id);
   if(!card) return;
-  const body = card.querySelector('.col-body,.erx-blog-body');
   card.classList.toggle('open');
-  if(card.classList.contains('open')){
-    if(body) body.style.display='block';
-  } else {
-    if(body) body.style.display='none';
-  }
 }
 
 // 카테고리 → 서브키워드 매핑 (qa-meta 매칭용)
