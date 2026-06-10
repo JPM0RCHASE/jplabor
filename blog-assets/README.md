@@ -20,6 +20,7 @@ blog-assets/
         ├── thumbnail.png
         ├── divider-1~N.png
         ├── cta.png
+        ├── disclaimer.png   ← 면책조항 배너 (밝은 톤, 글 맨 아래용)
         └── 원고.txt
 ```
 

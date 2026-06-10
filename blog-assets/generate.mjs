@@ -104,6 +104,36 @@ function ctaHTML() {
   </div></body></html>`;
 }
 
+// ── 5b) 면책조항 HTML (블로그용 밝은 톤) ────────────
+function disclaimerHTML() {
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${FONT}${RESET}
+  .disc{width:1000px;position:relative;overflow:hidden;background:#f7faf8;
+    border:1px solid #e3ece6;border-left:5px solid #1ed760;border-radius:14px;
+    padding:34px 40px;display:flex;gap:22px;align-items:flex-start;}
+  .icon{flex-shrink:0;width:46px;height:46px;border-radius:50%;background:rgba(30,215,96,.12);
+    display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:2px;}
+  .body{flex:1;}
+  .head{font-size:20px;font-weight:800;color:#16562f;letter-spacing:-.4px;margin-bottom:12px;
+    display:flex;align-items:center;gap:8px;}
+  .head .tag{font-size:12px;font-weight:700;color:#1aa34a;background:#e7f8ee;
+    padding:3px 10px;border-radius:9999px;letter-spacing:.3px;}
+  .text{font-size:16.5px;font-weight:500;color:#4a5a52;line-height:1.85;letter-spacing:-.2px;}
+  .text b{color:#16562f;font-weight:700;}
+  .sign{margin-top:16px;font-size:14px;font-weight:700;color:#9aa8a0;letter-spacing:.3px;}
+  .sign b{color:#1ed760;}
+  </style></head><body>
+  <div class="disc" id="capture">
+    <div class="icon">⚖️</div>
+    <div class="body">
+      <div class="head">안내 <span class="tag">DISCLAIMER</span></div>
+      <div class="text">본 블로그에 게재된 내용은 <b>일반적인 정보 제공</b>을 목적으로 작성되었습니다.
+        본 블로그의 정보는 구체적인 사안에 따라 내용이 달라질 수 있으므로,
+        개별 사안에 대하여 <b>반드시 전문가와 직접 상담</b>하시기 바랍니다.</div>
+      <div class="sign"><b>jp</b>labor.com · 공인노무사 JP</div>
+    </div>
+  </div></body></html>`;
+}
+
 // ── 6) 캡처 실행 ─────────────────────────────────────
 // 로컬 PC: executablePath 줄을 지우면 playwright 기본 크롬 사용
 const LAUNCH = process.env.PW_CHROME
@@ -126,6 +156,7 @@ await shot(thumbHTML(data), 'thumbnail.png');
 let n = 1;
 for (const s of data.sections) { await shot(dividerHTML(s, n), `divider-${n}.png`); n++; }
 await shot(ctaHTML(), 'cta.png');
+await shot(disclaimerHTML(), 'disclaimer.png');
 
 // ── 7) 원고 텍스트 저장 (네이버 붙여넣기용) ──────────
 if (data.body) {
