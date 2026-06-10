@@ -119,117 +119,75 @@ ul{list-style:none;}
 .sub-nav a.active{color:#ffffff;border-bottom-color:var(--primary);}
 .sub-nav-divider{color:#2a2a2a;padding:13px 10px;font-size:18px;align-self:center;}
 
-/* ── 서브 드롭다운 패널 ── */
-.sub-panel-wrap{
-  background:#0d0d0d;border-bottom:1px solid #1e1e1e;
-  overflow:hidden;max-height:0;transition:max-height .3s ease, padding .3s ease;
-}
-.sub-panel-wrap.open{max-height:82vh;overflow-y:auto;}
-.sub-panel-wrap::-webkit-scrollbar{width:8px;}
-.sub-panel-wrap::-webkit-scrollbar-thumb{background:#333;border-radius:9999px;}
-.sub-panel{
-  max-width:1280px;margin:0 auto;padding:0 48px;
-}
-.sub-panel-wrap.open .sub-panel{padding:28px 48px 36px;}
-
-/* 계산기 패널 */
-.sub-calc-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
-.sub-calc-tab{
-  background:rgba(255,255,255,.08);border:1px solid var(--hairline-dark);
-  color:rgba(255,255,255,.75);padding:7px 18px;border-radius:9999px;
-  font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;
-}
-.sub-calc-tab.active,.sub-calc-tab:hover{background:var(--primary);color:#000;border-color:var(--primary);font-weight:700;}
-.sub-calc-body{display:none;}
-.sub-calc-body.active{display:block;}
-.sub-calc-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
-.sub-calc-field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:140px;}
-.sub-calc-field label{font-size:12px;color:rgba(255,255,255,.6);}
-.sub-calc-field input,.sub-calc-field select{
-  padding:9px 12px;border-radius:8px;border:1px solid var(--hairline-dark);
-  background:rgba(255,255,255,.08);color:#fff;font-family:inherit;font-size:14px;
-}
-.sub-calc-field input::placeholder{color:rgba(255,255,255,.35);}
-.sub-calc-btn{
-  background:var(--primary);color:#fff;border:none;padding:10px 24px;
-  border-radius:9999px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;
-  transition:background .15s;margin-bottom:12px;
-}
-.sub-calc-btn:hover{background:var(--primary-pressed);}
-.sub-calc-result{
-  background:rgba(30,215,96,.12);border:1px solid rgba(30,215,96,.25);
-  border-radius:8px;padding:14px 18px;display:none;
-}
-.sub-calc-result.show{display:block;}
-.sub-calc-result .rmain{font-size:22px;font-weight:700;color:var(--primary);margin-bottom:4px;}
-.sub-calc-result .rdetail{font-size:13px;color:rgba(255,255,255,.65);}
-.sub-calc-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:8px;}
-
-/* 법률개정·가이드 카드 패널 */
-.sub-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
-.sub-card{
-  background:rgba(255,255,255,.06);border:1px solid var(--hairline-dark);
-  border-radius:10px;padding:16px 18px;transition:all .18s;cursor:pointer;
-}
-.sub-card:hover{background:rgba(30,215,96,.12);border-color:rgba(30,215,96,.4);}
-.sub-card .sc-badge{
-  font-size:10px;font-weight:700;padding:3px 8px;border-radius:9999px;
-  margin-bottom:10px;display:inline-block;
-}
-.sc-new{background:rgba(200,27,58,.25);color:#ff6b6b;}
-.sc-imp{background:rgba(30,215,96,.25);color:var(--primary);}
-.sc-tip{background:rgba(255,180,0,.2);color:#ffc947;}
-.sub-card .sc-title{font-size:14px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:6px;}
-.sub-card .sc-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;}
-
 @media(max-width:768px){
   .sub-nav{padding:0 20px;}
-  .sub-panel-wrap.open .sub-panel{padding:20px;}
-  .sub-calc-row{flex-direction:column;}
-  .sub-card-grid{grid-template-columns:1fr;}
 }
 
-/* ── 법령 개정 패널 (카드형) ── */
-.law-wrap{max-width:1180px;}
-.law-head{display:flex;align-items:baseline;gap:12px;margin-bottom:22px;flex-wrap:wrap;}
-.law-head h3{font-size:18px;font-weight:700;color:#fff;letter-spacing:-0.2px;}
-.law-head .law-yr{
-  background:var(--primary);color:#000;font-size:12px;font-weight:700;
-  padding:3px 11px;border-radius:9999px;letter-spacing:0.3px;
+/* ── 메인 뷰 전환 (법령 / ER) 공통 ── */
+.alt-view{max-width:1100px;margin:0 auto;padding:48px 24px 80px;}
+.alt-hd{margin-bottom:32px;}
+.alt-back{
+  background:none;border:1px solid var(--hairline-light);color:var(--mute-light);
+  font-family:inherit;font-size:13px;font-weight:600;padding:8px 16px;
+  border-radius:9999px;cursor:pointer;transition:all .15s;margin-bottom:22px;
 }
-.law-grid{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+.alt-back:hover{border-color:var(--primary);color:var(--primary);}
+.alt-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.alt-yr{
+  background:var(--primary);color:#fff;font-size:14px;font-weight:700;
+  padding:4px 13px;border-radius:9999px;letter-spacing:0.5px;
 }
-.law-card{
-  background:#181818;border:1px solid #232323;border-radius:12px;
-  padding:20px 22px;transition:background .15s,border-color .15s;
+.alt-yr.er{background:var(--ink);}
+.alt-hd h2{font-size:30px;font-weight:300;color:var(--ink);letter-spacing:-0.5px;}
+.alt-sub{color:var(--body-light);font-size:15px;margin-top:12px;}
+.alt-note{font-size:12.5px;color:var(--mute-light);margin-top:24px;line-height:1.7;}
+
+/* 법령 카드 (라이트) */
+.lawx-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.lawx-card{
+  background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:24px 26px;
+  transition:box-shadow .2s,border-color .2s;
 }
-.law-card:hover{background:#1e1e1e;border-color:#333;}
-.law-card.feature{grid-column:1 / -1;background:#161616;border-color:rgba(30,215,96,.22);}
-.law-card-top{display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap;}
-.law-date{
-  background:rgba(30,215,96,.12);color:var(--primary);font-size:11px;font-weight:700;
-  padding:3px 10px;border-radius:9999px;border:1px solid rgba(30,215,96,.25);
-  letter-spacing:0.2px;white-space:nowrap;
+.lawx-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.06);}
+.lawx-card.feature{grid-column:1 / -1;background:#fafefb;border-color:rgba(30,215,96,.3);}
+.lawx-date{
+  display:inline-block;background:rgba(30,215,96,.1);color:var(--primary-active);
+  font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:9999px;margin-bottom:12px;
 }
-.law-card h4{font-size:15px;font-weight:700;color:#fff;line-height:1.35;letter-spacing:-0.2px;}
-.law-card p{font-size:13px;color:#b3b3b3;line-height:1.75;margin-top:4px;}
-.law-card .hl{color:#fff;font-weight:700;}
-.law-points{
-  display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px;
+.lawx-card h4{font-size:17px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.3px;}
+.lawx-card > p{font-size:14px;color:var(--body-light);line-height:1.75;margin-top:8px;}
+.lawx-card b{color:var(--ink);font-weight:700;}
+.lawx-points{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px;}
+.lawx-point{background:#f7f9fb;border:1px solid #eef1f4;border-radius:10px;padding:16px 18px;}
+.lawx-pt-h{display:flex;align-items:center;gap:9px;margin-bottom:7px;font-size:14px;color:var(--ink);}
+.lawx-pt-n{
+  background:var(--primary);color:#fff;font-size:11px;font-weight:700;
+  width:22px;height:22px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;
 }
-.law-point{
-  background:#1c1c1c;border:1px solid #282828;border-radius:10px;padding:14px 16px;
+.lawx-point p{font-size:13px;color:var(--body-light);line-height:1.7;margin-top:0;}
+
+/* ER 카드 (라이트) */
+.erx-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.erx-card{
+  background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:22px 24px;
+  transition:box-shadow .2s,border-color .2s;
 }
-.law-point-h{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
-.law-point-n{
-  background:#1f1f1f;color:var(--primary);font-size:10px;font-weight:700;
-  width:20px;height:20px;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;border:1px solid rgba(30,215,96,.4);flex-shrink:0;
+.erx-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.06);}
+.erx-badge{
+  display:inline-block;font-size:11px;font-weight:700;padding:3px 11px;
+  border-radius:9999px;margin-bottom:12px;
 }
-.law-point-t{font-size:13px;font-weight:700;color:#fff;line-height:1.3;}
-.law-point p{font-size:12px;color:#9a9a9a;line-height:1.7;margin-top:0;}
-.law-note{font-size:11.5px;color:#6b6b6b;margin-top:20px;line-height:1.7;}
+.erx-badge.tip{background:rgba(30,215,96,.1);color:var(--primary-active);}
+.erx-badge.imp{background:rgba(245,158,11,.12);color:#b45309;}
+.erx-card h4{font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.2px;}
+.erx-card p{font-size:13.5px;color:var(--body-light);line-height:1.7;margin-top:8px;}
+
+@media(max-width:768px){
+  .lawx-grid,.lawx-points,.erx-grid{grid-template-columns:1fr;}
+  .alt-hd h2{font-size:24px;}
+  .alt-view{padding:32px 16px 60px;}
+}
 
 /* ════════════ HERO (dark band) ════════════ */
 .hero{
@@ -821,10 +779,9 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   <div class="nav-menu">
     <a href="#" class="active" onclick="showHome();return false;">홈</a>
     <a href="#" onclick="showHome();return false;">사례 DB</a>
-    <a href="#">노사관계 ER</a>
-    <a href="#">계산기</a>
+    <a href="#" onclick="showErView();return false;">노사관계 ER</a>
+    <a href="#" onclick="showLawView();return false;">2026 법령</a>
     <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
-    <a href="#">서식</a>
   </div>
   <div class="nav-right">
     <div class="nav-search">
@@ -848,192 +805,10 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   <a href="#" onclick="openCategory('5인미만');return false;">5인 미만</a>
   <a href="#" class="soon">외국인</a>
   <span class="sub-nav-divider">|</span>
-  <a onclick="toggleSubPanel('calc')">🧮 노동법 계산기</a>
-  <a onclick="toggleSubPanel('law')">📋 2026년 법령 개정</a>
-  <a onclick="toggleSubPanel('er')">📘 ER 가이드북</a>
+  <a onclick="showLawView()">📋 2026년 법령 개정</a>
+  <a onclick="showErView()">📘 ER 가이드북</a>
 </div>
 
-<!-- ══ 드롭다운 패널 ══ -->
-
-<!-- 계산기 패널 -->
-<div class="sub-panel-wrap" id="panel-calc">
-  <div class="sub-panel">
-    <div class="sub-calc-tabs">
-      <button class="sub-calc-tab active" onclick="switchSubCalc(this,'sc-severance')">퇴직금</button>
-      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-weekly')">주휴수당</button>
-      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-annual')">연차휴가</button>
-      <button class="sub-calc-tab" onclick="switchSubCalc(this,'sc-ot')">연장근로수당</button>
-    </div>
-
-    <div class="sub-calc-body active" id="sc-severance">
-      <div class="sub-calc-row">
-        <div class="sub-calc-field"><label>입사일</label><input type="date" id="sc-s-hire"></div>
-        <div class="sub-calc-field"><label>퇴직일</label><input type="date" id="sc-s-quit"></div>
-        <div class="sub-calc-field"><label>3개월 평균임금 (월 세전, 원)</label><input type="number" id="sc-s-salary" placeholder="3500000"></div>
-      </div>
-      <button class="sub-calc-btn" onclick="scCalcSeverance()">퇴직금 계산</button>
-      <div class="sub-calc-result" id="sc-s-result"><div class="rmain" id="sc-s-amount"></div><div class="rdetail" id="sc-s-detail"></div></div>
-      <p class="sub-calc-note">※ 퇴직금 = 평균임금 × 30일 × 근속연수. 1년 미만 미발생.</p>
-    </div>
-
-    <div class="sub-calc-body" id="sc-weekly">
-      <div class="sub-calc-row">
-        <div class="sub-calc-field"><label>1주 소정근로시간</label><input type="number" id="sc-w-hours" placeholder="40"></div>
-        <div class="sub-calc-field"><label>시급 (원)</label><input type="number" id="sc-w-hourly" placeholder="10030"></div>
-      </div>
-      <button class="sub-calc-btn" onclick="scCalcWeekly()">주휴수당 계산</button>
-      <div class="sub-calc-result" id="sc-w-result"><div class="rmain" id="sc-w-amount"></div><div class="rdetail" id="sc-w-detail"></div></div>
-      <p class="sub-calc-note">※ 주휴수당 = 시급 × 8시간. 주 15시간 미만 미발생.</p>
-    </div>
-
-    <div class="sub-calc-body" id="sc-annual">
-      <div class="sub-calc-row">
-        <div class="sub-calc-field"><label>입사일</label><input type="date" id="sc-a-hire"></div>
-        <div class="sub-calc-field"><label>기준일</label><input type="date" id="sc-a-base"></div>
-      </div>
-      <button class="sub-calc-btn" onclick="scCalcAnnual()">연차 계산</button>
-      <div class="sub-calc-result" id="sc-a-result"><div class="rmain" id="sc-a-amount"></div><div class="rdetail" id="sc-a-detail"></div></div>
-      <p class="sub-calc-note">※ 1년 미만: 매월 개근 시 1일. 1년 이상: 15일 + 2년마다 1일 가산 (최대 25일).</p>
-    </div>
-
-    <div class="sub-calc-body" id="sc-ot">
-      <div class="sub-calc-row">
-        <div class="sub-calc-field"><label>통상시급 (원)</label><input type="number" id="sc-ot-hourly" placeholder="15000"></div>
-        <div class="sub-calc-field"><label>연장근로 시간</label><input type="number" id="sc-ot-hours" placeholder="10"></div>
-        <div class="sub-calc-field"><label>유형</label>
-          <select id="sc-ot-type">
-            <option value="1.5">연장근로 (50% 가산)</option>
-            <option value="1.5">야간근로 (50%)</option>
-            <option value="2.0">연장+야간 중복 (100%)</option>
-            <option value="1.5">휴일근로 8시간 이내 (50%)</option>
-            <option value="2.0">휴일근로 8시간 초과 (100%)</option>
-          </select>
-        </div>
-      </div>
-      <button class="sub-calc-btn" onclick="scCalcOT()">수당 계산</button>
-      <div class="sub-calc-result" id="sc-ot-result"><div class="rmain" id="sc-ot-amount"></div><div class="rdetail" id="sc-ot-detail"></div></div>
-      <p class="sub-calc-note">※ 5인 미만 사업장은 가산수당 미적용.</p>
-    </div>
-  </div>
-</div>
-
-<!-- 2025 법률 개정 패널 -->
-<div class="sub-panel-wrap" id="panel-law">
-  <div class="sub-panel">
-    <div class="law-wrap">
-      <div class="law-head">
-        <span class="law-yr">2026</span>
-        <h3>인사·노무 관련 법령 주요 개정 사항</h3>
-      </div>
-      <div class="law-grid">
-
-        <!-- 최저임금 -->
-        <div class="law-card">
-          <div class="law-card-top">
-            <span class="law-date">2026.1.1 시행</span>
-          </div>
-          <h4>최저임금 시급 10,320원</h4>
-          <p>전년 대비 <span class="hl">+290원(약 2.9%)</span> 인상. 정기상여금·현금성 복리후생비 <span class="hl">전액</span>이 산입 범위에 포함됩니다.</p>
-        </div>
-
-        <!-- 시행령 -->
-        <div class="law-card">
-          <div class="law-card-top">
-            <span class="law-date">2026.3.10 시행</span>
-          </div>
-          <h4>개정 노동조합법 시행령</h4>
-          <p>원청 미공고 시정 요청 시 노동위원회가 <span class="hl">최대 20일</span> 내 사용자 여부 판단. 교섭단위 분리·통합 시 이해관계 공통성·이익대표 적절성 등을 우선 고려.</p>
-        </div>
-
-        <!-- 노란봉투법 (피처) -->
-        <div class="law-card feature">
-          <div class="law-card-top">
-            <span class="law-date">2026.3.10 시행</span>
-          </div>
-          <h4>개정 노동조합법 — '노란봉투법'</h4>
-          <p>노동조합법 제2조·제3조 개정. 사용자 범위·조합 가입대상·노동쟁의 개념이 확대되고, 노조 손해배상 책임이 완화됩니다.</p>
-          <div class="law-points">
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">1</span><span class="law-point-t">사용자 범위 확대</span></div>
-              <p>근로조건을 실질적·구체적으로 지배·결정하는 자도 사용자로 인정 → 원청의 교섭 의무 가능.</p>
-            </div>
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">2</span><span class="law-point-t">가입대상 확대</span></div>
-              <p>특수형태근로·플랫폼 종사자 등의 단결권 보장. 비근로자 가입 배제 규정 삭제.</p>
-            </div>
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">3</span><span class="law-point-t">노동쟁의 개념 확대</span></div>
-              <p>'근로자 지위·사업경영상 결정', 명백한 단협 위반까지 포함 → 쟁의 범위 확대.</p>
-            </div>
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">4</span><span class="law-point-t">손배책임 면제·제한</span></div>
-              <p>면책 범위 확대. 배상의무자별 귀책·기여도 입증 책임 부과.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- 해석지침 (피처) -->
-        <div class="law-card feature">
-          <div class="law-card-top">
-            <span class="law-date">2026.2 발표</span>
-          </div>
-          <h4>해석지침 &amp; 원·하청 상생 교섭절차 매뉴얼</h4>
-          <p>고용노동부·중앙노동위원회가 개정법 적용 기준을 구체화했습니다.</p>
-          <div class="law-points">
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">1</span><span class="law-point-t">사용자성 '구조적 통제' 기준</span></div>
-              <p>직접 지휘·명령이 아닌, 원청이 하청의 근로조건 결정을 제한하는지로 판단. 합병·분할 자체는 교섭 대상 아니나 그에 따른 정리해고·배치전환은 교섭 대상.</p>
-            </div>
-            <div class="law-point">
-              <div class="law-point-h"><span class="law-point-n">2</span><span class="law-point-t">원·하청 교섭 공고 범위</span></div>
-              <p>원청-전체 하청을 각각 독립 교섭단위로 인정. 사용자성 소지가 있는 전체 하청에 폭넓게 공고(게시판·전산시스템 포함) 권고.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <p class="law-note">※ 본 요약은 일반적 안내이며, 구체적 사안은 개정 법령 원문 및 공인노무사 상담을 통해 확인하시기 바랍니다.</p>
-    </div>
-  </div>
-</div>
-
-<!-- ER 가이드북 패널 -->
-<div class="sub-panel-wrap" id="panel-er">
-  <div class="sub-panel">
-    <div class="sub-card-grid">
-      <div class="sub-card">
-        <span class="sc-badge sc-tip">핵심</span>
-        <div class="sc-title">권고사직 설계 실무</div>
-        <div class="sc-desc">합의해지와 권고사직의 법적 차이, 문구 설계 시 리스크 포인트 정리.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-tip">핵심</span>
-        <div class="sc-title">징계위원회 절차 체크리스트</div>
-        <div class="sc-desc">사전통지→소명기회→결정→통보 단계별 필수 요건. 누락 시 절차 위반.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-tip">핵심</span>
-        <div class="sc-title">포괄임금제 설계 리스크</div>
-        <div class="sc-desc">유효 요건·무효 판단 기준. 연장근로 실태 점검 체크포인트.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-imp">중요</span>
-        <div class="sc-title">노조 설립 대응 초기 가이드</div>
-        <div class="sc-desc">노조 설립 신고 접수 후 48시간 내 해야 할 것. 교섭 요구 대응 순서.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-imp">중요</span>
-        <div class="sc-title">정리해고 4요건 실무 판단</div>
-        <div class="sc-desc">긴박한 경영상 필요 / 해고 회피 노력 / 합리적 선발 / 협의 요건 체크.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-tip">핵심</span>
-        <div class="sc-title">수습기간 중 해고 판단 기준</div>
-        <div class="sc-desc">시용계약 해지의 정당성 요건. 본채용 거부 시 서면통지 필요 여부.</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -13567,6 +13342,82 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   </div>
 </section>
 
+<!-- ════════════ 2026 법령 개정 (메인 뷰) ════════════ -->
+<section class="alt-view" id="law-view" style="display:none;">
+  <div class="alt-inner">
+    <div class="alt-hd">
+      <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+      <div class="alt-title-row">
+        <span class="alt-yr">2026</span>
+        <h2>인사·노무 관련 법령 주요 개정 사항</h2>
+      </div>
+      <p class="alt-sub">올해 달라지는 핵심 노동법 개정 내용을 한눈에 정리했습니다.</p>
+    </div>
+
+    <div class="lawx-grid">
+      <!-- 최저임금 -->
+      <div class="lawx-card">
+        <span class="lawx-date">2026.1.1 시행</span>
+        <h4>최저임금 시급 10,320원</h4>
+        <p>전년 대비 <b>+290원(약 2.9%)</b> 인상. 정기상여금·현금성 복리후생비 <b>전액</b>이 산입 범위에 포함됩니다.</p>
+      </div>
+      <!-- 시행령 -->
+      <div class="lawx-card">
+        <span class="lawx-date">2026.3.10 시행</span>
+        <h4>개정 노동조합법 시행령</h4>
+        <p>원청 미공고 시정 요청 시 노동위원회가 <b>최대 20일</b> 내 사용자 여부 판단. 교섭단위 분리·통합 시 이해관계 공통성·이익대표 적절성 등을 우선 고려.</p>
+      </div>
+      <!-- 노란봉투법 (피처) -->
+      <div class="lawx-card feature">
+        <span class="lawx-date">2026.3.10 시행</span>
+        <h4>개정 노동조합법 — '노란봉투법'</h4>
+        <p>노동조합법 제2조·제3조 개정. 사용자 범위·조합 가입대상·노동쟁의 개념이 확대되고, 노조 손해배상 책임이 완화됩니다.</p>
+        <div class="lawx-points">
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">1</span><b>사용자 범위 확대</b></div><p>근로조건을 실질적·구체적으로 지배·결정하는 자도 사용자로 인정 → 원청의 교섭 의무 가능.</p></div>
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">2</span><b>가입대상 확대</b></div><p>특수형태근로·플랫폼 종사자 등의 단결권 보장. 비근로자 가입 배제 규정 삭제.</p></div>
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">3</span><b>노동쟁의 개념 확대</b></div><p>'근로자 지위·사업경영상 결정', 명백한 단협 위반까지 포함 → 쟁의 범위 확대.</p></div>
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">4</span><b>손배책임 면제·제한</b></div><p>면책 범위 확대. 배상의무자별 귀책·기여도 입증 책임 부과.</p></div>
+        </div>
+      </div>
+      <!-- 해석지침 (피처) -->
+      <div class="lawx-card feature">
+        <span class="lawx-date">2026.2 발표</span>
+        <h4>해석지침 &amp; 원·하청 상생 교섭절차 매뉴얼</h4>
+        <p>고용노동부·중앙노동위원회가 개정법 적용 기준을 구체화했습니다.</p>
+        <div class="lawx-points">
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">1</span><b>사용자성 '구조적 통제' 기준</b></div><p>직접 지휘·명령이 아닌, 원청이 하청의 근로조건 결정을 제한하는지로 판단. 합병·분할 자체는 교섭 대상 아니나 그에 따른 정리해고·배치전환은 교섭 대상.</p></div>
+          <div class="lawx-point"><div class="lawx-pt-h"><span class="lawx-pt-n">2</span><b>원·하청 교섭 공고 범위</b></div><p>원청-전체 하청을 각각 독립 교섭단위로 인정. 사용자성 소지가 있는 전체 하청에 폭넓게 공고(게시판·전산시스템 포함) 권고.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="alt-note">※ 본 요약은 일반적 안내이며, 구체적 사안은 개정 법령 원문 및 공인노무사 상담을 통해 확인하시기 바랍니다.</p>
+  </div>
+</section>
+
+<!-- ════════════ ER 가이드북 (메인 뷰) ════════════ -->
+<section class="alt-view" id="er-view" style="display:none;">
+  <div class="alt-inner">
+    <div class="alt-hd">
+      <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+      <div class="alt-title-row">
+        <span class="alt-yr er">ER</span>
+        <h2>노사관계 ER 실무 가이드북</h2>
+      </div>
+      <p class="alt-sub">인사팀이 자주 마주하는 ER 실무 쟁점을 핵심만 정리했습니다.</p>
+    </div>
+
+    <div class="erx-grid">
+      <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>권고사직 설계 실무</h4><p>합의해지와 권고사직의 법적 차이, 문구 설계 시 리스크 포인트 정리.</p></div>
+      <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>징계위원회 절차 체크리스트</h4><p>사전통지 → 소명기회 → 결정 → 통보 단계별 필수 요건. 누락 시 절차 위반.</p></div>
+      <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>포괄임금제 설계 리스크</h4><p>유효 요건·무효 판단 기준. 연장근로 실태 점검 체크포인트.</p></div>
+      <div class="erx-card"><span class="erx-badge imp">중요</span><h4>노조 설립 대응 초기 가이드</h4><p>노조 설립 신고 접수 후 48시간 내 해야 할 것. 교섭 요구 대응 순서.</p></div>
+      <div class="erx-card"><span class="erx-badge imp">중요</span><h4>정리해고 4요건 실무 판단</h4><p>긴박한 경영상 필요 / 해고 회피 노력 / 합리적 선발 / 협의 요건 체크.</p></div>
+      <div class="erx-card"><span class="erx-badge tip">핵심</span><h4>수습기간 중 해고 판단 기준</h4><p>시용계약 해지의 정당성 요건. 본채용 거부 시 서면통지 필요 여부.</p></div>
+    </div>
+    <p class="alt-note">※ 각 항목의 상세 실무 판단이 필요하신 경우 JP 노무사에게 문의해 주세요.</p>
+  </div>
+</section>
+
 <!-- ════════════ ER 가이드북 (시안1 콘텐츠) ════════════ -->
 <section class="band band-soft">
   <div class="band-inner">
@@ -13781,100 +13632,6 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 </footer>
 
 <script>
-// 서브 네비 드롭다운 토글
-const SUB_PANELS = ['calc','law','er'];
-function toggleSubPanel(id) {
-  const nav = document.getElementById('sub-nav');
-  const links = nav.querySelectorAll('a');
-  const targetPanel = document.getElementById('panel-' + id);
-  const isOpen = targetPanel.classList.contains('open');
-  // 모두 닫기
-  SUB_PANELS.forEach(p => {
-    document.getElementById('panel-' + p).classList.remove('open');
-  });
-  links.forEach(a => a.classList.remove('active'));
-  // 클릭한 게 닫혀있었으면 열기
-  if (!isOpen) {
-    targetPanel.classList.add('open');
-    const idx = SUB_PANELS.indexOf(id);
-    if (links[idx]) links[idx].classList.add('active');
-  }
-}
-
-// 서브 계산기 탭 전환
-function switchSubCalc(btn, id) {
-  const wrap = btn.closest('.sub-panel');
-  wrap.querySelectorAll('.sub-calc-tab').forEach(b => b.classList.remove('active'));
-  wrap.querySelectorAll('.sub-calc-body').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-const scFmt = n => Math.round(n).toLocaleString('ko-KR') + '원';
-
-function scCalcSeverance() {
-  const hire = new Date(document.getElementById('sc-s-hire').value);
-  const quit = new Date(document.getElementById('sc-s-quit').value);
-  const salary = parseFloat(document.getElementById('sc-s-salary').value);
-  const r = document.getElementById('sc-s-result');
-  if (!hire.getTime() || !quit.getTime() || !salary) { alert('모든 항목을 입력해주세요.'); return; }
-  const days = (quit - hire) / (1000 * 60 * 60 * 24);
-  const years = days / 365;
-  r.classList.add('show');
-  if (years < 1) {
-    document.getElementById('sc-s-amount').textContent = '퇴직금 지급 대상 아님';
-    document.getElementById('sc-s-detail').textContent = '1년 미만 근속 시 퇴직금 미발생';
-  } else {
-    const avg = salary / 30;
-    const total = avg * 30 * years;
-    document.getElementById('sc-s-amount').textContent = scFmt(total);
-    document.getElementById('sc-s-detail').textContent = `근속 ${Math.floor(years)}년 ${Math.floor((years % 1) * 12)}개월 / 평균임금 ${scFmt(avg)}/일`;
-  }
-}
-function scCalcWeekly() {
-  const h = parseFloat(document.getElementById('sc-w-hours').value);
-  const w = parseFloat(document.getElementById('sc-w-hourly').value);
-  const r = document.getElementById('sc-w-result');
-  if (!h || !w) { alert('모든 항목을 입력해주세요.'); return; }
-  r.classList.add('show');
-  if (h < 15) {
-    document.getElementById('sc-w-amount').textContent = '주휴수당 미발생';
-    document.getElementById('sc-w-detail').textContent = '주 15시간 미만 근로자는 주휴수당 없음';
-  } else {
-    const total = w * 8;
-    document.getElementById('sc-w-amount').textContent = scFmt(total);
-    document.getElementById('sc-w-detail').textContent = `시급 ${scFmt(w)} × 8시간`;
-  }
-}
-function scCalcAnnual() {
-  const hire = new Date(document.getElementById('sc-a-hire').value);
-  const base = new Date(document.getElementById('sc-a-base').value);
-  const r = document.getElementById('sc-a-result');
-  if (!hire.getTime() || !base.getTime()) { alert('날짜를 입력해주세요.'); return; }
-  const months = (base - hire) / (1000 * 60 * 60 * 24 * 30.44);
-  const years = months / 12;
-  r.classList.add('show');
-  let days, desc;
-  if (months < 12) {
-    days = Math.floor(months);
-    desc = `입사 ${Math.floor(months)}개월 — 매월 개근 시 1일씩`;
-  } else {
-    days = Math.min(15 + Math.floor((years - 1) / 2), 25);
-    desc = `근속 ${Math.floor(years)}년 — 기본 15일 + 가산`;
-  }
-  document.getElementById('sc-a-amount').textContent = days + '일';
-  document.getElementById('sc-a-detail').textContent = desc;
-}
-function scCalcOT() {
-  const hourly = parseFloat(document.getElementById('sc-ot-hourly').value);
-  const hours = parseFloat(document.getElementById('sc-ot-hours').value);
-  const rate = parseFloat(document.getElementById('sc-ot-type').value);
-  const r = document.getElementById('sc-ot-result');
-  if (!hourly || !hours) { alert('모든 항목을 입력해주세요.'); return; }
-  r.classList.add('show');
-  const total = hourly * hours * rate;
-  document.getElementById('sc-ot-amount').textContent = scFmt(total);
-  document.getElementById('sc-ot-detail').textContent = `시급 ${scFmt(hourly)} × ${hours}시간 × ${rate}배`;
-}
 
 // Q&A 토글
 function toggleQA(head){head.parentElement.classList.toggle('open');}
@@ -13933,16 +13690,27 @@ function homeSections() {
   return ['.hero', '.breadcrumb', '.layout', '.band', '.cta-band']
     .flatMap(sel => Array.from(document.querySelectorAll(sel)));
 }
-function showColumns() {
+// 메인 영역 대체 뷰 (칼럼 / 법령 / ER) 전부 숨김
+function hideAltViews() {
+  ['column-view','law-view','er-view'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
+}
+// 특정 대체 뷰를 메인 영역에 표시
+function showAltView(id) {
   homeSections().forEach(el => el.style.display = 'none');
-  const cv = document.getElementById('column-view');
-  if (cv) cv.style.display = 'block';
+  hideAltViews();
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'block';
   document.querySelectorAll('.primary-nav .nav-menu a').forEach(a => a.classList.remove('active'));
   window.scrollTo({top:0, behavior:'smooth'});
 }
+function showColumns(){ showAltView('column-view'); }
+function showLawView(){ showAltView('law-view'); }
+function showErView(){ showAltView('er-view'); }
 function exitColumns() {
-  const cv = document.getElementById('column-view');
-  if (cv) cv.style.display = 'none';
+  hideAltViews();
   homeSections().forEach(el => el.style.display = '');
 }
 
