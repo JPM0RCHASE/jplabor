@@ -6,11 +6,18 @@ import { join } from 'path';
 // (이 클라우드 환경에서만 PW_CHROME 경로 지정)
 const LAUNCH = process.env.PW_CHROME ? { executablePath: process.env.PW_CHROME } : {};
 
-const file = process.argv[2];                       // 예: blog-노조가입.html
+const file = process.argv[2];                       // 예: blog-인사팀 노조가입.html
 const slug = file.split('/').pop().replace('blog-', '').replace('.html', '');
 
-// 주제별 폴더: blog-output/[주제]/
-const outDir = join(process.cwd(), 'blog-output', slug);
+// 날짜 접두어 YYMMDD (예: 260609)
+const d = new Date();
+const ymd = String(d.getFullYear()).slice(2)
+  + String(d.getMonth() + 1).padStart(2, '0')
+  + String(d.getDate()).padStart(2, '0');
+
+// 주제별 폴더: blog-output/YYMMDD_핵심주제/
+const folderName = `${ymd}_${slug}`;
+const outDir = join(process.cwd(), 'blog-output', folderName);
 mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch(LAUNCH);
@@ -22,7 +29,7 @@ await page.waitForTimeout(1800);
 await (await page.$('#thumb')).screenshot({ path: join(outDir, 'thumbnail.png') });
 await (await page.$('#disc')).screenshot({ path: join(outDir, 'disclaimer.png') });
 
-console.log(`✅ 완료 → blog-output/${slug}/`);
+console.log(`✅ 완료 → blog-output/${folderName}/`);
 console.log(`   · thumbnail.png   (썸네일)`);
 console.log(`   · disclaimer.png  (면책조항)`);
 console.log(`   · 본문.txt         (본문 텍스트 — 별도 작성, 네이버 복붙용)`);
