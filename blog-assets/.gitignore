@@ -1,8 +1,10 @@
 node_modules/
-blog-output/
 package-lock.json
 package.json
 shot.mjs
-# 생성된 미리보기 이미지 (소스 HTML로 언제든 재생성 가능)
-*.png
 shot2.mjs
+
+# blog-assets 루트의 미리보기용 임시 png만 무시 (소스 HTML로 재생성 가능)
+/*.png
+
+# 주제별 최종 산출물(blog-output/)은 추적해서 집 PC로 동기화
