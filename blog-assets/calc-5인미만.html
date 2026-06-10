@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>상시 근로자 수 계산기 — 5인 미만 판정 | 공인노무사 JP</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #1ed760;
+    --green-dim: rgba(30,215,96,.12);
+    --bg: #f5f7f5;
+    --card: #fff;
+    --text: #1a1a1a;
+    --sub: #555;
+    --border: #e0e8e2;
+  }
+
+  body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+  }
+
+  .wrap { max-width: 560px; margin: 0 auto; }
+
+  /* 헤더 */
+  .hd {
+    background: #121212;
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hd::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+    background: linear-gradient(180deg, var(--green), rgba(30,215,96,.1));
+  }
+  .hd-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    color: var(--green); margin-bottom: 10px; text-transform: uppercase;
+  }
+  .hd-label .dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green); margin-right: 8px; vertical-align: middle;
+    box-shadow: 0 0 8px rgba(30,215,96,.8);
+  }
+  .hd-title { font-size: 26px; font-weight: 800; color: #fff; line-height: 1.3; }
+  .hd-title span { color: var(--green); }
+  .hd-sub { font-size: 14px; color: #888; margin-top: 8px; }
+
+  /* 법령 안내 */
+  .law-box {
+    background: var(--green-dim);
+    border: 1px solid rgba(30,215,96,.25);
+    border-left: 4px solid var(--green);
+    border-radius: 10px;
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #1a4d2e;
+    margin-bottom: 20px;
+  }
+  .law-box strong { color: #0f3320; }
+
+  /* 카드 */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.04);
+  }
+  .card-title {
+    font-size: 15px; font-weight: 800; color: var(--text);
+    margin-bottom: 18px; display: flex; align-items: center; gap: 8px;
+  }
+  .card-title .num {
+    background: var(--green); color: #0a1a0e;
+    font-size: 12px; font-weight: 800;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* 입력 */
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  label {
+    display: block; font-size: 13px; font-weight: 700;
+    color: var(--sub); margin-bottom: 6px;
+  }
+  label .unit { font-weight: 400; color: #999; font-size: 12px; margin-left: 4px; }
+  input[type=number] {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-size: 18px; font-weight: 700; color: var(--text);
+    font-family: inherit; background: #fafcfa;
+    transition: border-color .15s;
+    -moz-appearance: textfield;
+  }
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type=number]:focus {
+    outline: none; border-color: var(--green);
+    background: #fff; box-shadow: 0 0 0 3px rgba(30,215,96,.12);
+  }
+  .hint { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+  /* 버튼 */
+  .btn {
+    width: 100%; padding: 16px;
+    background: var(--green); color: #0a1a0e;
+    font-size: 17px; font-weight: 800; font-family: inherit;
+    border: none; border-radius: 12px; cursor: pointer;
+    transition: opacity .15s, transform .1s;
+    margin-top: 4px;
+  }
+  .btn:hover { opacity: .9; }
+  .btn:active { transform: scale(.98); }
+  .btn-reset {
+    width: 100%; padding: 12px;
+    background: transparent; color: #aaa;
+    font-size: 14px; font-weight: 600; font-family: inherit;
+    border: 1.5px solid #e0e0e0; border-radius: 10px; cursor: pointer;
+    margin-top: 10px; transition: border-color .15s, color .15s;
+  }
+  .btn-reset:hover { border-color: #bbb; color: #666; }
+
+  /* 결과 */
+  #result { display: none; }
+  .result-card {
+    border-radius: 16px; padding: 24px;
+    margin-bottom: 16px;
+  }
+  .result-card.pass {
+    background: linear-gradient(135deg, #0f2a1a, #1a3d28);
+    border: 1px solid rgba(30,215,96,.3);
+  }
+  .result-card.fail {
+    background: linear-gradient(135deg, #1e1000, #2d1a00);
+    border: 1px solid rgba(243,114,43,.3);
+  }
+  .result-label {
+    font-size: 12px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .result-card.pass .result-label { color: var(--green); }
+  .result-card.fail .result-label { color: #f3722b; }
+  .result-verdict {
+    font-size: 28px; font-weight: 800; line-height: 1.2; color: #fff;
+    margin-bottom: 6px;
+  }
+  .result-desc { font-size: 14px; color: rgba(255,255,255,.6); }
+
+  /* 계산 과정 */
+  .calc-steps {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    margin-bottom: 16px;
+  }
+  .calc-steps .step-title {
+    font-size: 13px; font-weight: 800; color: var(--sub);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .step-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px;
+  }
+  .step-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .step-row .step-key { color: var(--sub); }
+  .step-row .step-val { font-weight: 700; color: var(--text); }
+  .step-row.highlight .step-key { color: #0f3320; font-weight: 700; }
+  .step-row.highlight .step-val { color: var(--green); font-size: 17px; }
+
+  /* 적용 조항 안내 */
+  .apply-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px;
+    margin-bottom: 16px;
+  }
+  .apply-card .apply-title {
+    font-size: 13px; font-weight: 800; color: var(--sub);
+    letter-spacing: 1px; margin-bottom: 14px;
+  }
+  .apply-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 13.5px;
+  }
+  .apply-item:last-child { border-bottom: none; }
+  .badge {
+    flex-shrink: 0; font-size: 11px; font-weight: 800;
+    padding: 2px 8px; border-radius: 999px; margin-top: 2px;
+  }
+  .badge.ok { background: #e6f9ee; color: #0f7a35; }
+  .badge.no { background: #fff0e8; color: #c04a0a; }
+  .apply-item .ai-text { line-height: 1.6; color: #333; }
+  .apply-item .ai-text strong { color: #111; }
+
+  /* 경고 */
+  .warn-box {
+    background: #fff8f0; border: 1px solid #ffd8a8;
+    border-left: 4px solid #f3722b; border-radius: 10px;
+    padding: 14px 18px; font-size: 13px; line-height: 1.7; color: #7c3a0a;
+    margin-bottom: 16px;
+  }
+
+  /* 푸터 */
+  .footer {
+    text-align: center; font-size: 12px; color: #aaa;
+    margin-top: 8px; line-height: 1.8;
+  }
+  .footer a { color: var(--green); text-decoration: none; font-weight: 700; }
+
+  /* 에러 */
+  .err { color: #e53e3e; font-size: 13px; margin-top: 6px; display: none; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 헤더 -->
+  <div class="hd">
+    <div class="hd-label"><span class="dot"></span>공인노무사 JP · 무료 계산기</div>
+    <div class="hd-title">상시 근로자 수<br><span>5인 미만 판정</span> 계산기</div>
+    <div class="hd-sub">근기법 시행령 제7조의2 기준 · 보정 기준 자동 적용</div>
+  </div>
+
+  <!-- 법령 안내 -->
+  <div class="law-box">
+    <strong>📋 계산 근거</strong><br>
+    상시 근로자 수 = <strong>1개월 연인원 ÷ 가동일수</strong> (근기법 시행령 §7의2 ①)<br>
+    단, 5인 미만 근무일이 절반 이상이면 → 5인 미만 / 절반 미만이면 → 5인 이상으로 보정 (동조 ②)
+  </div>
+
+  <!-- 입력 -->
+  <div class="card">
+    <div class="card-title"><span class="num">1</span> 기본 정보 입력</div>
+
+    <div class="field">
+      <label>가동일수 <span class="unit">(해당 월 실제 운영일)</span></label>
+      <input type="number" id="days" placeholder="예: 22" min="1" max="31">
+      <div class="hint">주말·공휴일 제외, 실제 사업장 운영일 수</div>
+    </div>
+
+    <div class="field">
+      <label>연인원 <span class="unit">(1개월간 출근 인원 합계)</span></label>
+      <input type="number" id="total" placeholder="예: 112" min="0">
+      <div class="hint">예) 12일×6명 + 10일×4명 = 112명</div>
+    </div>
+
+    <div class="field">
+      <label>5인 미만 근무일 수 <span class="unit">(당월 근로자 수가 5인 미만이었던 날)</span></label>
+      <input type="number" id="under5days" placeholder="예: 8" min="0">
+      <div class="hint">출근 인원이 1~4명이었던 날만 합산</div>
+    </div>
+
+    <div class="err" id="err">⚠️ 입력값을 확인해 주세요. (5인 미만 근무일 ≤ 가동일수)</div>
+
+    <button class="btn" onclick="calc()">📊 판정하기</button>
+    <button class="btn-reset" onclick="reset()">초기화</button>
+  </div>
+
+  <!-- 결과 -->
+  <div id="result">
+
+    <div class="result-card" id="verdict-card">
+      <div class="result-label" id="verdict-label"></div>
+      <div class="result-verdict" id="verdict-text"></div>
+      <div class="result-desc" id="verdict-desc"></div>
+    </div>
+
+    <div class="calc-steps">
+      <div class="step-title">📐 계산 과정</div>
+      <div class="step-row">
+        <span class="step-key">연인원</span>
+        <span class="step-val" id="s-total"></span>
+      </div>
+      <div class="step-row">
+        <span class="step-key">가동일수</span>
+        <span class="step-val" id="s-days"></span>
+      </div>
+      <div class="step-row highlight">
+        <span class="step-key">① 기본 계산값 (연인원 ÷ 가동일수)</span>
+        <span class="step-val" id="s-base"></span>
+      </div>
+      <div class="step-row">
+        <span class="step-key">5인 미만 근무일</span>
+        <span class="step-val" id="s-u5d"></span>
+      </div>
+      <div class="step-row">
+        <span class="step-key">5인 미만 비율 (÷ 가동일수)</span>
+        <span class="step-val" id="s-ratio"></span>
+      </div>
+      <div class="step-row highlight">
+        <span class="step-key">② 보정 기준 적용</span>
+        <span class="step-val" id="s-corr"></span>
+      </div>
+      <div class="step-row highlight">
+        <span class="step-key">최종 판정</span>
+        <span class="step-val" id="s-final"></span>
+      </div>
+    </div>
+
+    <div class="apply-card">
+      <div class="apply-title">⚖️ 주요 조항 적용 여부</div>
+      <div id="apply-list"></div>
+    </div>
+
+    <div class="warn-box" id="warn-box"></div>
+
+  </div>
+
+  <div class="footer">
+    이 계산기는 일반적인 정보 제공 목적이며 법률 자문이 아닙니다.<br>
+    개별 사안은 <a href="mailto:adxlabor@gmail.com">공인노무사 JP</a>와 직접 상담하세요.
+  </div>
+
+</div>
+
+<script>
+const PROVISIONS = [
+  { label: '제23조', name: '해고 제한 (정당한 이유)', above: false, below: true },
+  { label: '제24조', name: '경영상 해고 요건', above: false, below: true },
+  { label: '제26조', name: '해고예고 (30일)', above: true, below: true },
+  { label: '제27·28조', name: '부당해고 구제신청', above: false, below: true },
+  { label: '제46조', name: '휴업수당', above: false, below: true },
+  { label: '제50·53조', name: '주 52시간제', above: false, below: true },
+  { label: '제56조', name: '연장·야간·휴일 가산수당', above: false, below: true },
+  { label: '제60조', name: '연차 유급휴가', above: false, below: true },
+  { label: '제76조의2', name: '직장 내 괴롭힘 금지 (금지 규정)', above: true, below: true },
+  { label: '최저임금', name: '최저임금', above: true, below: true },
+  { label: '퇴직금', name: '퇴직금 (1년 이상)', above: true, below: true },
+  { label: '근로계약서', name: '근로계약서·임금명세서 교부', above: true, below: true },
+];
+
+function calc() {
+  const days = parseFloat(document.getElementById('days').value);
+  const total = parseFloat(document.getElementById('total').value);
+  const u5d = parseFloat(document.getElementById('under5days').value);
+  const errEl = document.getElementById('err');
+
+  if (!days || !total || isNaN(u5d) || u5d > days || days <= 0 || total < 0) {
+    errEl.style.display = 'block';
+    document.getElementById('result').style.display = 'none';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  const base = total / days;
+  const ratio = u5d / days;
+
+  // 보정 기준 적용
+  let isBelow5;
+  let corrNote;
+  if (base < 5) {
+    if (ratio < 0.5) {
+      isBelow5 = false;
+      corrNote = `계산값 ${base.toFixed(2)}명(5인 미만)이나, 5인 미만 근무일 비율 ${(ratio*100).toFixed(0)}%가 절반 미만 → 5인 이상으로 보정`;
+    } else {
+      isBelow5 = true;
+      corrNote = `계산값 ${base.toFixed(2)}명, 5인 미만 근무일 비율 ${(ratio*100).toFixed(0)}% (절반 이상) → 5인 미만 확정`;
+    }
+  } else {
+    if (ratio >= 0.5) {
+      isBelow5 = true;
+      corrNote = `계산값 ${base.toFixed(2)}명(5인 이상)이나, 5인 미만 근무일 비율 ${(ratio*100).toFixed(0)}%가 절반 이상 → 5인 미만으로 보정`;
+    } else {
+      isBelow5 = false;
+      corrNote = `계산값 ${base.toFixed(2)}명, 5인 미만 근무일 비율 ${(ratio*100).toFixed(0)}% (절반 미만) → 5인 이상 확정`;
+    }
+  }
+
+  // 결과 카드
+  const vc = document.getElementById('verdict-card');
+  vc.className = 'result-card ' + (isBelow5 ? 'fail' : 'pass');
+  document.getElementById('verdict-label').textContent = isBelow5 ? '최종 판정' : '최종 판정';
+  document.getElementById('verdict-text').textContent = isBelow5
+    ? '5인 미만 사업장'
+    : '5인 이상 사업장';
+  document.getElementById('verdict-desc').textContent = isBelow5
+    ? '근로기준법 핵심 조항(연차·가산수당·주52시간 등) 상당수 미적용'
+    : '근로기준법 전면 적용 대상';
+
+  // 계산 과정
+  document.getElementById('s-total').textContent = total.toFixed(0) + '명';
+  document.getElementById('s-days').textContent = days.toFixed(0) + '일';
+  document.getElementById('s-base').textContent = base.toFixed(2) + '명';
+  document.getElementById('s-u5d').textContent = u5d.toFixed(0) + '일';
+  document.getElementById('s-ratio').textContent = (ratio*100).toFixed(1) + '% ' + (ratio >= 0.5 ? '(절반 이상)' : '(절반 미만)');
+  document.getElementById('s-corr').textContent = corrNote;
+  document.getElementById('s-final').textContent = isBelow5 ? '5인 미만 ❌' : '5인 이상 ✅';
+
+  // 적용 조항 목록
+  const list = document.getElementById('apply-list');
+  list.innerHTML = PROVISIONS.map(p => {
+    const applied = isBelow5 ? p.below : p.above;
+    // below = 5인 미만에서 적용되는지, above = 5인 이상에서 적용되는지
+    // 실제로 아래의 변수들은 '해당 사업장에 적용되는지' 여부
+    // p.above: 5인 이상일 때 적용 / p.below: 5인 미만일 때 적용
+    const ok = isBelow5 ? p.below : p.above;
+    return `<div class="apply-item">
+      <span class="badge ${ok ? 'ok' : 'no'}">${ok ? '적용' : '미적용'}</span>
+      <span class="ai-text"><strong>${p.label}</strong> ${p.name}</span>
+    </div>`;
+  }).join('');
+
+  // 경고 메시지
+  const wb = document.getElementById('warn-box');
+  if (isBelow5) {
+    wb.innerHTML = '⚠️ <strong>5인 미만이라도 반드시 지켜야 할 것</strong><br>해고예고(30일 전 또는 30일분 통상임금), 근로계약서·임금명세서 교부, 최저임금, 퇴직금(1년 이상)은 동일하게 적용됩니다. 위반 시 형사처벌·과태료 대상입니다.';
+    wb.style.display = 'block';
+  } else {
+    wb.innerHTML = '⚠️ <strong>5인 이상 사업장</strong> — 근로기준법 전면 적용<br>연차 미부여·가산수당 미지급·주52시간 위반 시 형사처벌(2년 이하 징역 또는 2천만 원 이하 벌금) 대상입니다.';
+    wb.style.display = 'block';
+  }
+
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('result').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function reset() {
+  ['days','total','under5days'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('err').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
