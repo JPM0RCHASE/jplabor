@@ -187,6 +187,25 @@ ul{list-style:none;}
   .sub-card-grid{grid-template-columns:1fr;}
 }
 
+/* ── 법령 개정 패널 ── */
+.law-doc{max-width:900px;color:rgba(255,255,255,.85);font-size:14px;line-height:1.9;}
+.law-doc-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid #2a2a2a;}
+.law-section{margin-bottom:20px;}
+.law-section-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;}
+.law-section-num{
+  background:var(--primary);color:#000;font-size:11px;font-weight:700;
+  padding:2px 9px;border-radius:9999px;flex-shrink:0;
+}
+.law-section-num.sub{background:#1f1f1f;color:var(--primary);border:1px solid rgba(30,215,96,.4);}
+.law-section-title{font-size:14px;font-weight:700;color:#fff;}
+.law-section-body{color:#b3b3b3;padding-left:0;font-size:13px;line-height:1.9;}
+.law-section-body p{margin-bottom:6px;}
+.law-sub-section{margin:10px 0 10px 16px;padding-left:14px;border-left:2px solid #2a2a2a;}
+.law-sub-head{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.law-sub-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.9);}
+.law-sub-body{font-size:13px;color:#b3b3b3;line-height:1.85;}
+.law-sub-body p{margin-bottom:5px;}
+
 /* ════════════ HERO (dark band) ════════════ */
 .hero{
   background:#121212;padding:96px 48px;text-align:center;
@@ -805,7 +824,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   <a href="#" class="soon">외국인</a>
   <span class="sub-nav-divider">|</span>
   <a onclick="toggleSubPanel('calc')">🧮 노동법 계산기</a>
-  <a onclick="toggleSubPanel('law')">📋 2025년 바뀐 법률</a>
+  <a onclick="toggleSubPanel('law')">📋 2026년 법령 개정</a>
   <a onclick="toggleSubPanel('er')">📘 ER 가이드북</a>
 </div>
 
@@ -876,37 +895,107 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 <!-- 2025 법률 개정 패널 -->
 <div class="sub-panel-wrap" id="panel-law">
   <div class="sub-panel">
-    <div class="sub-card-grid">
-      <div class="sub-card">
-        <span class="sc-badge sc-new">NEW</span>
-        <div class="sc-title">노란봉투법 (노동쟁의 범위 확대)</div>
-        <div class="sc-desc">하청·특수고용 근로자 쟁의행위 보호 확대. 원청 사용자 책임 범위 변경.</div>
+    <div class="law-doc">
+      <div class="law-doc-title">2026년 인사·노무 관련 법령 주요 개정 사항</div>
+
+      <!-- 1. 최저임금 -->
+      <div class="law-section">
+        <div class="law-section-head">
+          <span class="law-section-num">1</span>
+          <span class="law-section-title">2026년 최저시급 적용 (2026. 1. 1.부터)</span>
+        </div>
+        <div class="law-section-body">
+          <p>2026년 최저임금은 시급 <strong style="color:#fff">10,320원</strong>으로, 2025년(10,030원) 대비 290원(약 2.9%) 인상되었습니다. 정기상여금과 현금성 복리후생비 전액이 최저임금 산입 범위에 포함됩니다.</p>
+        </div>
       </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-new">NEW</span>
-        <div class="sc-title">육아휴직 급여 상한 인상</div>
-        <div class="sc-desc">2025년부터 육아휴직 급여 상한 월 250만 원으로 인상. 부모 동시 사용 요건 완화.</div>
+
+      <!-- 2. 노란봉투법 -->
+      <div class="law-section">
+        <div class="law-section-head">
+          <span class="law-section-num">2</span>
+          <span class="law-section-title">개정 노동조합 및 노동관계조정법('노란봉투법') 시행 (2026. 3. 10.)</span>
+        </div>
+        <div class="law-section-body">
+          <p>'노동조합 및 노동관계조정법' 제2조 및 제3조 개정법이 2026. 3. 10.부터 시행되었습니다.</p>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(1)</span>
+            <span class="law-sub-title">사용자 범위 확대 (제2조제2호 후단 신설)</span>
+          </div>
+          <div class="law-sub-body">
+            <p>근로계약 체결 당사자가 아니더라도 근로자의 근로조건에 대해 실질적이고 구체적으로 지배·결정할 수 있는 지위에 있는 자도 사용자로 봅니다. 원청업체가 하청 근로자의 근로조건을 실질적·구체적으로 지배·결정할 수 있는 경우 교섭 의무가 인정될 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(2)</span>
+            <span class="law-sub-title">노동조합 가입대상 확대 (제2조제4호라목 삭제)</span>
+          </div>
+          <div class="law-sub-body">
+            <p>근로자가 아닌 자의 가입을 허용하는 경우 노동조합으로 보지 않는 현행 규정을 삭제하여, 특수형태근로 종사자·플랫폼 종사자 등 다양한 일하는 사람의 단결권을 보장합니다.</p>
+          </div>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(3)</span>
+            <span class="law-sub-title">노동쟁의 개념 확대 (제2조제5호 개정)</span>
+          </div>
+          <div class="law-sub-body">
+            <p>노동쟁의 정의에 '근로자의 지위 기타 대우'와 '근로조건에 영향을 미치는 사업경영상의 결정'을 추가하고, 사용자의 명백한 단체협약 위반으로 발생한 분쟁상태도 포함하여 쟁의행위 범위가 확대되었습니다.</p>
+          </div>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(4)</span>
+            <span class="law-sub-title">손해배상책임 면제·제한 (제3조 개정)</span>
+          </div>
+          <div class="law-sub-body">
+            <p>면책 범위에 '그 밖의 노동조합 활동'을 추가하였습니다. 사용자의 불법행위에 대항하기 위해 부득이하게 손해를 가한 경우 배상책임 자체가 면제되고, 각 배상의무자별로 귀책사유와 기여도를 입증하여야 합니다.</p>
+          </div>
+        </div>
       </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-imp">중요</span>
-        <div class="sc-title">2025 최저임금 10,030원</div>
-        <div class="sc-desc">시간급 10,030원 확정. 월 환산 2,096,270원 (209시간 기준). 수습 감액 요건 주의.</div>
+
+      <!-- 3. 시행령 -->
+      <div class="law-section">
+        <div class="law-section-head">
+          <span class="law-section-num">3</span>
+          <span class="law-section-title">개정 노동조합법 시행령 시행 (2026. 3. 10.)</span>
+        </div>
+        <div class="law-section-body">
+          <p>개정 시행령은 하청 노동조합이 원청의 교섭요구 사실 미공고에 대해 노동위원회에 시정 요청 시, 노동위원회가 최대 20일(10일+연장 10일) 내에 사용자 여부를 판단하도록 규정합니다. 또한 교섭단위 분리·통합 시 '노동조합 간 이해관계의 공통성', '이익 대표의 적절성', '갈등 유발 가능성' 등을 우선 고려하도록 기준을 명시하였습니다.</p>
+        </div>
       </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-imp">중요</span>
-        <div class="sc-title">중대재해처벌법 50인 미만 확대</div>
-        <div class="sc-desc">2024년 1월부터 50인 미만 사업장 적용. 안전보건관리체계 구축 의무화.</div>
+
+      <!-- 4. 해석지침 -->
+      <div class="law-section">
+        <div class="law-section-head">
+          <span class="law-section-num">4</span>
+          <span class="law-section-title">개정 노동조합법 해석지침 및 원·하청 상생 교섭절차 매뉴얼</span>
+        </div>
+        <div class="law-section-body">
+          <p>2026. 2. 24. 고용노동부 해석지침 확정, 2026. 2. 27. 고용노동부·중앙노동위원회 공동 매뉴얼 발간.</p>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(1)</span>
+            <span class="law-sub-title">개정 노동조합법 해석지침</span>
+          </div>
+          <div class="law-sub-body">
+            <p>사용자성의 핵심 기준인 '구조적 통제'는 개별 근로자에 대한 직접 지휘·명령이 아니라, 원청이 하청업체 소속 근로자의 근로조건 결정에 대한 하청업체의 의사결정을 제한하는지 여부로 판단됩니다. 합병·분할 등 기업조직 변동 결정 자체는 단체교섭 대상이 아니나, 이를 실현하는 과정에서의 정리해고·구조조정에 따른 배치전환 등은 단체교섭 대상임을 명시하였습니다.</p>
+          </div>
+        </div>
+        <div class="law-sub-section">
+          <div class="law-sub-head">
+            <span class="law-section-num sub">(2)</span>
+            <span class="law-sub-title">원·하청 상생 교섭절차 매뉴얼</span>
+          </div>
+          <div class="law-sub-body">
+            <p>원청과 하청 간에는 별도의 교섭단위 분리 절차 없이 원청과 '전체 하청 노동자 집단'을 각각 독립된 교섭단위로 봅니다. 원청이 하청 노동조합으로부터 교섭요구를 받은 경우, 사용자성이 인정될 소지가 있는 전체 하청 노동조합 및 노동자가 알 수 있도록 폭넓게 공고해야 하며, 하청업체 사업장 게시판·전산시스템 등을 통한 공고도 권고됩니다.</p>
+          </div>
+        </div>
       </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-new">NEW</span>
-        <div class="sc-title">가족돌봄휴직 대상 확대</div>
-        <div class="sc-desc">조부모·손자녀까지 돌봄 대상 확대. 연간 90일, 1회 최소 30일 사용.</div>
-      </div>
-      <div class="sub-card">
-        <span class="sc-badge sc-imp">중요</span>
-        <div class="sc-title">징벌적 손해배상 (임금체불)</div>
-        <div class="sc-desc">고의·반복 임금체불 시 최대 3배 징벌적 손해배상. 2025년 시행.</div>
-      </div>
+
     </div>
   </div>
 </div>
