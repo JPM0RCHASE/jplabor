@@ -186,8 +186,9 @@ ul{list-style:none;}
 /* ══ JP 소개 페이지 ══ */
 .about-hero{
   position:relative;padding:72px 0 60px;text-align:center;
-  background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(30,215,96,.08),transparent 70%);
+  background:#121212;
 }
+#about-view{background:#121212 !important;}
 .about-hero::before{
   content:"";position:absolute;left:50%;top:48px;transform:translateX(-50%);
   width:6px;height:6px;border-radius:50%;background:var(--primary);
@@ -201,7 +202,7 @@ ul{list-style:none;}
 }
 .about-hero h1{font-size:clamp(30px,5vw,48px);font-weight:700;line-height:1.15;letter-spacing:-0.8px;margin-bottom:24px;color:#fff;}
 .about-hero h1 .acc{color:var(--primary);}
-.about-lead{font-size:15px;color:#b3b3b3;line-height:1.85;max-width:620px;margin:0 auto 10px;}
+.about-lead{font-size:15px;color:#b3b3b3 !important;line-height:1.85;max-width:620px;margin:0 auto 10px;}
 .about-lead b{color:#fff;font-weight:700;}
 .about-stat{
   display:inline-flex;align-items:center;gap:16px;margin-top:36px;
