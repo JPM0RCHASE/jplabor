@@ -14016,11 +14016,8 @@ function openCategory(cat) {
   renderSubHeaders();
   updateCount();
   setTimeout(() => {
-    const all = document.querySelectorAll('.qa');
-    let first = null;
-    for (const q of all) { if (q.style.display !== 'none') { first = q; break; } }
-    const target = first || document.querySelector('.main');
-    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    const layout = document.querySelector('.layout');
+    if (layout) window.scrollTo({top: Math.max(0, layout.offsetTop - 70), behavior:'smooth'});
   }, 50);
 }
 
@@ -14062,11 +14059,8 @@ function filterBySub(sub) {
   renderSubHeaders();
   updateCount();
   setTimeout(() => {
-    const all = document.querySelectorAll('.qa');
-    let first = null;
-    for (const q of all) { if (q.style.display !== 'none') { first = q; break; } }
-    const target = first || document.querySelector('.main');
-    if (target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    const layout = document.querySelector('.layout');
+    if (layout) window.scrollTo({top: Math.max(0, layout.offsetTop - 70), behavior:'smooth'});
   }, 50);
 }
 
