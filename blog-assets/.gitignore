@@ -5,3 +5,4 @@ package.json
 shot.mjs
 # 생성된 미리보기 이미지 (소스 HTML로 언제든 재생성 가능)
 *.png
+shot2.mjs
