@@ -73,7 +73,7 @@ ul{list-style:none;}
   border-radius:9999px;transition:all .15s;letter-spacing:0.2px;
 }
 .nav-menu a:hover{color:#ffffff;background:rgba(255,255,255,.08);}
-.nav-menu a.active{color:#ffffff;background:#282828;}
+.nav-menu a.active{color:#ffffff;background:rgba(255,255,255,.13);box-shadow:0 0 0 1px rgba(255,255,255,.18);}
 .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
 .nav-search{
   display:flex;align-items:center;background:#1f1f1f;
@@ -116,8 +116,20 @@ ul{list-style:none;}
   letter-spacing:0.1px;
 }
 .sub-nav a:hover{color:#ffffff;}
-.sub-nav a.active{color:#ffffff;border-bottom-color:var(--primary);}
+.sub-nav a.active{color:#ffffff;border-bottom-color:var(--primary);background:rgba(255,255,255,.07);border-radius:4px 4px 0 0;}
 .sub-nav-divider{color:#2a2a2a;padding:13px 10px;font-size:18px;align-self:center;}
+/* 사례DB 계층 레이블 */
+.sub-nav-label{
+  display:flex;align-items:center;gap:5px;padding:0 14px 0 0;
+  border-right:1px solid #2a2a2a;margin-right:4px;flex-shrink:0;
+  color:var(--primary);font-size:11px;font-weight:800;letter-spacing:0.5px;
+  white-space:nowrap;align-self:stretch;
+}
+.sub-nav-label::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--primary);box-shadow:0 0 6px rgba(30,215,96,.5);
+}
+.sub-nav-label .sub-nav-caret{color:#555;font-size:10px;margin-left:2px;}
 
 @media(max-width:768px){
   .sub-nav{padding:0 20px;}
@@ -987,6 +999,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
 
 <!-- SUB NAV -->
 <div class="sub-nav" id="sub-nav">
+  <span class="sub-nav-label">사례 DB <span class="sub-nav-caret">›</span></span>
   <a href="#" onclick="openCategory('근로계약');return false;">근로계약·취업규칙</a>
   <a href="#" onclick="openCategory('근로시간');return false;">근로시간·휴일·휴가</a>
   <a href="#" onclick="openCategory('임금');return false;">임금·퇴직금</a>
@@ -14529,13 +14542,24 @@ function hideAltViews() {
     if (el) el.style.display = 'none';
   });
 }
+// nav-menu 활성 항목 설정
+function setNavActive(idx) {
+  const links = document.querySelectorAll('.primary-nav .nav-menu a');
+  links.forEach(a => a.classList.remove('active'));
+  if (idx >= 0 && links[idx]) links[idx].classList.add('active');
+  // 사례DB(idx=1)가 아닌 경우 sub-nav active 초기화
+  if (idx !== 1) {
+    document.querySelectorAll('#sub-nav a').forEach(a => a.classList.remove('active'));
+  }
+}
 // 특정 대체 뷰를 메인 영역에 표시
+const VIEW_NAV_IDX = {'column-view':5,'law-view':4,'er-view':2,'guide-view':3,'about-view':-1,'cardnews-view':6,'newsletter-view':7};
 function showAltView(id) {
   homeSections().forEach(el => el.style.display = 'none');
   hideAltViews();
   const el = document.getElementById(id);
   if (el) el.style.display = 'block';
-  document.querySelectorAll('.primary-nav .nav-menu a').forEach(a => a.classList.remove('active'));
+  setNavActive(VIEW_NAV_IDX[id] ?? -1);
   window.scrollTo({top:0, behavior:'smooth'});
 }
 function showColumns(){ showAltView('column-view'); }
@@ -14639,6 +14663,8 @@ function showHome() {
   document.getElementById('db-title').textContent = '전체 사례 DB';
   const countEl = document.querySelector('.section-label .count');
   if (countEl) countEl.textContent = '총 321건';
+  setNavActive(1);
+  document.querySelectorAll('#sub-nav a').forEach(a => a.classList.remove('active'));
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -14659,6 +14685,12 @@ function openCategory(cat) {
   document.getElementById('db-title').textContent = map.title;
   renderSubHeaders();
   updateCount();
+  // nav active
+  setNavActive(1);
+  document.querySelectorAll('#sub-nav a').forEach(a => {
+    const m = a.getAttribute('onclick') || '';
+    a.classList.toggle('active', m.includes("'" + cat + "'"));
+  });
   setTimeout(() => {
     const layout = document.querySelector('.layout');
     if (layout) window.scrollTo({top: Math.max(0, layout.offsetTop - 70), behavior:'smooth'});
