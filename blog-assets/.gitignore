@@ -1,0 +1,4 @@
+node_modules/
+blog-output/
+package-lock.json
+shot.mjs

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>JP LABOR 구분선</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#444;}
+  /* 캡처 대상: 1000x90 (각 .divider 개별 캡처) */
+  .divider{
+    width:1000px;height:90px;position:relative;overflow:hidden;
+    background:#121212;font-family:'Pretendard',sans-serif;
+    display:flex;align-items:center;padding:0 40px;margin-bottom:20px;
+  }
+  .divider .dot{
+    width:13px;height:13px;border-radius:50%;background:#1ed760;
+    box-shadow:0 0 12px rgba(30,215,96,.8);flex-shrink:0;margin-right:20px;
+  }
+  .divider .txt{
+    font-size:30px;font-weight:700;color:#ffffff;letter-spacing:-.5px;
+    white-space:nowrap;flex-shrink:0;
+  }
+  .divider .num{color:#1ed760;margin-right:10px;}
+  .divider .line{
+    flex:1;height:2px;margin-left:28px;
+    background:linear-gradient(90deg,rgba(30,215,96,.9),rgba(30,215,96,0));
+  }
+</style>
+</head>
+<body>
+  <!-- 소제목마다 .txt 내용만 바꿔서 각각 캡처하세요 -->
+  <div class="divider"><span class="dot"></span><span class="txt"><span class="num">01</span>노조법상 소극적 요건이란?</span><span class="line"></span></div>
+  <div class="divider"><span class="dot"></span><span class="txt"><span class="num">02</span>누가 이익대표자인가?</span><span class="line"></span></div>
+  <div class="divider"><span class="dot"></span><span class="txt"><span class="num">03</span>실무 대응 방안</span><span class="line"></span></div>
+  <div class="divider"><span class="dot"></span><span class="txt"><span class="num">04</span>핵심 요약</span><span class="line"></span></div>
+</body>
+</html>
