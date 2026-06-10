@@ -248,6 +248,11 @@ ul{list-style:none;}
   display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;
 }
 .about-svc-item .label{font-size:14px;color:#fff;}
+.guide-disclaimer{font-size:12px;color:#6366f1;background:#f0f0ff;border-left:3px solid #6366f1;padding:8px 12px;border-radius:4px;margin-bottom:20px;}
+.guide-footer{margin-top:28px;padding:18px 20px;background:#f8f9fa;border-radius:8px;border-top:2px solid var(--primary);}
+.guide-footer p{font-size:13px;color:#555;line-height:1.7;margin-bottom:12px;}
+.guide-cta-btn{display:inline-block;background:var(--primary);color:#000;text-decoration:none;padding:10px 22px;border-radius:9999px;font-size:13px;font-weight:700;}
+.guide-cta-btn:hover{opacity:.85;}
 .about-cta{
   margin-top:48px;background:linear-gradient(135deg,var(--surface-dark-elevated) 0%,var(--surface-dark-card) 100%);
   border-radius:14px;padding:56px 40px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.5);
@@ -13791,6 +13796,66 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div>
+      <!-- ── 3. 소정근로시간과 시간외근로 ── -->
+      <div class="erx-blog-card col-card" id="guide-overtime">
+        <div class="erx-blog-hd" onclick="toggleErBlog('guide-overtime')">
+          <div class="erx-blog-meta">
+            <span class="erx-badge tip">법령 해설</span>
+            <span class="erx-blog-date">2026.06</span>
+          </div>
+          <h4 class="erx-blog-title">소정근로시간과 시간외근로(연장·야간·휴일)<span class="erx-blog-badge">NEW</span></h4>
+          <p class="erx-blog-desc">연장·야간·휴일 근로의 법적 개념과 가산수당 산정 기준 — 근로기준법·표준 단체협약 조문 병치 정리.</p>
+          <span class="erx-blog-toggle">▼</span>
+        </div>
+        <div class="col-body erx-blog-body">
+          <p class="guide-disclaimer">※ 아래 단체협약 조문은 특정 회사에 적용되는 규정이 아니라, 일반적으로 통용되는 표준 단체협약 예시입니다.</p>
+
+          <h3>가. 소정근로시간 관련 규정</h3>
+          <p><strong>① 근로기준법 제2조 제8호 (소정근로시간)</strong><br>
+          "소정(所定)근로시간"이란 제50조, 제69조 본문에 따른 근로시간의 범위에서 근로자와 사용자 사이에 정한 근로시간을 말한다.</p>
+          <p><strong>② 근로기준법 제50조 (근로시간)</strong><br>
+          ① 1주 간의 근로시간은 휴게시간을 제외하고 40시간을 초과할 수 없다.<br>
+          ② 1일의 근로시간은 휴게시간을 제외하고 8시간을 초과할 수 없다.</p>
+          <p><strong>③ 표준 단체협약 제○조 (연장근로·야간근로·휴일근로)</strong><br>
+          ① 연장근로, 야간근로, 휴일근로를 시키고자 할 때에는 반드시 근로자의 사전 동의를 얻어야 하고, 강제근로를 명할 수 없으며, 이를 거부한 것을 이유로 불이익 처분을 하지 못한다.<br>
+          ② 연장근로는 1주일에 휴일근로를 포함하여 12시간을 초과할 수 없다.</p>
+
+          <h3>나. 시간외 근로의 종류와 정의</h3>
+          <table class="gtable">
+            <thead><tr><th>구분</th><th>정의</th></tr></thead>
+            <tbody>
+              <tr><td><strong>연장근로</strong></td><td>소정(≒법정) 근로시간인 1일 8시간, 1주 40시간을 초과하는 근로</td></tr>
+              <tr><td><strong>야간근로</strong></td><td>오후 10시(22:00)부터 다음 날 오전 6시(06:00) 사이의 근로</td></tr>
+              <tr><td><strong>휴일근로</strong></td><td>단체협약 또는 취업규칙에서 정한 휴일에 이루어지는 근로</td></tr>
+            </tbody>
+          </table>
+
+          <h3>다. 가산수당 지급 기준</h3>
+          <p>사용자는 연장·야간·휴일 근로에 대하여는 통상임금의 50% 이상을 가산하여 지급하여야 합니다.<span class="law-cite">근기법 제56조 제1항</span></p>
+          <table class="gtable">
+            <thead><tr><th>가산 원칙</th><th>내용</th></tr></thead>
+            <tbody>
+              <tr><td>중복 가산</td><td>연장·야간·휴일 근로가 동시에 발생하면 각 가산율을 합산하여 지급<span class="law-cite">대법원 90다6545</span></td></tr>
+              <tr><td>휴일 8시간 이내</td><td>주 40시간을 초과하더라도 휴일근로가 8시간 이내이면 휴일근로 가산수당만 지급<span class="law-cite">근기법 제56조 제2항</span></td></tr>
+              <tr><td>보상 휴가</td><td>근로자 대표와 서면합의 시, 가산수당 지급 대신 보상휴가로 대체 가능<span class="law-cite">근기법 제57조</span></td></tr>
+            </tbody>
+          </table>
+
+          <h3>라. 실무 판단 포인트 (Q&A)</h3>
+          <p><strong>Q. 소정근로시간(예: 09:00~18:00) 이후에 일하면 무조건 연장근로인가?</strong><br>
+          A. 아닙니다. 연장근로는 법정 기준근로시간인 1일 8시간 또는 1주 40시간을 <em>초과</em>할 때 발생합니다. 휴일에 근로하더라도 당일 8시간을 초과하지 않으면 연장근로는 없습니다. 시업·종업 시각이 다소 달라지더라도 실제 근로시간이 8시간을 넘지 않으면 연장근로수당은 발생하지 않습니다.</p>
+          <p><strong>Q. 휴일 근로가 8시간을 초과하면 연장가산과 휴일가산을 모두 받나?</strong><br>
+          A. 8시간을 초과하는 시간부터는 연장근로 가산(50%)과 휴일근로 가산(50%)이 동시에 적용되어 통상임금의 200%가 지급됩니다.</p>
+          <p><strong>Q. 근로자가 사용자 지시 없이 자발적으로 야근하면 연장근로로 인정되나?</strong><br>
+          A. 원칙적으로 인정되기 어렵습니다. 시간외 근로가 인정되려면 사용자의 지시·승인이 있어야 합니다. 근로자가 일방적으로 잔류하여 근무한 경우, 사용자가 이를 인지하고 묵시적으로 승인한 것으로 볼 수 있는 사정이 없는 한 연장근로수당 청구는 어렵습니다.</p>
+
+          <div class="guide-footer">
+            <p>본 자료는 일반적인 법리와 표준 사례를 안내하기 위한 것으로, 구체적 사실관계에 따라 결론이 달라질 수 있습니다. 사안별 자문이 필요하시면 공인노무사 JP에게 문의해 주세요.</p>
+            <a class="guide-cta-btn" href="https://mail.google.com/mail/?view=cm&to=adxlabor@gmail.com&su=JP%EB%85%B8%EB%AC%B4%EC%82%AC+%EC%83%81%EB%8B%B4%EB%AC%B8%EC%9D%98" target="_blank" rel="noopener">✉ JP 노무사에게 문의하기</a>
+          </div>
         </div>
       </div>
     </div>
