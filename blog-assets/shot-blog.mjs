@@ -1,0 +1,13 @@
+import { chromium } from 'playwright';
+const EXE='/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
+const browser = await chromium.launch({ executablePath: EXE });
+const page = await browser.newPage({ deviceScaleFactor: 2 });
+const file = process.argv[2];
+const slug = file.replace('blog-','').replace('.html','');
+await page.goto('file://'+process.cwd()+'/'+file);
+await page.waitForTimeout(1800);
+await (await page.$('#thumb')).screenshot({ path:`output-${slug}-thumb.png` });
+await (await page.$('#body')).screenshot({ path:`output-${slug}-body.png` });
+await (await page.$('#disc')).screenshot({ path:`output-${slug}-disc.png` });
+console.log('✅ 3개 저장 완료 →', slug);
+await browser.close();
