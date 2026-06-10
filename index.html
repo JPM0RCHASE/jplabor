@@ -183,6 +183,19 @@ ul{list-style:none;}
 .erx-card h4{font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;letter-spacing:-0.2px;}
 .erx-card p{font-size:13.5px;color:var(--body-light);line-height:1.7;margin-top:8px;}
 
+/* ══ 카드뉴스 게시판 ══ */
+.cn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:28px;}
+.cn-card{background:var(--surface-dark-card);border:1px solid var(--hairline-dark);border-radius:14px;overflow:hidden;cursor:pointer;transition:border-color .2s,box-shadow .2s;text-decoration:none;display:block;}
+.cn-card:hover{border-color:var(--primary);box-shadow:0 6px 32px rgba(30,215,96,.12);}
+.cn-thumb{width:100%;aspect-ratio:16/9;object-fit:cover;background:#1a1a1a;display:block;}
+.cn-thumb-placeholder{width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#1f1f1f 0%,#2a2a2a 100%);display:flex;align-items:center;justify-content:center;font-size:32px;}
+.cn-info{padding:16px 18px 20px;}
+.cn-date{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:1px;margin-bottom:6px;}
+.cn-title{font-size:15px;font-weight:600;color:var(--on-dark);line-height:1.45;}
+.cn-empty{text-align:center;padding:80px 0;color:var(--mute-dark);}
+.cn-empty p{font-size:15px;margin-top:12px;}
+@media(max-width:768px){.cn-grid{grid-template-columns:1fr;}}
+
 /* ER 블로그 카드 */
 .erx-section-title{font-size:14px;font-weight:700;color:var(--mute-light);letter-spacing:1.5px;text-transform:uppercase;margin:0 0 14px;}
 .erx-blog-section{margin-bottom:36px;}
@@ -825,6 +838,7 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
     <a href="#" onclick="showLawView();return false;">2026년 법령개정</a>
     <a href="#" onclick="showErView();return false;">ER 가이드북</a>
     <a href="#" onclick="showColumns();return false;">JP 칼럼</a>
+    <a href="#" onclick="showCardnewsView();return false;">카드뉴스</a>
   </div>
   <div class="nav-right">
     <div class="nav-search">
@@ -13618,6 +13632,23 @@ footer{background:#0a0a0a;color:#b3b3b3;padding:56px 48px 32px;border-top:1px so
   </div>
 </section>
 
+<!-- ════════════ 카드뉴스 게시판 ════════════ -->
+<section class="alt-view" id="cardnews-view" style="display:none;">
+  <div class="alt-inner">
+    <div class="alt-hd">
+      <button class="alt-back" onclick="showHome()">← 사례 DB로 돌아가기</button>
+      <div class="alt-title-row">
+        <span class="alt-yr" style="background:#229ed9;">NEWS</span>
+        <h2>JP 카드뉴스</h2>
+      </div>
+      <p class="alt-sub">노동법·인사노무 최신 이슈를 카드뉴스로 매일 정리합니다. 텔레그램 채널에서도 받아보세요.</p>
+    </div>
+    <div class="cn-grid" id="cn-grid">
+      <!-- JS로 자동 생성 -->
+    </div>
+  </div>
+</section>
+
 <!-- ════════════ FOOTER ════════════ -->
 <footer>
   <div class="footer-grid">
@@ -13734,7 +13765,7 @@ function homeSections() {
 }
 // 메인 영역 대체 뷰 (칼럼 / 법령 / ER) 전부 숨김
 function hideAltViews() {
-  ['column-view','law-view','er-view'].forEach(id => {
+  ['column-view','law-view','er-view','cardnews-view'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.style.display = 'none';
   });
@@ -13751,6 +13782,47 @@ function showAltView(id) {
 function showColumns(){ showAltView('column-view'); }
 function showLawView(){ showAltView('law-view'); }
 function showErView(){ showAltView('er-view'); }
+function showCardnewsView(){
+  showAltView('cardnews-view');
+  renderCardnews();
+}
+function renderCardnews(){
+  const grid = document.getElementById('cn-grid');
+  if(!grid || grid.dataset.loaded) return;
+  // 날짜 기반으로 최근 30일 카드뉴스 목록 생성
+  const cards = [];
+  const today = new Date();
+  for(let i=0;i<30;i++){
+    const d = new Date(today);
+    d.setDate(today.getDate()-i);
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    const dateStr = `${y}${m}${day}`;
+    const dateLabel = `${y}.${m}.${day}`;
+    cards.push({dateStr, dateLabel});
+  }
+  // 각 카드 존재 여부 확인 후 렌더링
+  let html = '';
+  cards.forEach(({dateStr, dateLabel})=>{
+    const url = `/cardnews/${dateStr}/index.html`;
+    const img = `/cardnews/${dateStr}/labornews_${dateStr}.png`;
+    html += `
+      <a class="cn-card" href="${url}" target="_blank" rel="noopener"
+         onerror="this.style.display='none'"
+         onclick="checkCardnews(event,'${url}')">
+        <img class="cn-thumb" src="${img}"
+             onerror="this.parentElement.style.display='none'" alt="${dateLabel} 카드뉴스">
+        <div class="cn-info">
+          <div class="cn-date">${dateLabel}</div>
+          <div class="cn-title">노동법 카드뉴스</div>
+        </div>
+      </a>`;
+  });
+  if(!html) html = '<div class="cn-empty"><div style="font-size:48px;">📭</div><p>아직 업로드된 카드뉴스가 없습니다.</p></div>';
+  grid.innerHTML = html;
+  grid.dataset.loaded = '1';
+}
 function exitColumns() {
   hideAltViews();
   homeSections().forEach(el => el.style.display = '');
