@@ -11,16 +11,16 @@
    ════════════════════════════════════════════════ */
 :root{
   /* Brand & CTA */
-  --primary:#0070d1; --primary-pressed:#0064b7; --primary-active:#004d8d;
+  --primary:#00963C; --primary-pressed:#007a30; --primary-active:#005f24;
   --commerce:#d53b00; --commerce-pressed:#aa2f00;
   /* Surface */
-  --canvas-dark:#000000; --surface-dark-elevated:#121314; --surface-dark-card:#181818;
+  --canvas-dark:#0a2e18; --surface-dark-elevated:#0f3d20; --surface-dark-card:#143322;
   --canvas-light:#ffffff; --surface-soft:#f3f3f3; --surface-card:#f5f7fa;
   /* Text */
   --ink:#000000; --body-light:rgba(0,0,0,0.6); --mute-light:#6b6b6b;
   --on-dark:#ffffff; --body-dark:rgba(255,255,255,0.7); --mute-dark:rgba(229,229,229,0.55);
   /* Semantic */
-  --warning:#c81b3a; --link-light:#0064b7; --link-dark:#53b1ff;
+  --warning:#c81b3a; --link-light:#007a30; --link-dark:#5FE65A;
   --risk-low:var(--primary); --risk-mid:var(--commerce); --risk-high:var(--warning);
   /* Lines */
   --hairline-light:#f3f3f3; --hairline-dark:rgba(229,229,229,0.2);
@@ -143,11 +143,11 @@ ul{list-style:none;}
 }
 .sub-calc-btn:hover{background:var(--primary-pressed);}
 .sub-calc-result{
-  background:rgba(0,112,209,.15);border:1px solid rgba(0,112,209,.3);
+  background:rgba(0,150,60,.15);border:1px solid rgba(0,150,60,.3);
   border-radius:8px;padding:14px 18px;display:none;
 }
 .sub-calc-result.show{display:block;}
-.sub-calc-result .rmain{font-size:22px;font-weight:700;color:#53b1ff;margin-bottom:4px;}
+.sub-calc-result .rmain{font-size:22px;font-weight:700;color:#5FE65A;margin-bottom:4px;}
 .sub-calc-result .rdetail{font-size:13px;color:rgba(255,255,255,.65);}
 .sub-calc-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:8px;}
 
@@ -157,13 +157,13 @@ ul{list-style:none;}
   background:rgba(255,255,255,.06);border:1px solid var(--hairline-dark);
   border-radius:10px;padding:16px 18px;transition:all .18s;cursor:pointer;
 }
-.sub-card:hover{background:rgba(0,112,209,.18);border-color:rgba(0,112,209,.5);}
+.sub-card:hover{background:rgba(0,150,60,.18);border-color:rgba(0,150,60,.5);}
 .sub-card .sc-badge{
   font-size:10px;font-weight:700;padding:3px 8px;border-radius:9999px;
   margin-bottom:10px;display:inline-block;
 }
 .sc-new{background:rgba(200,27,58,.25);color:#ff6b6b;}
-.sc-imp{background:rgba(0,112,209,.3);color:#53b1ff;}
+.sc-imp{background:rgba(0,150,60,.3);color:#5FE65A;}
 .sc-tip{background:rgba(255,180,0,.2);color:#ffc947;}
 .sub-card .sc-title{font-size:14px;font-weight:600;color:#fff;line-height:1.4;margin-bottom:6px;}
 .sub-card .sc-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;}
@@ -182,7 +182,7 @@ ul{list-style:none;}
 }
 .hero::after{
   content:"";position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,112,209,.18),transparent 70%);
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(0,150,60,.18),transparent 70%);
   pointer-events:none;
 }
 .hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
@@ -190,7 +190,7 @@ ul{list-style:none;}
   color:var(--on-dark);font-size:48px;font-weight:300;line-height:1.25;
   letter-spacing:-0.1px;margin-bottom:18px;
 }
-.hero h1 b{font-weight:600;color:#53b1ff;}
+.hero h1 b{font-weight:600;color:#5FE65A;}
 .hero .sub{color:rgba(255,255,255,0.92);font-size:19px;margin-bottom:40px;font-weight:400;}
 .hero .sub b{color:var(--on-dark);font-weight:500;}
 .hero-search{
@@ -306,7 +306,7 @@ ul{list-style:none;}
   background:var(--primary);transform:scaleX(0);transform-origin:left;transition:transform .2s;
 }
 .cat-card:hover{
-  border-color:var(--primary);box-shadow:0 8px 24px rgba(0,112,209,0.12);
+  border-color:var(--primary);box-shadow:0 8px 24px rgba(0,150,60,0.12);
   transform:translateY(-3px);
 }
 .cat-card:hover::before{transform:scaleX(1);}
@@ -591,7 +591,7 @@ ul{list-style:none;}
 .star{color:var(--commerce);font-weight:700;}
 
 /* ════════════ CTA BAND (blue) ════════════ */
-.cta-band{background:var(--primary);padding:64px 24px;text-align:center;}
+.cta-band{background:linear-gradient(135deg,#00963C 0%,#00CD00 100%);padding:64px 24px;text-align:center;}
 .cta-band h3{color:#fff;font-size:35px;font-weight:300;margin-bottom:14px;}
 .cta-band p{color:rgba(255,255,255,.85);font-size:16px;line-height:1.7;margin-bottom:32px;}
 .cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
@@ -604,7 +604,7 @@ ul{list-style:none;}
 .cta-tags span{background:rgba(255,255,255,.14);color:#fff;font-size:12px;padding:5px 14px;border-radius:9999px;}
 
 /* ════════════ FOOTER ════════════ */
-footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 48px 32px;}
+footer{background:#062914;color:rgba(255,255,255,.7);padding:48px 48px 32px;}
 .footer-grid{max-width:1280px;margin:0 auto;display:flex;gap:48px;flex-wrap:wrap;}
 .footer-brand{flex:1;min-width:220px;}
 .footer-brand .fb-name{color:#fff;font-size:18px;font-weight:600;margin-bottom:10px;}
@@ -660,7 +660,7 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
 .col-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;transition:box-shadow .2s,border-color .2s;}
 .col-card:hover{border-color:var(--primary);box-shadow:0 6px 24px rgba(0,0,0,.06);}
 .col-head{padding:24px 26px;cursor:pointer;display:flex;flex-direction:column;gap:10px;}
-.col-cat{display:inline-block;align-self:flex-start;background:rgba(0,112,209,.1);color:var(--primary);font-size:12px;font-weight:700;padding:4px 11px;border-radius:9999px;}
+.col-cat{display:inline-block;align-self:flex-start;background:rgba(0,150,60,.1);color:var(--primary);font-size:12px;font-weight:700;padding:4px 11px;border-radius:9999px;}
 .col-title{font-size:21px;font-weight:600;color:var(--ink);line-height:1.4;}
 .col-summary{font-size:14px;color:var(--body-light);line-height:1.6;}
 .col-more{font-size:13px;color:var(--primary);font-weight:600;}
@@ -698,7 +698,6 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
 <div class="topbar">
   <a href="#">공인노무사 JP 소개</a>
   <a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">상담문의</a>
-  <a href="#">크몽 바로가기</a>
   <a href="#">뉴스레터 구독</a>
 </div>
 
@@ -13782,8 +13781,7 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
   <p>Q&A로 해결되지 않는 개별 사안 — 단체교섭 전략, 징계·해고 절차,<br>노동위원회 대응은 8년 ER 전문 노무사에게 직접 물어보세요.</p>
   <div class="cta-btns">
     <a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의" class="cta-primary">JP 노무사에게 상담문의</a>
-    <a href="#" class="cta-outline">📧 이메일 문의</a>
-    <a href="#" class="cta-outline">📋 크몽에서 상담하기</a>
+    <a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의" class="cta-outline">📧 이메일 문의</a>
   </div>
   <div class="cta-tags">
     <span>단체교섭</span><span>부당해고</span><span>노동위원회</span>
@@ -13808,7 +13806,7 @@ footer{background:var(--primary-active);color:rgba(255,255,255,.7);padding:48px 
     </div>
     <div class="footer-col">
       <h4>바로가기</h4>
-      <a href="#">크몽 프로필</a><a href="#">카카오 채널</a><a href="#">이메일 문의</a>
+      <a href="#">카카오 채널</a><a href="mailto:adxlabor@gmail.com?subject=JP노무사 상담문의">이메일 문의</a>
     </div>
   </div>
   <div class="footer-bottom">
