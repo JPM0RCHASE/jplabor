@@ -9,8 +9,8 @@
   #thumb{
     width:1000px;height:1000px;position:relative;overflow:hidden;
     background:linear-gradient(145deg,#16181c 0%,#101216 55%,#0c0d10 100%);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+    text-align:center;padding-top:120px;
   }
   /* 상단 브랜드 바 */
   #thumb::before{content:"";position:absolute;top:0;left:0;right:0;height:10px;
@@ -49,6 +49,10 @@
     background:#1f2228;border:1px solid #313640;padding:9px 20px;border-radius:999px;
     white-space:nowrap;}
   .tags span b{color:#1ed760;}
+  /* 하단 페이드 — 네이버 프로필 UI와 자연스럽게 연결 */
+  .fade{position:absolute;bottom:0;left:0;right:0;height:320px;
+    background:linear-gradient(to bottom,transparent,rgba(10,11,13,.95) 80%,#0a0b0d 100%);
+    pointer-events:none;}
   .wm{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font-size:20px;font-weight:800;color:#454a52;white-space:nowrap;}
   .wm b{color:#1ed760;}
 </style>
@@ -79,6 +83,7 @@
     <span># 뉴스레터</span>
     <span># 카드뉴스</span>
   </div>
+  <div class="fade"></div>
   <div class="wm">공인노무사 <b>JP</b></div>
 </div>
 </body>
