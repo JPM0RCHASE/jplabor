@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#888;font-family:'Pretendard',sans-serif;}
+  /* 본문 인포그래픽 (정사각형에 가까운 가로형, 네이버 본문 폭에 맞춤) */
+  #thumb{
+    width:1000px;height:760px;position:relative;overflow:hidden;
+    background:radial-gradient(circle at 15% 18%,rgba(30,215,96,.10),transparent 45%),
+    radial-gradient(circle at 90% 95%,rgba(30,215,96,.06),transparent 42%),#121212;
+    padding:56px 56px 48px;display:flex;flex-direction:column;
+  }
+  #thumb::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+    background:linear-gradient(180deg,#1ed760,rgba(30,215,96,.15));}
+  .ig-label{font-size:18px;font-weight:700;letter-spacing:2px;color:#1ed760;
+    text-transform:uppercase;margin-bottom:12px;}
+  .ig-label .dot{display:inline-block;width:8px;height:8px;border-radius:50%;
+    background:#1ed760;margin-right:10px;vertical-align:middle;box-shadow:0 0 10px rgba(30,215,96,.8);}
+  .ig-title{font-size:42px;font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1.2;}
+  .ig-title .acc{color:#1ed760;}
+  .ig-sub{font-size:17px;color:#8a8a8a;margin-top:10px;font-weight:500;}
+  .grid{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+    gap:22px;margin-top:36px;}
+  .card{
+    background:linear-gradient(155deg,#1c1c1c,#161616);
+    border:1px solid #2c2c2c;border-radius:20px;padding:30px 32px;
+    position:relative;overflow:hidden;display:flex;flex-direction:column;
+  }
+  .card::after{content:"";position:absolute;left:0;top:0;width:100%;height:3px;
+    background:linear-gradient(90deg,#1ed760,transparent);}
+  .card .top{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+  .card .ic{width:54px;height:54px;border-radius:14px;background:rgba(30,215,96,.12);
+    border:1px solid rgba(30,215,96,.3);display:flex;align-items:center;justify-content:center;
+    font-size:28px;flex-shrink:0;}
+  .card .no{font-size:15px;font-weight:800;color:#1ed760;letter-spacing:1px;}
+  .card .nm{font-size:25px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-top:2px;}
+  .card .ds{font-size:15.5px;color:#9a9a9a;line-height:1.6;font-weight:500;}
+  .card .ds b{color:#cfcfcf;font-weight:700;}
+  .ig-foot{margin-top:30px;display:flex;justify-content:space-between;align-items:center;}
+  .ig-foot .law{font-size:15px;color:#6f6f6f;font-weight:600;}
+  .ig-foot .law b{color:#1ed760;}
+  .ig-foot .wm{font-size:17px;font-weight:700;color:#6f6f6f;}
+  .ig-foot .wm b{color:#1ed760;}
+</style>
+</head>
+<body>
+<div id="thumb">
+  <div class="ig-label"><span class="dot"></span>임금 지급의 기본 원칙</div>
+  <div class="ig-title">임금 지급 <span class="acc">4대 원칙</span></div>
+  <div class="ig-sub">근로기준법 제43조 — 이 네 가지를 어기면 형사처벌 대상</div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="top">
+        <div class="ic">💵</div>
+        <div><div class="no">원칙 ①</div><div class="nm">통화 지급</div></div>
+      </div>
+      <div class="ds">강제 통용력 있는 <b>화폐(원화)</b>로 지급<br>지역화폐·주식 ❌</div>
+    </div>
+    <div class="card">
+      <div class="top">
+        <div class="ic">🙋</div>
+        <div><div class="no">원칙 ②</div><div class="nm">직접 지급</div></div>
+      </div>
+      <div class="ds"><b>근로자 본인</b>에게 직접 지급<br>대리인·양수인 지급 ❌</div>
+    </div>
+    <div class="card">
+      <div class="top">
+        <div class="ic">💯</div>
+        <div><div class="no">원칙 ③</div><div class="nm">전액 지급</div></div>
+      </div>
+      <div class="ds">임금 <b>전액</b>을 지급<br>일방적 상계·공제 ❌</div>
+    </div>
+    <div class="card">
+      <div class="top">
+        <div class="ic">📅</div>
+        <div><div class="no">원칙 ④</div><div class="nm">정기 지급</div></div>
+      </div>
+      <div class="ds"><b>매월 1회 이상</b> 일정한 날짜에 지급</div>
+    </div>
+  </div>
+
+  <div class="ig-foot">
+    <div class="law">⚖️ 근로기준법 <b>제43조</b></div>
+    <div class="wm">공인노무사 <b>JP</b></div>
+  </div>
+</div>
+</body>
+</html>
