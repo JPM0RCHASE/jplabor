@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#555;font-family:'Pretendard',sans-serif;}
+  /* 네이버 블로그 커버 — 모바일/PC 공통 권장 비율, 중앙 안전영역 고려 */
+  #thumb{
+    width:1920px;height:1080px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(circle at 16% 24%,rgba(30,215,96,.14),transparent 40%),
+      radial-gradient(circle at 88% 82%,rgba(30,215,96,.07),transparent 42%),
+      linear-gradient(160deg,#181818 0%,#101010 55%,#0c0c0c 100%);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 150px;
+  }
+  /* 좌측 브랜드 바 */
+  #thumb::before{content:"";position:absolute;left:0;top:0;bottom:0;width:10px;
+    background:linear-gradient(180deg,#1ed760,rgba(30,215,96,.12));}
+  /* 미세한 도트 텍스처 */
+  .tex{position:absolute;inset:0;opacity:.05;
+    background-image:radial-gradient(#ffffff 1px,transparent 1px);
+    background-size:34px 34px;pointer-events:none;}
+  /* 은은한 라인 그래픽 (잎맥 느낌의 추상선) */
+  .veins{position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+    width:760px;height:760px;opacity:.16;}
+  .label{font-size:30px;font-weight:700;letter-spacing:5px;color:#1ed760;
+    text-transform:uppercase;margin-bottom:34px;display:flex;align-items:center;gap:16px;}
+  .label .dot{width:13px;height:13px;border-radius:50%;background:#1ed760;
+    box-shadow:0 0 18px rgba(30,215,96,.9);}
+  .title{font-size:104px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#fff;
+    text-shadow:0 6px 40px rgba(0,0,0,.6);}
+  .title .acc{color:#1ed760;text-shadow:0 0 40px rgba(30,215,96,.5);}
+  .slogan{font-size:36px;font-weight:500;color:#a8a8a8;margin-top:40px;letter-spacing:-.5px;}
+  .slogan b{color:#d6d6d6;font-weight:700;}
+  .line{margin-top:54px;width:180px;height:6px;background:#1ed760;border-radius:3px;
+    box-shadow:0 0 18px rgba(30,215,96,.6);}
+  .wm{position:absolute;right:120px;bottom:80px;font-size:32px;font-weight:700;color:#5a5a5a;}
+  .wm b{color:#1ed760;}
+</style>
+</head>
+<body>
+<div id="thumb">
+  <div class="tex"></div>
+  <svg class="veins" viewBox="0 0 200 200" fill="none" stroke="#1ed760" stroke-width="1.1">
+    <path d="M100 10 V190"/>
+    <path d="M100 50 L150 25 M100 50 L50 25"/>
+    <path d="M100 90 L165 60 M100 90 L35 60"/>
+    <path d="M100 130 L160 105 M100 130 L40 105"/>
+    <path d="M100 165 L140 148 M100 165 L60 148"/>
+  </svg>
+  <div class="label"><span class="dot"></span>JP LABOR · 인사노무 실무</div>
+  <div class="title">인사노무<br><span class="acc">가이드</span> 블로그</div>
+  <div class="slogan">현장에서 바로 쓰는 <b>노동법 실무 인사이트</b> — 공인노무사 JP</div>
+  <div class="line"></div>
+  <div class="wm">공인노무사 <b>JP</b></div>
+</div>
+</body>
+</html>
