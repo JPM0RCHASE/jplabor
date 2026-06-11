@@ -43,9 +43,11 @@
   .slogan .ico{font-size:26px;}
   .slogan .tx{font-size:26px;font-weight:700;color:#ffffff;letter-spacing:-.5px;}
   .slogan .tx b{color:#1ed760;}
-  .tags{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;justify-content:center;max-width:840px;}
+  .tags{display:grid;grid-template-columns:repeat(3,auto);gap:10px;margin-top:28px;
+    justify-content:center;justify-items:center;max-width:780px;}
   .tags span{font-size:19px;font-weight:700;color:#cfd2d6;
-    background:#1f2228;border:1px solid #313640;padding:9px 18px;border-radius:999px;}
+    background:#1f2228;border:1px solid #313640;padding:9px 20px;border-radius:999px;
+    white-space:nowrap;}
   .tags span b{color:#1ed760;}
   .wm{position:absolute;bottom:32px;right:36px;font-size:20px;font-weight:800;color:#454a52;}
   .wm b{color:#1ed760;}
