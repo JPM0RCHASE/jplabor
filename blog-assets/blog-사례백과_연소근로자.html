@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{background:#888;font-family:'Pretendard',sans-serif;}
+  #thumb{
+    width:1200px;height:630px;position:relative;overflow:hidden;
+    background:radial-gradient(circle at 18% 22%,rgba(30,215,96,.10),transparent 42%),
+    radial-gradient(circle at 88% 90%,rgba(30,215,96,.06),transparent 40%),#121212;
+    display:flex;flex-direction:column;justify-content:center;padding:0 90px;
+  }
+  #thumb::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;
+    background:linear-gradient(180deg,#1ed760,rgba(30,215,96,.15));}
+  .t-label{font-size:22px;font-weight:700;letter-spacing:3px;color:#1ed760;
+    text-transform:uppercase;margin-bottom:30px;}
+  .t-label .dot{display:inline-block;width:9px;height:9px;border-radius:50%;
+    background:#1ed760;margin-right:12px;vertical-align:middle;
+    box-shadow:0 0 12px rgba(30,215,96,.8);}
+  .t-title{font-size:58px;font-weight:800;line-height:1.2;letter-spacing:-2px;
+    color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.5);}
+  .t-title .acc{color:#1ed760;text-shadow:0 0 30px rgba(30,215,96,.45);}
+  .t-badge{position:absolute;right:90px;top:50%;transform:translateY(-50%);width:130px;height:130px;border-radius:50%;
+    background:rgba(30,215,96,.12);border:2px solid #1ed760;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;}
+  .t-badge .n{font-size:48px;font-weight:800;color:#1ed760;line-height:1;}
+  .t-badge .u{font-size:14px;font-weight:700;color:#1ed760;margin-top:4px;}
+  .t-sub{font-size:22px;font-weight:500;color:#9a9a9a;margin-top:28px;}
+  .t-line{position:absolute;left:90px;bottom:78px;width:120px;height:4px;
+    background:#1ed760;border-radius:2px;box-shadow:0 0 14px rgba(30,215,96,.6);}
+  .t-wm{position:absolute;right:46px;bottom:38px;font-size:20px;font-weight:700;color:#6f6f6f;}
+  .t-wm b{color:#1ed760;}
+  #disc{
+    width:800px;margin:40px auto 0;
+    background:#f7faf8;border:1px solid #e3ece6;border-left:5px solid #1ed760;
+    border-radius:14px;padding:32px 36px;display:flex;gap:20px;align-items:flex-start;
+  }
+  #disc .icon{flex-shrink:0;width:44px;height:44px;border-radius:50%;
+    background:rgba(30,215,96,.12);display:flex;align-items:center;
+    justify-content:center;font-size:22px;margin-top:2px;}
+  .disc-head{font-size:18px;font-weight:800;color:#16562f;margin-bottom:10px;
+    display:flex;align-items:center;gap:8px;}
+  .disc-head .tag{font-size:11px;font-weight:700;color:#1aa34a;
+    background:#e7f8ee;padding:3px 9px;border-radius:9999px;}
+  .disc-text{font-size:15.5px;color:#4a5a52;line-height:1.85;}
+  .disc-text b{color:#16562f;font-weight:700;}
+  .disc-sign{margin-top:12px;font-size:13px;font-weight:700;color:#9aa8a0;}
+  .disc-sign b{color:#1ed760;}
+</style>
+</head>
+<body>
+<div id="thumb">
+  <div class="t-label"><span class="dot"></span>JP LABOR · 사례 백과</div>
+  <div class="t-title">연소근로자 채용·보호
+<span class="acc">실무 Q&A</span> 3선</div>
+  <div class="t-badge"><span class="n">3</span><span class="u">사례</span></div>
+  <div class="t-sub">미성년자 채용·근로시간·친권자 동의 실무 정리 (2026)</div>
+  <div class="t-line"></div>
+  <div class="t-wm">공인노무사 <b>JP</b></div>
+</div>
+<div id="disc">
+  <div class="icon">⚖️</div>
+  <div>
+    <div class="disc-head">법적 고지 <span class="tag">면책조항</span></div>
+    <div class="disc-text">
+      본 블로그에 게재된 내용은 <b>일반적인 정보 제공을 목적</b>으로 하며, 법률 자문이 아닙니다.
+      개별 사안에 따라 결론이 달라질 수 있으므로 구체적인 사항은 반드시 <b>전문가와 상담</b>하시기 바랍니다.
+      본 내용은 게시 시점의 법령·판례를 기준으로 작성되었으며, 이후 법령 변경에 따라 달라질 수 있습니다.
+    </div>
+    <div class="disc-sign">공인노무사 <b>JP</b> | jplabor.com</div>
+  </div>
+</div>
+</body>
+</html>
