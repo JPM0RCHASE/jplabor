@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인사 노무 브리핑 2026년 7월 셋째주 | 공인노무사JP의 뉴스레터</title>
+<meta name="description" content="2026년 7월 셋째주 노동·HR·정책 핵심 이슈. 공인노무사JP의 주간 뉴스레터.">
+<meta property="og:title" content="인사 노무 브리핑 2026년 7월 셋째주 | 공인노무사JP">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://eu-labornews.vercel.app/newsletter/newsletter_20260720.html">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap');
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #f2f2f2;
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    font-size: 15px; line-height: 1.75; color: #111;
+  }
+  .email-wrap { max-width: 600px; margin: 0 auto; background: #fff; }
+
+  /* 상단 그린 바 */
+  .top-bar { height: 5px; background: #1a6b3a; }
+
+  /* 헤더 */
+  .nl-header {
+    padding: 28px 32px 20px;
+    border-bottom: 2px solid #111;
+    display: flex; align-items: flex-end; justify-content: space-between;
+  }
+  .nl-brand {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px; font-weight: 900; color: #111;
+    letter-spacing: -.01em; line-height: 1;
+  }
+  .nl-brand span { color: #1a6b3a; }
+  .nl-issue { font-size: 11px; color: #666; text-align: right; line-height: 1.6; }
+
+  /* 히어로 */
+  .nl-hero { padding: 32px 32px 28px; border-bottom: 2px solid #111; }
+  .nl-hero-kicker {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 10px; font-weight: 700; letter-spacing: .2em;
+    color: #1a6b3a; text-transform: uppercase; margin-bottom: 14px;
+  }
+  .nl-hero-kicker::before,
+  .nl-hero-kicker::after { content: ''; flex: 0 0 28px; height: 1.5px; background: #1a6b3a; }
+  .nl-hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px; font-weight: 900; color: #111;
+    line-height: 1.2; margin-bottom: 12px; word-break: keep-all;
+  }
+  .nl-hero-title em { color: #1a6b3a; font-style: italic; }
+  .nl-hero-sub { font-size: 13px; color: #555; line-height: 1.8; }
+
+  /* 섹션 공통 */
+  .nl-section { padding: 32px 32px 24px; border-bottom: 2px solid #111; }
+
+  /* Kicker 공통 */
+  .kicker {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 10px; font-weight: 700; letter-spacing: .2em;
+    color: #1a6b3a; text-transform: uppercase; margin-bottom: 20px;
+    white-space: nowrap;
+  }
+  .kicker::before { content: ''; flex: 0 0 20px; height: 1.5px; background: #1a6b3a; }
+  .kicker::after  { content: ''; flex: 1;         height: 1.5px; background: #1a6b3a; }
+
+  /* Section 01 전용 kicker: 1.5배 + Playfair Display */
+  .kicker-s01 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 15px; font-weight: 900;
+    letter-spacing: .03em; text-transform: none;
+  }
+  .kicker-s01::before { flex: 0 0 24px; height: 2px; }
+  .kicker-s01::after  { height: 2px; }
+
+  /* 섹션 1: Top 3 카드 */
+  .news-card-nl { border: 1px solid #ddd; margin-bottom: 18px; }
+  .news-card-nl:last-child { margin-bottom: 0; }
+  .nc-header {
+    display: flex; align-items: center; gap: 10px;
+    background: #fafafa; padding: 9px 14px; border-bottom: 1px solid #ddd;
+  }
+  .nc-rank { font-size: 11px; font-weight: 900; color: #1a6b3a; min-width: 22px; text-align: center; }
+  .nc-source { font-size: 11px; color: #666; flex: 1; }
+  .nc-date { font-size: 11px; color: #999; }
+  .nc-body { padding: 16px 14px; }
+  .nc-category {
+    font-size: 10px; font-weight: 700; color: #1a6b3a;
+    letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .nc-title {
+    font-size: 16px; font-weight: 800; color: #111;
+    line-height: 1.4; margin-bottom: 10px; word-break: keep-all;
+  }
+  .nc-summary { font-size: 13px; color: #444; line-height: 1.8; margin-bottom: 12px; }
+  .nc-insight { border-left: 2px solid #1a6b3a; padding: 10px 12px; background: #f7fbf8; }
+  .nc-insight-label {
+    font-size: 9px; font-weight: 700; color: #1a6b3a;
+    letter-spacing: .18em; text-transform: uppercase; margin-bottom: 4px;
+  }
+  .nc-insight-text { font-size: 12px; color: #333; line-height: 1.8; }
+  .nc-footer {
+    padding: 8px 14px; background: #fafafa; border-top: 1px solid #ddd; text-align: right;
+  }
+  .nc-link { font-size: 12px; font-weight: 700; color: #1a6b3a; text-decoration: none; }
+
+  /* 공통 구분선 (Wired식 굵은 2px 블랙) */
+  .section-divider { border: none; border-top: 2px solid #111; margin-bottom: 14px; }
+
+  /* 섹션 2: 정부·노동부·국회 */
+  .gov-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 12px; }
+  .gov-badge {
+    display: inline-block; background: #111; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 3px 9px;
+    letter-spacing: .06em; margin-bottom: 10px;
+  }
+  .gov-title { font-size: 17px; font-weight: 900; color: #111; margin-bottom: 2px; word-break: keep-all; }
+  .gov-sub { font-size: 12px; color: #666; margin-bottom: 14px; }
+  .gov-bullets { list-style: none; margin-bottom: 16px; }
+  .gov-bullets li {
+    font-size: 13px; color: #222; padding: 9px 0 9px 18px;
+    border-bottom: 1px solid #e0e0e0; position: relative; line-height: 1.7;
+  }
+  .gov-bullets li:last-child { border-bottom: none; }
+  .gov-bullets li::before {
+    content: '▸';
+    position: absolute; left: 0; color: #1a6b3a; font-size: 12px; top: 10px;
+  }
+  .gov-insight { border-left: 2px solid #111; padding: 10px 12px; background: #f8f8f8; font-size: 12px; color: #333; line-height: 1.8; }
+  .gov-insight-label { font-size: 9px; font-weight: 700; color: #555; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* 섹션 3: JP's Weekly QA */
+  .qa-wrap { border: 1.5px solid #111; padding: 24px; margin-bottom: 12px; background: #fff; }
+  .qa-label { font-size: 10px; font-weight: 700; color: #1a6b3a; letter-spacing: .2em; text-transform: uppercase; margin-bottom: 12px; }
+  .qa-q {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 18px; font-weight: 700; color: #111;
+    line-height: 1.45; margin-bottom: 18px; word-break: keep-all;
+  }
+  .qa-open-q  { color: #1a6b3a; font-size: 26px; line-height: 0; vertical-align: -5px; font-family: Georgia, serif; }
+  .qa-close-q { color: #1a6b3a; font-size: 26px; line-height: 0; vertical-align: -5px; font-family: Georgia, serif; }
+  .qa-a-label { font-size: 10px; font-weight: 700; color: #555; margin-bottom: 10px; letter-spacing: .12em; }
+  .qa-paragraph { font-size: 13px; color: #333; line-height: 1.9; margin-bottom: 10px; }
+  .qa-paragraph:last-of-type { margin-bottom: 0; }
+
+  /* 섹션 4: 5인 미만 */
+  .five-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 12px; }
+  .five-badge {
+    display: inline-block; background: #1a6b3a; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 3px 9px;
+    letter-spacing: .06em; margin-bottom: 10px;
+  }
+  .five-title { font-size: 17px; font-weight: 900; color: #111; margin-bottom: 2px; word-break: keep-all; }
+  .five-sub { font-size: 12px; color: #666; margin-bottom: 14px; }
+  .five-points { list-style: none; margin-bottom: 16px; }
+  .five-points li {
+    font-size: 13px; color: #222; padding: 9px 0 9px 22px;
+    border-bottom: 1px solid #e0e0e0; position: relative; line-height: 1.7;
+  }
+  .five-points li:last-child { border-bottom: none; }
+  .five-points li::before {
+    content: '✓';
+    position: absolute; left: 0; color: #1a6b3a; font-weight: 900; font-size: 12px; top: 10px;
+  }
+  .five-tip { border-left: 2px solid #1a6b3a; padding: 10px 12px; background: #f7fbf8; font-size: 12px; color: #333; line-height: 1.8; }
+  .five-tip-label { font-size: 9px; font-weight: 700; color: #1a6b3a; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* 섹션 5: 지원금 캘린더 */
+  .cal-block { border: 1px solid #ddd; padding: 20px; margin-bottom: 12px; }
+  .cal-sub-title {
+    font-size: 10px; font-weight: 700; color: #1a6b3a;
+    letter-spacing: .16em; text-transform: uppercase; margin-bottom: 10px;
+  }
+  .cal-issue-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #e8e8e8; }
+  .cal-issue-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .cal-issue-label {
+    font-size: 14px; font-weight: 800; color: #111;
+    margin-bottom: 5px; word-break: keep-all;
+  }
+  .cal-issue-label::before { content: '▸'; color: #1a6b3a; margin-right: 6px; }
+  .cal-issue-detail { font-size: 12px; color: #444; line-height: 1.8; padding-left: 14px; }
+  .cal-subsidy { border: 1px solid #ddd; padding: 14px 16px; margin-bottom: 10px; }
+  .cal-subsidy:last-child { margin-bottom: 0; }
+  .cal-subsidy-name { font-size: 14px; font-weight: 900; color: #111; margin-bottom: 6px; }
+  .cal-subsidy-meta {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px;
+  }
+  .cal-meta-tag {
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    background: #f0f0f0; color: #333; letter-spacing: .04em;
+  }
+  .cal-meta-tag.amount { background: #e8f5ec; color: #1a6b3a; }
+  .cal-meta-tag.deadline { background: #111; color: #fff; }
+  .cal-subsidy-tip { font-size: 12px; color: #444; line-height: 1.8; }
+  .cal-quick-qa { background: #f7fbf8; border-left: 2px solid #1a6b3a; padding: 14px 16px; margin-bottom: 12px; }
+  .cal-qq-label { font-size: 9px; font-weight: 700; color: #1a6b3a; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 6px; }
+  .cal-qq-q { font-size: 13px; font-weight: 800; color: #111; margin-bottom: 8px; word-break: keep-all; }
+  .cal-qq-a { font-size: 12px; color: #333; line-height: 1.8; }
+  .cal-checkpoint { border: 1.5px solid #111; padding: 16px; background: #fff; }
+  .cal-cp-label { font-size: 9px; font-weight: 700; color: #555; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 8px; }
+  .cal-cp-text { font-size: 12px; color: #333; line-height: 1.9; }
+
+  /* 섹션 5: 판결 카드 */
+  .ruling-card { border: 1px solid #ddd; padding: 20px; margin-bottom: 14px; }
+  .ruling-card:last-child { margin-bottom: 0; }
+  .ruling-header { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; align-items: center; }
+  .ruling-court { font-size: 10px; font-weight: 700; background: #111; color: #fff; padding: 2px 8px; letter-spacing: .04em; }
+  .ruling-type  { font-size: 10px; font-weight: 700; background: #1a6b3a; color: #fff; padding: 2px 8px; letter-spacing: .04em; }
+  .ruling-date  { font-size: 11px; color: #888; margin-left: auto; }
+  .ruling-title { font-size: 15px; font-weight: 900; color: #111; margin-bottom: 14px; line-height: 1.4; word-break: keep-all; }
+  .ruling-section-label { font-size: 9px; font-weight: 700; color: #555; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 4px; margin-top: 10px; }
+  .ruling-text  { font-size: 12px; color: #333; line-height: 1.85; }
+  .ruling-insight { border-left: 2px solid #1a6b3a; padding: 10px 12px; background: #f7fbf8; margin-top: 14px; }
+  .ruling-insight-label { font-size: 9px; font-weight: 700; color: #1a6b3a; letter-spacing: .14em; margin-bottom: 5px; }
+  .ruling-insight-text  { font-size: 12px; color: #333; line-height: 1.85; }
+
+  /* 공유 바 */
+  .share-bar { background: #111; padding: 7px 20px 6px; }
+  .share-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 4px; padding: 7px 20px; font-size: 12px; font-weight: 700;
+    border: none; cursor: pointer; text-decoration: none; transition: opacity .2s;
+  }
+  .share-btn:hover { opacity: .85; }
+  .share-copy  { background: #333; color: #fff; }
+  #nl-copy-msg { font-size: 10px; color: #7dbb9a; display: none; text-align: center; padding-top: 4px; }
+
+  /* 푸터 */
+  .nl-footer { padding: 18px 32px; border-top: 2px solid #111; background: #fff; }
+  .nf-left { font-size: 11px; color: #555; line-height: 1.7; }
+  .nf-brand { font-weight: 700; color: #111; }
+
+  /* 반응형 */
+  @media (max-width: 600px) {
+    .nl-header, .nl-hero, .nl-section, .nl-footer { padding-left: 16px; padding-right: 16px; }
+    .nl-hero-title { font-size: 26px; }
+    .nl-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .nl-issue { text-align: left; }
+  }
+</style>
+</head>
+<body>
+<div class="email-wrap">
+<div class="top-bar"></div>
+<div class="nl-header">
+  <div class="nl-brand">인사 노무 <span>브리핑</span></div>
+  <div class="nl-issue">
+    공인노무사JP의 뉴스레터<br>
+    2026. 07. 20. · 2026년 7월 셋째주
+  </div>
+</div>
+<div class="nl-hero">
+  <div class="nl-hero-kicker">2026년 7월 셋째주 · 주간 뉴스레터</div>
+  <h1 class="nl-hero-title">이번 주 꼭 알아야 할<br><em>Labor &amp; HR</em> 이슈</h1>
+  <p class="nl-hero-sub">공인노무사 JP가 선별한 핵심 뉴스 · 정책동향 · 5인 미만 이슈 · JP 인사이트</p>
+</div>
+<div class="nl-section">
+  <div class="kicker kicker-s01">Section 01 &nbsp;·&nbsp; 이번 주 꼭 읽어야 할 뉴스 Top 3</div>
+  <div class="news-card-nl"><div class="nc-header"><span class="nc-rank">No.1</span><span class="nc-source">📰 경향신문</span><span class="nc-date">2026.07.19</span></div><div class="nc-body"><div class="nc-category">육아휴직·부당해고</div><h3 class="nc-title">5인 미만 사업장 육아휴직, 부당해고 구제는 여전히 '사각지대'</h3><p class="nc-summary">육아휴직 사용률이 전체적으로 증가했지만, 5인 미만 사업장과 비정규직 노동자는 여전히 눈치 보는 실정입니다. 5인 미만 사업장은 근로기준법상 부당해고 제한과 노동위원회 부당해고 구제제도 대상에서 제외되어, 육아휴직을 이유로 해고되어도 신속한 권리 구제를 받기 어렵습니다. 기간제 노동자도 임신과 출산으로 인한 불이익에 취약한 상황입니다.</p><div class="nc-insight"><div class="nc-insight-label">JP Insight</div><div class="nc-insight-text">5인 미만 사업장의 경우 부당해고 구제 사각지대로, 육아휴직 사용 후 해고 시 노동위원회 구제신청이 불가능합니다. 사업주는 이를 악용하지 말고 모성보호와 고용안정을 위한 자율적 노력이 필요하며, 근로자는 민사소송 등 다른 구제방법을 사전에 숙지해야 합니다.</div></div></div><div class="nc-footer"><a class="nc-link" href="https://www.khan.co.kr/article/202607192122005" target="_blank">원문 보기 →</a></div></div><div class="news-card-nl"><div class="nc-header"><span class="nc-rank">No.2</span><span class="nc-source">📰 연합뉴스</span><span class="nc-date">2026.07.20</span></div><div class="nc-body"><div class="nc-category">최저임금·실습생</div><h3 class="nc-title">780시간 무급실습, 병원 인력 대체로 인정…간호조무사 제도 개선 필요</h3><p class="nc-summary">간호조무사 실습생이 실습 교육 기간 중 실질적으로 병원의 지휘·감독 아래 근로를 제공했다며 근로기준법상 시간급 최저임금을 청구한 소송에서 법원이 일부 인정했습니다. 1심 법원은 근로기준법상 근로자로 인정하며 최저임금 지급을 명령했으나, 일부 실습 기간은 교육으로 판단했습니다. 전문가들은 무급실습이 병원 인력 대체로 활용되는 구조적 문제를 지적하며 제도 개선을 촉구했습니다.</p><div class="nc-insight"><div class="nc-insight-label">JP Insight</div><div class="nc-insight-text">실습생이라도 실질적으로 사업장의 지휘·감독 하에 노무를 제공하면 근로자성이 인정될 수 있습니다. 의료기관 및 교육기관은 실습 과정이 순수 교육 목적인지, 실제 업무 대체인지를 명확히 구분하고, 근로 제공 시 최저임금 등 근로기준법 준수 여부를 반드시 점검해야 합니다.</div></div></div><div class="nc-footer"><a class="nc-link" href="https://www.yna.co.kr/view/AKR20260718045700530?input=1195m" target="_blank">원문 보기 →</a></div></div><div class="news-card-nl"><div class="nc-header"><span class="nc-rank">No.3</span><span class="nc-source">📰 연합뉴스</span><span class="nc-date">2026.07.20</span></div><div class="nc-body"><div class="nc-category">실업급여·육아기 단축급여</div><h3 class="nc-title">육아기 단축급여 받던 워킹맘, 임금체불 당해도 실업급여 못 받나요?</h3><p class="nc-summary">육아기 단축급여를 받던 근로자가 임금체불을 당해 실업급여를 신청하면 육아기 단축급여 수급 자격이 리셋되는 제도적 모순이 발생하고 있습니다. 실업급여 신청 시 육아기 단축급여 재신청이 불가능해지며, 반복수급 방지 조항이 기계적으로 대입되는 문제가 지적됩니다. 전문가들은 육아 지원 제도에 실업급여 반복수급 방지 조항을 적용하는 것이 부적절하다며 법 개정을 검토해야 한다고 주장합니다.</p><div class="nc-insight"><div class="nc-insight-label">JP Insight</div><div class="nc-insight-text">육아기 단축급여와 실업급여 간 수급 자격 충돌은 입법 미비로 인한 문제입니다. 임금체불 등 불가피한 사유로 실업급여를 받게 된 육아기 근로자는 제도 개선 전까지 각 급여의 수급 조건과 상호 영향을 사전에 확인하고, 고용센터와 충분히 상담 후 신청 여부를 결정해야 합니다.</div></div></div><div class="nc-footer"><a class="nc-link" href="https://www.yna.co.kr/view/AKR20260716100000505?input=1195m" target="_blank">원문 보기 →</a></div></div>
+</div>
+<div class="nl-section">
+  <div class="kicker">Section 02 &nbsp;·&nbsp; 정부·노동부·국회 정책동향</div>
+  <div class="gov-card"><div class="gov-badge">정부·노동부·국회</div><div class="gov-title">정부·노동부·국회 정책동향</div><div class="gov-sub">이번 주 핵심 정책 이슈 · 연합뉴스 · 2026.07.20</div><hr class="section-divider"><ul class="gov-bullets"><li>청년정책 300여 개가 쏟아졌지만 컨트롤타워 부재 — 고용노동부는 청년고용정책관 아래 3개 과를 운영하고, 보건복지부는 청년정책팀이 복지 과제를 관리하나 부처 간 중복과 사각지대 발생</li><li>고용노동부 '쉬었음 청년' 지원 확대 — 연간 15만 명의 장기 미취업 청년을 발굴해 데이터베이스(DB)를 구축하고 맞춤형 취업 지원 추진</li><li>2027년 최저임금 시간당 1만 700원 확정 예정 — 노동부는 8월 5일까지 내년도 최저임금을 확정·고시하며 2027년 1월 1일부터 효력 발생, 경남 소상공인 71.7%는 '부담'으로 응답</li></ul><div class="gov-insight"><div class="gov-insight-label">실무 대응 포인트</div>청년 고용과 최저임금 정책은 노동시장의 양대 핵심 이슈로, 부처 간 정책 조율 미흡과 소상공인의 인건비 부담이 동시에 제기되고 있습니다. 기업 인사담당자는 내년 최저임금 인상에 따른 인건비 예산 재편성과 청년 채용 지원제도(일자리 강소기업 등)를 적극 활용해야 합니다.</div></div>
+</div>
+<div class="nl-section">
+  <div class="kicker">Section 03 &nbsp;&middot;&nbsp; JP's Weekly Insight</div>
+  <div class="qa-wrap"><div class="qa-label">JP's Weekly Insight · 이번 주 가장 많이 받은 질문</div><div class="qa-q"><span class="qa-open-q">"</span>노란봉투법 시행 후 원청의 사용자성은 어떻게 판단하나요?<span class="qa-close-q">"</span></div><div class="qa-a-label">공인노무사 JP의 답변</div><p class="qa-paragraph">노란봉투법(개정 노조법)은 근로계약 당사자가 아니더라도 근로조건을 '실질적이고 구체적으로 지배·결정'할 수 있는 자를 사용자에 포함하도록 규정했습니다. 그러나 대법원은 2026년 7월 CJ대한통운 판결에서 '원청의 실질적 지배·결정권'을 좁게 해석하며, 중앙노동위원회와 하급심의 원청 사용자성 인정 판단을 뒤집었습니다.</p><p class="qa-paragraph">이번 판결은 개정 전 노동조합법(구법)을 적용한 것이지만, 노란봉투법(신법)의 입법 모태가 된 중노위 결정과 1·2심 판결이 부정되면서 향후 노란봉투법 적용 소송에서도 원청의 사용자성 인정 범위가 축소될 가능성이 제기됩니다. 원청이 작업방법, 인력운영, 근무시간, 안전관리, 임금체계 등에 어느 수준까지 관여하는지가 핵심 쟁점이 될 것입니다.</p><p class="qa-paragraph">실무적으로 원청 기업은 하청 근로자에 대한 직접 지휘·명령, 근태 관리, 임금 결정 개입 등을 최소화하고, 도급계약의 독립성과 하청업체의 전문성·독립성을 명확히 입증할 수 있는 문서(계약서, 업무지시서, 정산내역 등)를 철저히 관리해야 합니다. 노동조합의 교섭 요구 시 법률 자문을 통해 사용자성 판단 기준을 면밀히 검토하는 것이 필요합니다.</p></div>
+</div>
+<div class="nl-section">
+  <div class="kicker">Section 04 &nbsp;·&nbsp; 5인 미만 사업장 집중 노동법 이슈</div>
+  <div class="five-card"><div class="five-badge">5인 미만 사업장 필독</div><div class="five-title">5인 미만 사업장 사장님 필독</div><div class="five-sub">이번 주 핵심 쟁점 · 경향신문 · 2026.07.19</div><hr class="section-divider"><ul class="five-points"><li>5인 미만 사업장은 근로기준법상 부당해고 제한과 노동위원회 부당해고 구제제도 대상에서 제외되어, 육아휴직 등을 이유로 해고되어도 신속한 권리 구제를 받기 어려움</li><li>근로자가 육아휴직 사용 후 해고당할 경우 노동위원회 구제신청이 불가능하며, 민사소송으로만 다툴 수 있어 시간과 비용 부담 발생</li><li>2027년 최저임금 시간당 1만 700원 확정 시 월 209시간 기준 월급 223만 원 수준으로, 주휴수당 포함 시 시간당 환산액은 약 1만 2800원에 달함</li><li>임금체불, 부당해고 등 근로기준법 위반 시 고용노동부 근로감독 대상이 되며, 형사처벌 및 과태료 부과 가능</li></ul><div class="five-tip"><div class="five-tip-label">즉시 실행 팁</div>5인 미만 사업장이라도 부당해고 금지(남녀고용평등법상 육아휴직 불이익 금지 등)는 여전히 적용됩니다. 육아휴직 사용 근로자 해고 시 민사소송 패소 위험이 크므로, 해고 전 반드시 법률 자문을 받으시고, 최저임금 인상에 따른 인건비 예산을 미리 점검하세요.</div></div>
+</div>
+<div class="nl-section">
+  <div class="kicker">Section 05 &nbsp;·&nbsp; 이번 주 주요 노동 판결</div>
+  <div class="ruling-card"><div class="ruling-header"><span class="ruling-court">대법원</span><span class="ruling-type">노조법·원청 사용자성</span><span class="ruling-date">2026.07.20</span></div><h3 class="ruling-title"><a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202607191356256540590" target="_blank" style="color:#111;text-decoration:none;">CJ대한통운 판결, 원청의 '실질적 지배·결정권' 좁게 해석</a></h3><div class="ruling-section-label">사건 개요</div><div class="ruling-text">CJ대한통운 하청 노동자들이 원청의 사용자성을 주장하며 단체교섭을 요구한 사건에서, 중앙노동위원회와 1·2심은 원청의 실질적 지배·결정권을 인정했으나 대법원은 이를 뒤집었습니다. 이 판결은 노란봉투법(개정 노조법)의 입법 모태가 된 중노위 결정과 하급심 판결을 부정한 것입니다.</div><div class="ruling-section-label">판결 요지</div><div class="ruling-text">대법원은 원청이 근로조건을 '실질적이고 구체적으로 지배·결정'했다고 보기 어렵다며 원청의 사용자성을 부정했습니다. 개정 전 노동조합법(구법)을 적용한 판결이지만, 노란봉투법(신법) 적용 소송에서도 원청의 사용자성 인정 범위가 축소될 가능성이 제기되며, 작업방법·인력운영·근무시간·안전관리·임금체계 등에 대한 원청의 관여 수준이 핵심 판단기준이 될 것으로 보입니다.</div><div class="ruling-insight"><div class="ruling-insight-label">⚖ 실무 시사점</div><div class="ruling-insight-text">원청 기업은 이번 판결을 계기로 하청 근로자에 대한 직접 지휘·명령, 근태 관리, 임금 결정 개입을 최소화하고, 도급계약의 독립성을 입증할 수 있는 문서를 철저히 관리해야 합니다. 노동조합의 교섭 요구 시 사용자성 판단 기준을 법률 자문을 통해 면밀히 검토하는 것이 필수적입니다.</div></div></div>
+</div>
+<div class="share-bar">
+  <button class="share-btn share-copy" onclick="nlCopyLink()">🔗 링크 복사</button>
+  <div id="nl-copy-msg">✅ 링크 복사됨!</div>
+</div>
+<div class="nl-footer">
+  <div class="nf-left">
+    <div class="nf-brand">공인노무사JP의 뉴스레터</div>
+    본 뉴스레터는 정보 제공 목적으로 작성된 자료입니다.<br>
+    구체적인 사안은 전문가 상담을 권장합니다.<br>
+    Powered by Claude AI &middot; &copy; 2026 공인노무사 JP
+  </div>
+</div>
+</div><!-- /email-wrap -->
+<script>
+function nlCopyLink() {
+  var url = 'https://eu-labornews.vercel.app/newsletter/newsletter_20260720.html';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url)
+      .then(function() { nlShowCopy(); })
+      .catch(function() { nlFallback(url); });
+  } else { nlFallback(url); }
+}
+function nlFallback(url) {
+  var ta = document.createElement('textarea');
+  ta.value = url; ta.style.position = 'fixed'; ta.style.opacity = '0';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); nlShowCopy(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+function nlShowCopy() {
+  var m = document.getElementById('nl-copy-msg');
+  m.style.display = 'block';
+  setTimeout(function() { m.style.display = 'none'; }, 2500);
+}
+</script>
+</body>
+</html>
